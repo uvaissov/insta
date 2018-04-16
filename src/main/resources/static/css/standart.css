@@ -1,0 +1,12 @@
+.bg1 {
+    background: linear-gradient(134.72deg,#FFD529 0,#FD8440 100%);
+    background-size: cover;
+}
+
+.jumbotron {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border: 1px dashed deeppink;
+}

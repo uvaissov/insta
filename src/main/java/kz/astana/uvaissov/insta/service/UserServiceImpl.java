@@ -26,7 +26,8 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User findUserByEmail(String email) {
 		User user = userRepository.findByEmail(email);
-		user.getRoles().size();//EAGER or call method? we call method!
+		if(user!=null)
+			user.getRoles().size();//EAGER or call method? we call method!
 		return user;
 	}
 

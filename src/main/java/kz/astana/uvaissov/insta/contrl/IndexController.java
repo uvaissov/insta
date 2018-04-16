@@ -22,25 +22,25 @@ import kz.astana.uvaissov.insta.service.UserService;
 
 @Controller
 @SessionAttributes({"user"})
-@RequestMapping("/test")
+@RequestMapping("/")
 public class IndexController {
 
 	@Autowired
 	private UserService userService;
 	
-    @RequestMapping( method = RequestMethod.GET,path = "/1231")
-    public String workspace(Model model) {
+    @RequestMapping( method = RequestMethod.GET)
+    public ModelAndView workspace(Model model) {
     	ModelAndView modelAndView = new ModelAndView();
     	//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	//User user = userService.findUserByEmail(auth.getName());
     	modelAndView.addObject("brand", "My Brand");
     	//modelAndView.addObject("userName", user.getName() + " " + user.getLastName());
     	
-		modelAndView.setViewName("/index");
-		return "index";
+		modelAndView.setViewName("index");
+		return modelAndView;
     }
     
-    @RequestMapping(method = RequestMethod.GET,path = "/code/{userName}")
+    @RequestMapping(method = RequestMethod.GET,path = "/{userName}")
     public ModelAndView profile(@PathVariable String userName) {
     	System.out.println(userName);
     	ModelAndView modelAndView = new ModelAndView();

@@ -1,4 +1,4 @@
-CREATE DATABASE site
+CREATE DATABASE insta
     WITH 
     OWNER = site
     ENCODING = 'UTF8'

@@ -46,12 +46,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.
 		authorizeRequests()
 			.antMatchers("/").permitAll()
+			.antMatchers("/**").permitAll()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/registration").permitAll()
 			.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
 			.authenticated().and().csrf().disable().formLogin()
 			.loginPage("/login").failureUrl("/login?error=true")
-			.defaultSuccessUrl("/workspace")
+			.defaultSuccessUrl("/cabinet")
 			.usernameParameter("email")
 			.passwordParameter("password")
 			.and().logout()
@@ -59,6 +60,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.logoutSuccessUrl("/").and().exceptionHandling()
 			.accessDeniedPage("/access-denied").and().headers()
             .cacheControl().disable();
+		
+		http.
+		authorizeRequests().antMatchers("/cabinet").hasAuthority("USER").anyRequest()
+		.authenticated().and().csrf().disable().formLogin()
+		.loginPage("/login");
 	}
 	
 	@Override

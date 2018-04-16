@@ -1,0 +1,51 @@
+<div ng-controller="Setting_PositionCtrl as pos">
+	<div ng-switch on="pos.type">
+		<div class="animate-switch" ng-switch-when="add">
+			<form name="FormPositionAdd" novalidate ng-submit="pos.addPosition(pos.position)">
+				<div class="form-group form-row">
+			  		<label class="col-md-1 col-form-label" for="inputName">Наименование</label>
+				      <div class=" col-md-8">
+				      	<input type="text" class="form-control" id="inputName" ng-model="pos.position.name" required>
+				      </div>
+			  	</div>
+			  	<div class="form-group form-row">
+			  		<label class="col-md-1 col-form-label" for="inputDescription">Описание</label>
+				      <div class=" col-md-8">
+				      	<textarea class="form-control" rows="5" id="inputDescription" ng-model="pos.position.description"></textarea>
+				      </div>
+			  	</div>
+			  	<div class="row">
+			  		<button class="btn btn-primary" type="submit" ng-disabled="FormPositionAdd.$invalid">Сохранить</button>
+			  	 	<button class="btn btn-primary ml-2" ng-click="pos.switchContent('list')">Отмена</button>
+			  	</div>
+			  	 <div ng-show="pos.message">{{pos.message}}</div>
+			</form>
+		</div>
+		<div class="animate-switch" ng-switch-when="list">
+			<div>
+				<button class="btn btn-primary" ng-click="pos.switchContent('add')"> + Добавить</button>
+			</div>
+			<div class="pt-2">
+				<table class="table">
+				  <thead class="thead-default">
+				    <tr >
+				      <th>Наименование</th>
+				      <th>Описание</th>
+				      <th></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<tr ng-repeat="positon in pos.positions">
+				   		<td>{{positon.name}}</td>
+				   		<td>{{positon.description}}</td>
+				   		<td > 
+				   			<button type="button" class="btn btn-warning btn-lg" title="Редактировать" ng-click="pos.updatePosition(positon)"><span class="fa fa-pencil-alt red-icon" aria-hidden="true"></span></button>
+				   			<button type="button" class="btn btn-danger btn-lg" title="Удалить" ng-confirm-click="Вы действительно хотите удалить запись ?" confirmed-click="pos.removePos(positon,$index)"><span class="fa fa-times-circle red-icon" aria-hidden="true"></span></button> 
+				   		</td>
+				   	</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

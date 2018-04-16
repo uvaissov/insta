@@ -1,0 +1,89 @@
+<div ng-controller="Setting_EmployeesCtrl as emp">
+	<div ng-switch on="emp.type">
+		<div class="animate-switch" ng-switch-when="add">
+			<form name="FormEmployeesAdd" novalidate ng-submit="emp.addEmp(emp.employ)">
+				<div class="form-group form-row">
+					<label for="inputLastname" class="col-md-1 col-form-label">Фамилия</label>
+					<div class="col-md-2">
+						<input class="form-control" type="text" ng-model="emp.employ.surname" id="inputLastname"  required>
+					</div>
+					<label for="inputFirstName" class="col-md-1 col-form-label">Имя</label>
+					<div class="col-md-2">
+						<input class="form-control" type="text" ng-model="emp.employ.firstName" id="inputFirstName" required>
+					</div>
+			
+					<label for="inputSubName" class="col-md-1 col-form-label">Отчество</label>
+					<div class="col-md-2"> 
+						<input class="form-control" type="text" ng-model="emp.employ.patronymic" id="inputSubName">
+					</div>
+				</div>
+			
+				<div class="form-group form-row">
+			  		<label class="col-md-1 col-form-label" for="inputPhone">Телефон</label>
+				      <div class=" col-md-8">
+				      	<input type="text" class="form-control" id="inputPhone" ng-model="emp.employ.phone" required  ui-mask="+?7(999) 999-9999"   ui-mask-placeholder ui-mask-placeholder-char="_">
+				      </div>
+			  	</div>
+			  	<div class="form-group form-row">
+			  		<label class="col-md-1 col-form-label" for="inputPosition">Должность</label>
+				      <div class=" col-md-8">
+				      	<select id="inputPosition" class="form-control" ng-init="emp.getPosition()" ng-model="emp.employ.position" ng-options="pos.name for pos in emp.positions track by pos.id" required />
+				      </div>
+			  	</div>
+			  	<div class="form-group form-row">
+			  		<label class="col-md-1 col-form-label" for="inputBranch">Место работы</label>
+				      <div class=" col-md-8">
+				      	<select  multiple id="inputBranch" class="form-control" ng-init="emp.getBraches()" ng-model="emp.employ.branches" ng-options="branch.name +' '+branch.street+' '+branch.home for branch in emp.branches track by branch.id">
+				      	</select>
+				      </div>
+			  	</div>
+			  	<div class="form-group form-row">
+			  		<label class="col-md-1 col-form-label" for="inputDescription">Описание</label>
+				      <div class=" col-md-8">
+				      	<textarea class="form-control" rows="5" id="inputDescription" ng-model="emp.employ.description"></textarea>
+				      </div>
+			  	</div>
+			  	<div class="row">
+			  		<button class="btn btn-primary" type="submit" ng-disabled="FormEmployeesAdd.$invalid">Сохранить</button>
+			  	 	<button class="btn btn-primary ml-2" ng-click="emp.switchContent('list')">Отмена</button>
+			  	</div>
+			  	 <div ng-show="emp.message">{{emp.message}}</div>
+			</form>
+		</div>
+		<div class="animate-switch" ng-switch-when="list">
+			<div>
+				<button class="btn btn-primary" ng-click="emp.switchContent('add')"> + Добавить</button>
+			</div>
+			<div class="pt-2">
+				<table class="table">
+				  <thead class="thead-default">
+				    <tr >
+				     <th>#</th>
+				     <th>Ф.И.О</th>
+				     <th>Должность</th>
+				     <th>Место работы</th>
+				     <th>Телефон</th>
+				     <th></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<tr ng-repeat="employ in emp.employees">
+				  		<td>{{$index+1}}</td>
+				   		<td>
+				   			<!-- <img th:src="@{/images/nophoto.jpg}" alt="Logo"  style="width: 40px;" class="img-thumbnail" />  -->	
+				   			<!-- <img alt="" src="http://localhost:8080/content/file/nophoto.jpg" style="width: 40px;" class="img-thumbnail">  --> 
+				   			{{employ.firstName}} {{employ.surname}} {{employ.patronymic}}</td>
+				   		<td>{{employ.position.name}}</td>
+				   		<td> <span class="badge badge-info mr-md-2" style="font-size: initial;" ng-repeat="branch in employ.branches"><span>{{branch.name}} {{branch.street}} {{branch.home}}</span></span> </td>
+				   		<td>{{employ.phone}}</td>
+				   		<td > 
+				   			<button type="button" class="btn btn-warning btn-lg" title="Редактировать" ng-click="emp.updateEmp(employ)"><span class="fa fa-pencil-alt red-icon" aria-hidden="true"></span></button>
+				   			<button type="button" class="btn btn-danger btn-lg" title="Удалить" ng-confirm-click="Вы действительно хотите удалить запись ?" confirmed-click="emp.removeEmp(employ,$index)"><span class="fa fa-times-circle red-icon" aria-hidden="true"></span></button> 
+				   		</td>
+				   	</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

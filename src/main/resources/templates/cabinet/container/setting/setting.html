@@ -1,0 +1,16 @@
+<script th:inline="javascript">
+	/*<![CDATA[*/ 
+		var tabsItems = [[${tabsItems}]];
+	/*]]>*/
+</script>
+<div ng-controller="SettingCtrl as setting">
+	<ul class="nav nav-tabs">
+		<li class="nav-item" ng-repeat="section in setting.tabList" >
+	       	<a class="nav-link" href="#"  ng-class="{'active':section.active}" ng-click="setting.changeContent(section)" >
+	       	{{section.itemName}}
+	       		<span ng-if="section.active" class="sr-only">(current)</span>
+	       	</a>
+	   	</li>
+	</ul>
+	<div class="container-fluid pt-2"  ng-include="setting.pageUrl"></div>
+</div>

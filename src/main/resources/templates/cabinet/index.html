@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="BookingApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title th:utext="${brand}"></title>
+
+<!-- bootstrap 4 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+	
+<!-- icons -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+<!-- angular js -->
+<script th:src="@{/js/angular.min.js}"></script>
+<script th:src="@{/js/mask.min.js}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.0/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.8/interact.min.js"></script>
+<script src="//cdn.jsdelivr.net/angular.bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
+<script th:src="@{/js/angular-bootstrap-calendar.min.js}"></script>
+<script th:src="@{/js/angular-bootstrap-calendar-tpls.min.js}"></script>
+<link rel="stylesheet" th:href="@{/css/angular-bootstrap-calendar.min.css}">
+<script src="//cdn.rawgit.com/pc035860/angular-highlightjs/v0.6.1/build/angular-highlightjs.min.js"></script>
+<!-- app js -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/app.css}" />
+<script th:src="@{/js/project/app/app.js}"></script>
+<script th:src="@{/js/project/controller/MainCtrl.js}"></script>
+<script th:src="@{/js/project/controller/CalendarCtrl.js}"></script>
+<!-- setting ctrl -->
+<script th:src="@{/js/project/controller/SettingCtrl.js}"></script>
+<script th:src="@{/js/project/controller/Setting_MainInfoCtrl.js}"></script>
+<script th:src="@{/js/project/controller/Setting_PositionCtrl.js}"></script>
+<script th:src="@{/js/project/controller/Setting_EmployeesCtrl.js}"></script>
+<script th:inline="javascript">
+		/*<![CDATA[*/ 
+			var navItems = [[${navItems}]];
+		/*]]>*/
+	</script>
+</head>
+<body ng-cloak ng-controller="MainCtrl as main">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<button type="button" class="navbar-toggler " data-toggle="collapse" aria-controls="bs-example-navbar-collapse-1" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" th:utext="${brand}"></a>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="navbar-nav">
+				<li class="nav-item" ng-repeat="section in main.navigationList"
+					ng-class="{'active':section.active}">
+					<a class="nav-link" ng-click="main.changeContent(section)" href="#"> {{section.itemName}} <span ng-if="section.active" class="sr-only">(current)</span> </a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/login?logout">Logout</a></li>
+				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Dropdown link </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Action</a> 
+						<a class="dropdown-item" href="#">Another action</a> 
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container-fluid pt-2" ng-include="main.pageUrl"></div>
+	<div id="preloader">
+  		<div id="loader"></div>
+	</div>
+	<script type="text/javascript">
+		//document.getElementById('preloader').style="display:none;";
+	</script>
+</body>
+</html>

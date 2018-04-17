@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title th:utext="${brand}"></title>
 
-<!-- bootstrap 4 -->
+<!-- bootstrap 4 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -22,15 +22,49 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-	
+	-->
 <!-- icons -->
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/standart.css}" />
 </head>
-<body class="bg1">
-  <div class="container bg1">
-    s5d46f5sd4f
-  </div>
+<body class="bg-pattern-2">
+
+<div class=page>
+	<div class="panel"> <a href="/">Главная </a> <span th:utext="${brand}"></span> </div>
+	<div class="container">
+    	<div class="container_layout" >
+    		<div style="height: 50px; text-align: center;">Фото</div>
+    		<div style="max-height: 100px; margin-bottom : 5px; text-align: center;" th:utext="${customText}"></div>
+    		<div style="text-align: center;" class="buttons">
+    			<a class="button-icon" >
+    				<img th:src="@{/assets/svg/whatsapp.svg}">
+    				<span>Whatsapp</span>
+    			</a>
+    			<a class="button-icon" >
+    				<img th:src="@{/assets/svg/telegram.svg}">
+    				<span>Telegram</span>
+    			</a>
+    			<a class="button-icon" >
+    				<img th:src="@{/assets/svg/instagram.svg}">
+    				<span>Instagram</span>
+    			</a>
+    			<a class="button-icon" >
+    				<img th:src="@{/assets/svg/facebook-messenger.svg}">
+    				<span>Messenger</span>
+    			</a>
+    			<a class="button-icon" >
+    				<img th:src="@{/assets/svg/skype.svg}">
+    				<span>Skype</span>
+    			</a>
+    			<a class="button-icon" >
+    				<img th:src="@{/assets/svg/facebook.svg}">
+    				<span>Facebook</span>
+    			</a>
+    		</div>
+    	</div>
+    </div>
+    
 </div>
+
+
 </body>
 </html>

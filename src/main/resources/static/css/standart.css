@@ -1,12 +1,122 @@
-.bg1 {
-    background: linear-gradient(134.72deg,#FFD529 0,#FD8440 100%);
+.bg-grad1 {
+    background-size: cover;
+    background: #FC5C7D;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(134.72deg, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(134.72deg, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-grad2 {
+    background: #4e54c8;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(134.72deg, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(134.72deg, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size: cover;
 }
+
+.bg-grad3 {
+    background: #de6161;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom, #2657eb, #de6161);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to bottom, #2657eb, #de6161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: cover;
+}
+
+.bg-pattern-1 {
+    background: url("/../../assets/bg/pink_rice.png");
+    background-repeat: repeat;
+}
+
+.bg-pattern-2 {
+    background: url("/../../assets/bg/doodles.png");
+    background-repeat: repeat;
+}
+
+
+
+
 
 .jumbotron {
   position: absolute;
   top: 50%;
   left:50%;
   transform: translate(-50%,-50%);
-  border: 1px dashed deeppink;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+}
+
+.panel {
+	float: left;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+    padding-right: 5%;
+    padding-left: 5%;
+    position: relative;
+    z-index: 998;
+}
+
+.page {
+    width: calc(100%);
+    float: left;
+    height: 100%;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    z-index: 100;
+    width: 285px;
+    min-height: 100px;
+    margin: auto;
+    border-radius: 4px;
+    background: 0 0;
+    max-width: 340px;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+.container_layout {
+    float: left;
+    display: inline-table;
+    box-sizing: border-box;
+    background: rgba(255,255,255,.88);
+    width: 100%;
+    max-height: 385px;
+    border-radius: 12px;
+    padding: 15px 22.5px;
+    min-height: 160px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.05);
+    -webkit-backdrop-filter: blur(2px);
+    border: 2px #e2d3d3 solid;
+}
+.button-icon {
+	outline: 0;
+    display: inline-block;
+    margin-bottom: 12px;
+    width: 60px;
+    position: relative;
+    z-index: 100;
+    margin: 5px;
+}
+
+.button-icon img{
+	width: 60px;
+	height: 60px;
+}
+
+.button-icon span{
+    margin-top: 6px;
+    font-size: 10px;
+    display: inline-block;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #7e7e7e;
 }

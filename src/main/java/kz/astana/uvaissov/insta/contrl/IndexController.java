@@ -40,11 +40,12 @@ public class IndexController {
 		return modelAndView;
     }
     
-    @RequestMapping(method = RequestMethod.GET,path = "/{userName}")
+    @RequestMapping(method = RequestMethod.GET,path = "/{userName:.+}")
     public ModelAndView profile(@PathVariable String userName) {
     	System.out.println(userName);
     	ModelAndView modelAndView = new ModelAndView();
     	modelAndView.addObject("brand", "@"+userName);
+    	modelAndView.addObject("customText","Выберите любой способ связи с нами!");
     	modelAndView.setViewName("/profile");
 		return modelAndView;
     }

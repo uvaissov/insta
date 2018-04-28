@@ -34,12 +34,9 @@ public class User {
 	@NotEmpty(message = "*Please provide your password")
 	@Transient
 	private String password;
-	@Column(name = "name")
-	@NotEmpty(message = "*Please provide your name")
-	private String name;
-	@Column(name = "last_name")
-	@NotEmpty(message = "*Please provide your last name")
-	private String lastName;
+	@Column(name = "username")
+	@NotEmpty(message = "*Please provide your username")
+	private String username;
 	@Column(name = "active")
 	private int active;
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -62,20 +59,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setUsername(String name) {
+		this.username = name;
 	}
 
 	public String getEmail() {

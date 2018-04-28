@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import kz.astana.uvaissov.insta.cabinet.model.NavItem;
 import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.service.UserService;
 
@@ -32,6 +33,9 @@ public class CabinetController {
 		System.out.println("getUser()");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
+		if(user==null) {
+			user = new User();
+		}
 		return user;
 	}
 
@@ -40,16 +44,36 @@ public class CabinetController {
     	ModelAndView modelAndView = new ModelAndView();
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	User user = userService.findUserByEmail(auth.getName());
+    	if(user==null || user.getId()==null) {
+    		modelAndView.setViewName("login");
+    		return modelAndView;
+    	}
+    	
     	modelAndView.addObject("brand", "My Brand");
-    	modelAndView.addObject("userName", user.getName() + " " + user.getLastName());
+    	modelAndView.addObject("username", "@"+user.getUsername());
+    	
+    	List<NavItem> navItems = new ArrayList<NavItem>();
+    	navItems.add(new NavItem("Дизайн", "primary", true,"left"));
+    	navItems.add(new NavItem("Кнопки", "links", false,"left"));
+    	navItems.add(new NavItem("Аналитика", "analytics", false,"left"));
+    	modelAndView.addObject("navItems",navItems);
     	
 		modelAndView.setViewName("/cabinet/index");
 		return modelAndView;
     }
     
-    @RequestMapping("/container/calendar")
-    public String calendar(){
-    	return "/cabinet/container/calendar";
+    @RequestMapping("/container/primary")
+    public String primary(){
+    	return "/cabinet/container/primary";
+    }
+    
+    @RequestMapping("/container/links")
+    public String links(){
+    	return "/cabinet/container/links";
+    }
+    @RequestMapping("/container/analytics")
+    public String analytics(){
+    	return "/cabinet/container/analytics";
     }
     
     @RequestMapping("/container/setting")

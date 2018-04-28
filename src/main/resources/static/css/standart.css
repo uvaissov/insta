@@ -20,12 +20,12 @@
 }
 
 .bg-pattern-1 {
-    background: url("/../../assets/bg/pink_rice.png");
+    background: url("/../../assets/bg/bg1.png");
     background-repeat: repeat;
 }
 
 .bg-pattern-2 {
-    background: url("/../../assets/bg/doodles.png");
+    background: url("/../../assets/bg/bg2.png");
     background-repeat: repeat;
 }
 

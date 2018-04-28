@@ -1,0 +1,40 @@
+<div ng-controller="PrimaryCtrl as primary">
+	<div class="row">
+		<div class="col-md-12">
+			<form name="FormMainInfo" novalidate ng-submit="primary.saveInfo(primary.info)">
+				<div class="form-group">
+					<label for="inputName" class="col-form-label">Наименование страницы</label>
+					<div class="col-md-12">
+						<input class="form-control" type="text" ng-model="primary.info.username" id="inputName">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPhone" class="col-form-label">Описание страницы</label>
+					<div class="col-md-12">
+						<input class="form-control" type="text"
+							ng-model="primary.info.description" id="inputBank">
+					</div>
+				</div>
+				<h1>Выберите фон</h1>
+				<div class="container" style=" max-height:520px; overflow-y: auto;">
+					<div class="row">
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg1.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg2.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg3.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg4.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg5.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg6.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg7.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg8.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg9.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg10.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg11.png}"></div>
+					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg12.png}"></div>
+					</div>
+				</div>
+				<button class="btn btn-primary disabled" type="submit"
+					ng-disabled="FormMainInfo.$invalid">Сохранить</button>
+			</form>
+		</div>
+	</div>
+</div>

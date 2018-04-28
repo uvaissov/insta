@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -58,13 +59,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and().logout()
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			.logoutSuccessUrl("/").and().exceptionHandling()
-			.accessDeniedPage("/access-denied").and().headers()
+			.accessDeniedPage("/login").and().headers()
             .cacheControl().disable();
 		
-		http.
-		authorizeRequests().antMatchers("/cabinet").hasAuthority("USER").anyRequest()
-		.authenticated().and().csrf().disable().formLogin()
-		.loginPage("/login");
+//		http.
+//		authorizeRequests().antMatchers("/cabinet").hasAuthority("USER").anyRequest()
+//		.authenticated().and().csrf().disable().formLogin()
+//		.loginPage("/login");
 	}
 	
 	@Override

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93 97.06"><title>Asset 3</title><g id="Layer_2" data-name="Layer 2"><g id="ICONS"><path d="M92.56,45.42l-45-45a1.54,1.54,0,0,0-2.12,0l-45,45a1.5,1.5,0,0,0,0,2.12l8.12,8.12a1.54,1.54,0,0,0,2.12,0l2.16-2.16V95.56a1.5,1.5,0,0,0,1.5,1.5H78.66a1.5,1.5,0,0,0,1.5-1.5V53.5l2.16,2.16a1.5,1.5,0,0,0,2.12,0l8.12-8.12A1.5,1.5,0,0,0,92.56,45.42ZM37.66,94.06V70.65H55.34V94.06ZM77.16,50.63V94.06H58.34V69.15a1.5,1.5,0,0,0-1.5-1.5H36.16a1.5,1.5,0,0,0-1.5,1.5V94.06H15.84V50.63s0-.08,0-.11L46.5,19.84,77.17,50.51S77.16,50.59,77.16,50.63Zm6.23,1.86L47.56,16.66a1.54,1.54,0,0,0-2.12,0L9.62,52.48l-6-6L46.5,3.6,89.38,46.48Z"/></g></g>
+	<metadata>
+		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<rdf:Description about="https://iconscout.com/legal#licenses" dc:title="Asset 3" dc:description="Asset 3" dc:publisher="Iconscout" dc:date="2017-03-04" dc:format="image/svg+xml" dc:language="en">
+				<dc:creator>
+					<rdf:Bag>
+						<rdf:li>Stone Hub</rdf:li>
+					</rdf:Bag>
+				</dc:creator>
+			</rdf:Description>
+		</rdf:RDF>
+    </metadata></svg>

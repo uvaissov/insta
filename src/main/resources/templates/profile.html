@@ -29,7 +29,12 @@
 <body class="bg-pattern-2">
 
 <div class=page>
-	<div class="panel"> <a href="/">Главная </a> <span th:utext="${brand}"></span> </div>
+	<div class="panel">
+		<a class="button-icon"  href="/" >
+    		<img th:src="@{/assets/svg/home.svg}" style="width: 48px;height: 48px;">
+    	</a>
+	  
+	 </div>
 	<div class="container">
     	<div class="container_layout" >
     		<div style="height: 50px; text-align: center;">Фото</div>

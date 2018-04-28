@@ -42,3 +42,27 @@ WITH (
 	OIDS=FALSE
 ) ;
 
+
+
+
+CREATE TABLE public.clients (
+	client_id bigserial NOT NULL,
+	name text NOT NULL,
+	"regDate" timestamp NOT NULL,
+	CONSTRAINT clients_pkey PRIMARY KEY (client_id)
+)
+WITH (
+	OIDS=FALSE
+) ;
+
+CREATE TABLE public.clients_user (
+	client_id int8 NOT NULL,
+	user_id int8 NOT NULL,
+	CONSTRAINT clients_user_pkey PRIMARY KEY (client_id, user_id),
+	CONSTRAINT fkk12j50upbu8lkqmjnt0l71ybu FOREIGN KEY (user_id) REFERENCES "user"(user_id),
+	CONSTRAINT fkson35r1vh5imogg9p1gb3gwmm FOREIGN KEY (client_id) REFERENCES clients(client_id)
+)
+WITH (
+	OIDS=FALSE
+);
+

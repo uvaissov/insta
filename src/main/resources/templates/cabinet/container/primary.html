@@ -1,7 +1,5 @@
 <div ng-controller="PrimaryCtrl as primary">
-	<div class="row">
-		<div class="col-md-12">
-			<form name="FormMainInfo" novalidate ng-submit="primary.saveInfo(primary.info)">
+<form name="FormMainInfo" novalidate ng-submit="primary.saveInfo(primary.info)">
 				<div class="form-group">
 					<label for="inputName" class="col-form-label">Наименование страницы</label>
 					<div class="col-md-12">
@@ -16,25 +14,27 @@
 					</div>
 				</div>
 				<h1>Выберите фон</h1>
-				<div class="container" style=" max-height:520px; overflow-y: auto;">
-					<div class="row">
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg1.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg2.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg3.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg4.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg5.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg6.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg7.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg8.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg9.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg10.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg11.png}"></div>
-					  <div class="col-sm image-div"><img th:src="@{/assets/bg/bg12.png}"></div>
+				<center>
+					<div style="width: 50%;min-width: 330px; align-content: center;" >
+						<div class="slicker-class">
+						  <div class="image-div bg-pattern-1"></div>
+						  <div class="image-div bg-pattern-2"></div>
+						  <div class="image-div bg-pattern-3"></div>
+						  <div class="image-div bg-pattern-4"></div>
+						  <div class="image-div bg-pattern-5"></div>
+						  <div class="image-div bg-pattern-6"></div>
+						  <div class="image-div bg-pattern-7"></div>
+						  <div class="image-div bg-pattern-8"></div>
+						  <div class="image-div bg-pattern-9"></div>
+						  <div class="image-div bg-pattern-10"></div>
+						  <div class="image-div bg-pattern-11"></div>
+						  <div class="image-div bg-pattern-12"></div>
+						</div>
 					</div>
-				</div>
+				</center>
+				
 				<button class="btn btn-primary disabled" type="submit"
 					ng-disabled="FormMainInfo.$invalid">Сохранить</button>
 			</form>
-		</div>
-	</div>
+		
 </div>

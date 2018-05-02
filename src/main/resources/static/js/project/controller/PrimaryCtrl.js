@@ -26,7 +26,7 @@ function PrimaryCtrl ($http) {
 		.then(
 			       function(response){
 			    	   primary.info = response.data;
-			    	   console.log(mainInfo.info);
+			    	   console.log(primary.info);
 			       }, 
 			       function(response){
 			    	   console.log(response);
@@ -37,4 +37,13 @@ function PrimaryCtrl ($http) {
   
   // load info
   primary.get();
+  
+  $(document).ready(function(){
+		$(".slicker-class").slick({			
+			  infinite: true,			 
+			  slidesToShow: 3,
+			  slidesToScroll: 3
+			});
+	});
+  
 };

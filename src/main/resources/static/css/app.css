@@ -1,10 +1,27 @@
 @charset "UTF-8";
 
 .image-div{
-	padding: 5px;
-	height: 170px;
-	border: 1px solid black;
-	display: inline-block;
+	height: 150px;
+	border: 5px solid white;
+	/*margin: 10px;*/
+	max-width: 170px;
+	width: 100%;
+	
+}
+
+.image-div.selected {
+	border: 5px solid #428BCA;
+}
+
+.center {
+    margin: auto;
+    width: 90%;
+    max-width : 650px;
+    padding: 10px;
+}
+
+.clearfix {
+    overflow: auto;
 }
 
 .nopadding {

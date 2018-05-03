@@ -42,6 +42,7 @@ function PrimaryCtrl ($http) {
 		$(".slicker-class").slick({			
 			  infinite: true,			 
 			  slidesToShow: 3,
+			  speed: 400,
 			  slidesToScroll: 3
 			});
 	});

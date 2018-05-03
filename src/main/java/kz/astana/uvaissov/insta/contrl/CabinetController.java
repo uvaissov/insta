@@ -33,9 +33,6 @@ public class CabinetController {
 		System.out.println("getUser()");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		if(user==null) {
-			user = new User();
-		}
 		return user;
 	}
 
@@ -53,7 +50,7 @@ public class CabinetController {
     	modelAndView.addObject("username", "@"+user.getUsername());
     	
     	List<NavItem> navItems = new ArrayList<NavItem>();
-    	navItems.add(new NavItem("Дизайн", "primary", true,"left"));
+    	navItems.add(new NavItem("Профиль", "primary", true,"left"));
     	navItems.add(new NavItem("Кнопки", "links", false,"left"));
     	navItems.add(new NavItem("Аналитика", "analytics", false,"left"));
     	modelAndView.addObject("navItems",navItems);

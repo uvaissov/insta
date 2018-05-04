@@ -1,6 +1,9 @@
 package kz.astana.uvaissov.insta.cabinet.model;
 
 public class ButtonsModel {
+	//http://gnatkovsky.com.ua/kak-sdelat-ssylki-na-viber-whatsapp-telegram.html
+	//call
+	public String phone;
 	//messages
 	public String whatsapp;
 	public String telegram;

@@ -41,7 +41,7 @@
 	 </div>
 	<div class="container">
     	<div class="container_layout" >
-    		<div style="height: 50px; text-align: center;">Фото</div>
+    		<div style="height: 50px; text-align: center;"></div>
     		<div style="max-height: 100px; margin-bottom : 5px; text-align: center;" th:utext="${customText}"></div>
     		<div style="text-align: center;" class="buttons">
     			<a class="button-icon" >
@@ -53,10 +53,6 @@
     				<span>Telegram</span>
     			</a>
     			<a class="button-icon" >
-    				<img th:src="@{/assets/svg/instagram.svg}">
-    				<span>Instagram</span>
-    			</a>
-    			<a class="button-icon" >
     				<img th:src="@{/assets/svg/facebook-messenger.svg}">
     				<span>Messenger</span>
     			</a>
@@ -65,8 +61,19 @@
     				<span>Skype</span>
     			</a>
     			<a class="button-icon" >
+    				<img th:src="@{/assets/svg/viber.svg}">
+    				<span>Viber</span>
+    			</a>
+    		</div>
+    		<div style="text-align: center;margin-top: 15px;">
+    			<a class="button-icon-sm" >
     				<img th:src="@{/assets/svg/facebook.svg}">
-    				<span>Facebook</span>
+    			</a>
+    			<a class="button-icon-sm" >
+    				<img th:src="@{/assets/svg/instagram.svg}">
+    			</a>
+    			<a class="button-icon-sm" >
+    				<img th:src="@{/assets/svg/twitter.svg}">
     			</a>
     		</div>
     	</div>

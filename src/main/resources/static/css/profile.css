@@ -78,6 +78,21 @@ html, body {
 	height: 60px;
 }
 
+.button-icon-sm {
+	outline: 0;
+    display: inline-block;
+    margin-bottom: 12px;
+    margin-left : 5px;
+    position: relative;
+    z-index: 100;
+    margin: 5px;
+}
+
+.button-icon-sm img{
+	width: 30px;
+	height: 30px;
+}
+
 .button-icon span{
     margin-top: 6px;
     font-size: 10px;

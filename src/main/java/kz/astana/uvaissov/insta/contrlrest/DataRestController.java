@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import kz.astana.uvaissov.insta.cabinet.model.Primary;
+import kz.astana.uvaissov.insta.cabinet.model.PrimaryModel;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.service.InfoService;
@@ -31,9 +31,9 @@ public class DataRestController {
 	private InfoService infoService;
 	
 	@GetMapping("/primary")
-	public Primary getInfo(@ModelAttribute("user") User user,@ModelAttribute("profile_info") ProfileInfo profileInfo){
+	public PrimaryModel getInfo(@ModelAttribute("user") User user,@ModelAttribute("profile_info") ProfileInfo profileInfo){
 		System.out.println("infoId:"+user.getId());
-		Primary primary = new Primary();
+		PrimaryModel primary = new PrimaryModel();
 		primary.username = profileInfo.getProfilename();
 		primary.description = profileInfo.getDescription();
 		return primary;
@@ -41,7 +41,7 @@ public class DataRestController {
 	 
 	@PostMapping
 	@Transactional
-	public ResponseEntity save(@ModelAttribute("profile_info") ProfileInfo profileInfo, @RequestBody Primary primary) {
+	public ResponseEntity save(@ModelAttribute("profile_info") ProfileInfo profileInfo, @RequestBody PrimaryModel primary) {
 		if(primary.username!=null) {
 			profileInfo.setProfilename(primary.username.toLowerCase());
 		}

@@ -1,4 +1,5 @@
 package kz.astana.uvaissov.insta.entity;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -34,11 +35,10 @@ public class User {
 	@NotEmpty(message = "*Please provide your password")
 	@Transient
 	private String password;
-	@Column(name = "username")
-	@NotEmpty(message = "*Please provide your username")
-	private String username;
 	@Column(name = "active")
 	private int active;
+	@Column(name = "profile_info_id")
+	private Long profile_info_id;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
@@ -59,14 +59,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String name) {
-		this.username = name;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -81,6 +73,14 @@ public class User {
 
 	public void setActive(int active) {
 		this.active = active;
+	}
+
+	public Long getProfile_info_id() {
+		return profile_info_id;
+	}
+
+	public void setProfile_info_id(Long profile_info_id) {
+		this.profile_info_id = profile_info_id;
 	}
 
 	public Set<Role> getRoles() {

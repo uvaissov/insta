@@ -16,31 +16,40 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kz.astana.uvaissov.insta.cabinet.model.Primary;
+import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.User;
+import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.service.UserService;
 
 @RestController()
-@SessionAttributes({"user"})
+@SessionAttributes({"user","profile_info"})
 @RequestMapping("/cabinet/data")
 public class DataRestController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private InfoService infoService;
 	
 	@GetMapping("/primary")
-	public Primary getInfo(@ModelAttribute("user") User user){
+	public Primary getInfo(@ModelAttribute("user") User user,@ModelAttribute("profile_info") ProfileInfo profileInfo){
 		System.out.println("infoId:"+user.getId());
 		Primary primary = new Primary();
-		primary.username = user.getUsername();
+		primary.username = profileInfo.getProfilename();
+		primary.description = profileInfo.getDescription();
 		return primary;
 	}
 	 
 	@PostMapping
 	@Transactional
-	public ResponseEntity save(@ModelAttribute("user") User user, @RequestBody Primary primary) {
+	public ResponseEntity save(@ModelAttribute("profile_info") ProfileInfo profileInfo, @RequestBody Primary primary) {
 		if(primary.username!=null) {
-			user.setUsername(primary.username);
+			profileInfo.setProfilename(primary.username.toLowerCase());
 		}
-		userService.save(user);
+		if(primary.description!=null) {
+			profileInfo.setDescription(primary.description);
+		}
+		System.out.println("profileInfo:"+profileInfo.getId());
+		infoService.save(profileInfo);
 		return new ResponseEntity(primary, HttpStatus.OK);
 	}
 }

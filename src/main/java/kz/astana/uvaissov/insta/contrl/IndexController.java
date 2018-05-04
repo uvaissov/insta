@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.User;
+import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.service.UserService;
 
 
@@ -27,6 +29,9 @@ public class IndexController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private InfoService infoService;
 	
     @RequestMapping( method = RequestMethod.GET)
     public ModelAndView workspace(Model model) {
@@ -44,8 +49,13 @@ public class IndexController {
     public ModelAndView profile(@PathVariable String userName) {
     	System.out.println(userName);
     	ModelAndView modelAndView = new ModelAndView();
-    	modelAndView.addObject("brand", "@"+userName);
-    	modelAndView.addObject("customText","Выберите любой способ связи с нами!");
+    	ProfileInfo profileInfo = infoService.findByProfilename(userName.toLowerCase());
+    	if(profileInfo == null) {
+    		modelAndView.setViewName("redirect:/");
+    		return modelAndView;
+    	}
+    	modelAndView.addObject("brand", "@"+profileInfo.getProfilename());
+    	modelAndView.addObject("customText",profileInfo.getDescription());
     	modelAndView.setViewName("/profile");
 		return modelAndView;
     }

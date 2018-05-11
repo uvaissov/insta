@@ -1,70 +1,27 @@
 <div ng-controller="PrimaryCtrl as primary">
-	<form name="FormMainInfo" novalidate
+	<form name="FormProfileInfo" novalidate
 		ng-submit="primary.saveInfo(primary.info)">
 		<div class="form-group">
-			<label for="inputName" class="col-form-label">Наименование
-				профиля</label>
+			<label for="inputName" class="col-form-label">Наименование профиля</label>
 			<div class="col-md-12">
-				<input class="form-control" type="text"
-					ng-model="primary.info.username" id="inputName">
+				<input class="form-control" type="text" ng-model="primary.info.username" id="inputName"  required>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputPhone" class="col-form-label">Описание
-				страницы</label>
+			<label for="inputDescription" class="col-form-label">Описание страницы</label>
 			<div class="col-md-12">
-				<input class="form-control" type="text"
-					ng-model="primary.info.description" id="inputBank">
+				<input class="form-control" type="text" ng-model="primary.info.description" id="inputDescription"  required>
 			</div>
 		</div>
 		<p>Фон страницы</p>
 		<div class="center">
 			<div class="slicker-class">
-				<div>
-					<img class="image-div bg-pattern-1"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-2"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-3 selected"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-4"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-5"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-6"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-7"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-8"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-9"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-10"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-11"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-12"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-13"></img>
-				</div>
-				<div>
-					<img class="image-div bg-pattern-14"></img>
+				<div ng-repeat="background in primary.backgroundList" ng-click="primary.selectBackground(background)">
+					<img class="image-div" ng-class="primary.rowClassBack(background)"></img>
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-primary disabled" type="submit"
-			ng-disabled="FormMainInfo.$invalid">Сохранить</button>
+		<button class="btn btn-primary" type="submit"
+			ng-disabled="FormProfileInfo.$invalid">Сохранить</button>
 	</form>
 </div>

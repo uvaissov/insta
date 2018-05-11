@@ -27,15 +27,15 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/background.css}" />
 </head>
-<body class="bg-pattern-2">
+<body th:class="${background}" >
 
 <div class=page>
 	<div class="panel">
 		<a class="button-icon"  href="/" >
-    		<img th:src="@{/assets/svg/home.svg}" style="width: 48px;height: 48px;">
+    		<img th:src="@{/assets/svg/home.svg}" style="height: 40px;">
     	</a>
     	<a class="button-icon" style="float: right;"  href="/cabinet" >
-    		<img th:src="@{/assets/svg/vk.svg}" style="width: 48px;height: 48px;">
+    		<img th:src="@{/assets/svg/setting.svg}" style="height: 37px;">
     	</a>
 	  
 	 </div>

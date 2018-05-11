@@ -15,10 +15,12 @@ public class ProfileInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
-	@Column(name="profilename")
-	private String profilename;
 	@Column(name="description")
 	private String description;
+	@Column(name="profilename")
+	private String profilename;
+	@Column(name="background")
+	private String background;
 
 	public Long getId() {
 		return id;
@@ -37,6 +39,12 @@ public class ProfileInfo {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getBackground() {
+		return background;
+	}
+	public void setBackground(String background) {
+		this.background = background;
 	}
 	
 }

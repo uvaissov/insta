@@ -4,6 +4,7 @@ package kz.astana.uvaissov.insta.contrl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import kz.astana.uvaissov.insta.cabinet.constant.Backgrounds;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.service.InfoService;
@@ -56,6 +58,7 @@ public class IndexController {
     	}
     	modelAndView.addObject("brand", "@"+profileInfo.getProfilename());
     	modelAndView.addObject("customText",profileInfo.getDescription());
+    	modelAndView.addObject("background", StringUtils.defaultString(profileInfo.getBackground(), Backgrounds.BG1) );
     	modelAndView.setViewName("/profile");
 		return modelAndView;
     }

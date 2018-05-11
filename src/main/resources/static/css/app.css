@@ -1,5 +1,46 @@
 @charset "UTF-8";
 
+@media screen and (max-width: 992px) {
+	.button-mobile-fixed {
+	    display: block;
+	    text-align: center;
+	    position: fixed;
+	    bottom: 10px;
+	    z-index: 10;
+	    right: 10px;
+	}
+}
+
+@media screen and (max-width: 992px) {
+     body { background: #fc0; }
+}
+
+.button-mobile-fixed {
+    display: none;
+}
+.md-button.md-hue-1.md-fab {
+    background: #2b5a99!important;
+}
+.md-button.md-fab {
+    z-index: 20;
+    line-height: 56px;
+    min-width: 0;
+    width: 56px;
+    height: 56px;
+    vertical-align: middle;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+    border-radius: 50%;
+    background-clip: padding-box;
+    overflow: hidden;
+    -webkit-transition: all .3s cubic-bezier(.55,0,.55,.2);
+    transition: all .3s cubic-bezier(.55,0,.55,.2);
+    -webkit-transition-property: background-color,box-shadow,-webkit-transform;
+    transition-property: background-color,box-shadow,-webkit-transform;
+    transition-property: background-color,box-shadow,transform;
+    transition-property: background-color,box-shadow,transform,-webkit-transform;
+}
+
+
 .image-div{
 	height: 150px;
 	border: 5px solid white;

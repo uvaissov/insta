@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kz.astana.uvaissov.insta.entity.DicUrl;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.ProfileUrls;
 import kz.astana.uvaissov.insta.repository.InfoRepository;
@@ -33,6 +34,7 @@ public class LinksServiceImpl implements LinksService{
 	public void save(ProfileUrls prof) {
 		repository.save(prof);
 	}
+	
 	@Override
 	public void remove(ProfileUrls urls) {
 		repository.delete(urls);
@@ -41,5 +43,12 @@ public class LinksServiceImpl implements LinksService{
 	@Override
 	public List<ProfileUrls> findByProfileInfoId(Long profile_info_id) {
 		return repository.findByProfileInfoId(profile_info_id);
+	}
+	
+	@Override
+	public List<Object[]> getButtons(Long profile_info_id){
+		return em.createNativeQuery("select p.prof_url_id,u.prefix,p.url_value,u.name from profile_urls p \r\n" + 
+				"join dic_url u on u.url_id=p.url_id\r\n" + 
+				"where p.profile_info_id=? ").setParameter(1, profile_info_id).getResultList();
 	}
 }

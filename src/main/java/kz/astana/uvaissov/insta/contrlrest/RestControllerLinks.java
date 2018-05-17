@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import kz.astana.uvaissov.insta.cabinet.constant.UrlConstant;
 import kz.astana.uvaissov.insta.cabinet.model.ButtonsModel;
 import kz.astana.uvaissov.insta.cabinet.model.PrimaryModel;
+import kz.astana.uvaissov.insta.entity.DicUrl;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.ProfileUrls;
 import kz.astana.uvaissov.insta.entity.User;
+import kz.astana.uvaissov.insta.service.DicService;
 import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.service.LinksService;
 import kz.astana.uvaissov.insta.service.UserService;
@@ -36,6 +39,8 @@ public class RestControllerLinks {
 	private UserService userService;
 	@Autowired
 	private LinksService linksService;
+	@Autowired
+	private DicService dicService;
 	
 	@GetMapping
 	public ButtonsModel getInfo(@ModelAttribute("user") User user){
@@ -94,7 +99,7 @@ public class RestControllerLinks {
 	
 	private void innerEquals(List<ProfileUrls> list,Long urlConstant,String value,Long profile_info_id) {
 		ProfileUrls service = getUrlByName(urlConstant, list);
-		if(value!=null) {
+		if(StringUtils.isNotBlank(value)) {
 			if(service!=null) {
 				if(!service.getUrl_value().equalsIgnoreCase(value)) {
 					service.setUrl_value(value);;
@@ -102,8 +107,8 @@ public class RestControllerLinks {
 				}
 			} else {
 				service = new ProfileUrls();
-				service.setUrl_id(urlConstant);//whatsapp
 				service.setUrl_value(value);
+				service.setUrl_id(urlConstant);
 				service.setProfile_info_id(profile_info_id);
 				linksService.save(service);
 			}

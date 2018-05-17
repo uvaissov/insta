@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import kz.astana.uvaissov.insta.cabinet.constant.Backgrounds;
+import kz.astana.uvaissov.insta.cabinet.model.ButtonContainer;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
+import kz.astana.uvaissov.insta.entity.ProfileUrls;
 import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.service.InfoService;
+import kz.astana.uvaissov.insta.service.LinksService;
 import kz.astana.uvaissov.insta.service.UserService;
 
 
@@ -34,6 +37,9 @@ public class IndexController {
 	
 	@Autowired
 	private InfoService infoService;
+	
+	@Autowired
+	private LinksService linksService;
 	
     @RequestMapping( method = RequestMethod.GET)
     public ModelAndView workspace(Model model) {
@@ -56,9 +62,18 @@ public class IndexController {
     		modelAndView.setViewName("redirect:/");
     		return modelAndView;
     	}
+    	
+    	List<Object[]> listUrls =	linksService.getButtons(profileInfo.getId());
+    	
+    	List<ButtonContainer> buttons = new ArrayList();
+    	for(Object[] url : listUrls) {
+    		buttons.add(new ButtonContainer(url));
+    	}
+    	
     	modelAndView.addObject("brand", "@"+profileInfo.getProfilename());
     	modelAndView.addObject("customText",profileInfo.getDescription());
     	modelAndView.addObject("background", StringUtils.defaultString(profileInfo.getBackground(), Backgrounds.BG1) );
+    	modelAndView.addObject("buttons",buttons);
     	modelAndView.setViewName("/profile");
 		return modelAndView;
     }

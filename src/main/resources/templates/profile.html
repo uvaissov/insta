@@ -39,6 +39,13 @@
     	</a>
 	  
 	 </div>
+	 <table>
+	 	<tr th:each="button : ${buttons}">
+		    <td th:text="${button.name}">Name</td>
+		    <td th:text="${button.value}">Name</td>
+		    <td th:text="${button.id}">Name</td>	
+		</tr> 
+	 </table>
 	<div class="container">
     	<div class="container_layout" >
     		<div style="height: 50px; text-align: center;"></div>

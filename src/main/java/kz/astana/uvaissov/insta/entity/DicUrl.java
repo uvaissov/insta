@@ -13,18 +13,18 @@ import javax.persistence.Table;
 public class DicUrl {
 	@Id
 	@Column(name="url_id")
-	private long url_id;
+	private long id;
 	@Column(name="name")
 	private String name;
 	@Column(name="abbr")
 	private String abbr;
 	@Column(name="prefix")
 	private String prefix;
-	public long getUrl_id() {
-		return url_id;
+	public long getId() {
+		return id;
 	}
-	public void setUrl_id(long url_id) {
-		this.url_id = url_id;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;

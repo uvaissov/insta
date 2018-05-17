@@ -11,10 +11,6 @@
 	}
 }
 
-@media screen and (max-width: 992px) {
-     body { background: #fc0; }
-}
-
 .button-mobile-fixed {
     display: none;
 }

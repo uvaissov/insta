@@ -32,8 +32,12 @@ public class LinksServiceImpl implements LinksService{
 	@Override
 	public void save(ProfileUrls prof) {
 		repository.save(prof);
-		
 	}
+	@Override
+	public void remove(ProfileUrls urls) {
+		repository.delete(urls);
+	}
+	
 	@Override
 	public List<ProfileUrls> findByProfileInfoId(Long profile_info_id) {
 		return repository.findByProfileInfoId(profile_info_id);

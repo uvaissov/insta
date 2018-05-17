@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import kz.astana.uvaissov.insta.cabinet.constant.UrlConstant;
 import kz.astana.uvaissov.insta.cabinet.model.ButtonsModel;
 import kz.astana.uvaissov.insta.cabinet.model.PrimaryModel;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
@@ -43,36 +44,26 @@ public class RestControllerLinks {
 		List<ProfileUrls> list = linksService.findByProfileInfoId(user.getProfile_info_id());
 		
 		for(ProfileUrls url : list) {
-			switch (url.getUrl().getName()) {
-			case "whatsapp":
+			if(UrlConstant.WHATSAPP.equals(url.getUrl_id())) {
 				model.whatsapp = url.getUrl_value();
-				break;
-			case "telegram":
+			} else if(UrlConstant.TELEGRAM.equals(url.getUrl_id())) {
 				model.telegram = url.getUrl_value();
-				break;
-			case "viber":
+			} else if(UrlConstant.VIBER.equals(url.getUrl_id())) {
 				model.viber = url.getUrl_value();
-				break;
-			case "messenger":
+			} else if(UrlConstant.MESSENGER.equals(url.getUrl_id())) {
 				model.messenger = url.getUrl_value();
-				break;
-			case "skype":
+			} else if(UrlConstant.SKYPE.equals(url.getUrl_id())) {
 				model.skype = url.getUrl_value();
-				break;
-			case "vk":
+			} else if(UrlConstant.VK.equals(url.getUrl_id())) {
 				model.vk = url.getUrl_value();
-				break;
-			case "facebook":
+			} else if(UrlConstant.FACEBOOK.equals(url.getUrl_id())) {
 				model.facebook = url.getUrl_value();
-				break;
-			case "instagram":
+			} else if(UrlConstant.INSTAGRAM.equals(url.getUrl_id())) {
 				model.instagram = url.getUrl_value();
-				break;
-			case "twitter":
+			} else if(UrlConstant.TWITTER.equals(url.getUrl_id())) {
 				model.twitter = url.getUrl_value();
-				break;
-			default:
-				break;
+			} else if(UrlConstant.PHONE.equals(url.getUrl_id())) {
+				model.phone = url.getUrl_value();
 			}
 		}
 		
@@ -86,25 +77,44 @@ public class RestControllerLinks {
 		
 		List<ProfileUrls> list = linksService.findByProfileInfoId(user.getProfile_info_id());
 		//whatsapp 
-		ProfileUrls whatsapp = getUrlByName("whatsapp", list);
-		if(model.whatsapp!=null) {
-			if(whatsapp!=null) {
-				if(!whatsapp.getUrl_value().equalsIgnoreCase(model.whatsapp))
-					linksService.save(whatsapp);
-			} else {
-				
-			}
-		} else {
-			
-		}
+		innerEquals(list, UrlConstant.WHATSAPP, model.whatsapp,user.getProfile_info_id());
+		innerEquals(list, UrlConstant.TELEGRAM, model.telegram,user.getProfile_info_id());
+		innerEquals(list, UrlConstant.VIBER, model.viber,user.getProfile_info_id());
+		innerEquals(list, UrlConstant.MESSENGER, model.messenger,user.getProfile_info_id());
+		innerEquals(list, UrlConstant.SKYPE, model.skype,user.getProfile_info_id());
+		innerEquals(list, UrlConstant.VK, model.vk,user.getProfile_info_id());
+		innerEquals(list, UrlConstant.FACEBOOK, model.facebook,user.getProfile_info_id());
+		innerEquals(list, UrlConstant.INSTAGRAM, model.instagram,user.getProfile_info_id());
+		innerEquals(list, UrlConstant.TWITTER, model.twitter,user.getProfile_info_id());
+		innerEquals(list, UrlConstant.PHONE, model.phone,user.getProfile_info_id());
 		
-		return new ResponseEntity(primary, HttpStatus.OK);
+		return new ResponseEntity(model, HttpStatus.OK);
 	}
 	
 	
-	private ProfileUrls getUrlByName(String name,List<ProfileUrls> list) {
-		Optional<ProfileUrls> value = list.stream().filter(a -> a.getUrl().getName().equals(name)).findFirst();
+	private void innerEquals(List<ProfileUrls> list,Long urlConstant,String value,Long profile_info_id) {
+		ProfileUrls service = getUrlByName(urlConstant, list);
 		if(value!=null) {
+			if(service!=null) {
+				if(!service.getUrl_value().equalsIgnoreCase(value)) {
+					service.setUrl_value(value);;
+					linksService.save(service);
+				}
+			} else {
+				service = new ProfileUrls();
+				service.setUrl_id(urlConstant);//whatsapp
+				service.setUrl_value(value);
+				service.setProfile_info_id(profile_info_id);
+				linksService.save(service);
+			}
+		} else if(service!=null) {
+			linksService.remove(service);
+		}
+	}
+	
+	private ProfileUrls getUrlByName(Long id,List<ProfileUrls> list) {
+		Optional<ProfileUrls> value = list.stream().filter(a -> id.equals(a.getUrl_id()) ).findFirst();
+		if(value!=null && value.isPresent()) {
 			return value.get();
 		}
 		return null;

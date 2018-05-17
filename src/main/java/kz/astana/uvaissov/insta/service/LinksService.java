@@ -12,4 +12,8 @@ public interface LinksService {
 	void save(ProfileUrls prof);
 
 	List<ProfileUrls> findByProfileInfoId(Long profile_info_id);
+
+	void remove(ProfileUrls urls);
+	
+	
 }

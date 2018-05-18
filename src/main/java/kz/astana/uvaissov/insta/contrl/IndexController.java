@@ -2,6 +2,7 @@ package kz.astana.uvaissov.insta.contrl;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -67,7 +68,13 @@ public class IndexController {
     	
     	List<ButtonContainer> buttons = new ArrayList();
     	for(Object[] url : listUrls) {
-    		buttons.add(new ButtonContainer(url));
+    		ButtonContainer bu = new ButtonContainer(url);
+    		if(Arrays.asList("phone").contains(bu.getName())) {
+    			bu.setType(0);//main
+    		} else if(Arrays.asList("twitter","instagram","facebook").contains(bu.getName())) {
+    			bu.setType(2);//followUs
+    		}
+    		buttons.add(bu);
     	}
     	
     	modelAndView.addObject("brand", "@"+profileInfo.getProfilename());

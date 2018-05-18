@@ -7,87 +7,40 @@
 <title th:utext="${brand}"></title>
 
 <!-- bootstrap 4 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
-	-->
+
 <!-- icons -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/background.css}" />
 </head>
 <body th:class="${background}" >
-
-<div class=page>
-	<div class="panel">
-		<a class="button-icon"  href="/" >
-    		<img th:src="@{/assets/svg/home.svg}" style="height: 40px;">
-    	</a>
-    	<a class="button-icon" style="float: right;"  href="/cabinet" >
-    		<img th:src="@{/assets/svg/setting.svg}" style="height: 37px;">
-    	</a>
-	  
-	 </div>
-	 <table>
-	 	<tr th:each="button : ${buttons}">
-		    <td th:text="${button.name}">Name</td>
-		    <td th:text="${button.value}">Name</td>
-		    <td th:text="${button.id}">Name</td>	
-		</tr> 
-	 </table>
-	<div class="container">
-    	<div class="container_layout" >
-    		<div style="height: 50px; text-align: center;"></div>
-    		<div style="max-height: 100px; margin-bottom : 5px; text-align: center;" th:utext="${customText}"></div>
-    		<div style="text-align: center;" class="buttons">
-    			<a class="button-icon" >
-    				<img th:src="@{/assets/svg/whatsapp.svg}">
-    				<span>Whatsapp</span>
-    			</a>
-    			<a class="button-icon" >
-    				<img th:src="@{/assets/svg/telegram.svg}">
-    				<span>Telegram</span>
-    			</a>
-    			<a class="button-icon" >
-    				<img th:src="@{/assets/svg/facebook-messenger.svg}">
-    				<span>Messenger</span>
-    			</a>
-    			<a class="button-icon" >
-    				<img th:src="@{/assets/svg/skype.svg}">
-    				<span>Skype</span>
-    			</a>
-    			<a class="button-icon" >
-    				<img th:src="@{/assets/svg/viber.svg}">
-    				<span>Viber</span>
-    			</a>
-    		</div>
-    		<div style="text-align: center;margin-top: 15px;">
-    			<a class="button-icon-sm" >
-    				<img th:src="@{/assets/svg/facebook.svg}">
-    			</a>
-    			<a class="button-icon-sm" >
-    				<img th:src="@{/assets/svg/instagram.svg}">
-    			</a>
-    			<a class="button-icon-sm" >
-    				<img th:src="@{/assets/svg/twitter.svg}">
-    			</a>
-    		</div>
-    	</div>
-    </div>
-    
-</div>
-
-
+	<div class=page>
+		<div class="panel">
+			<a class="button-icon"  href="/" >
+	    		<img th:src="@{/assets/svg/home.svg}" style="height: 40px;">
+	    	</a>
+	    	<a class="button-icon" style="float: right;"  href="/cabinet" >
+	    		<img th:src="@{/assets/svg/setting.svg}" style="height: 37px;">
+	    	</a>
+		 </div>
+		<div class="container">
+	    	<div class="container_layout" >
+	    		<div style="height: 50px; text-align: center;"></div>
+	    		<div style="max-height: 100px; margin-bottom : 5px; text-align: center;" th:utext="${customText}"></div>
+	    		<div style="text-align: center;    min-height: 150px;" class="buttons">
+				 	<a class="button-icon" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 1" >
+					    <img th:src="@{'/assets/svg/'+${button.name}+'.svg'}">
+	    				<span th:text="${button.name}"></span>
+					</a>
+	    		</div>
+	    		<div style="text-align: center;font-size: x-small;opacity: 0.3;">follow us</div>
+	    		<div style="text-align: center;margin-top: 5px;">
+	    			<a class="button-icon-sm" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 2" >
+					    <img th:src="@{'/assets/svg/'+${button.name}+'.svg'}">
+					</a>
+	    		</div>
+	    	</div>
+	    </div>
+	    
+	</div>
 </body>
 </html>

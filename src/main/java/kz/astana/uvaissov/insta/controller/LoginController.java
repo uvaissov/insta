@@ -1,4 +1,4 @@
-package kz.astana.uvaissov.insta.contrl;
+package kz.astana.uvaissov.insta.controller;
 
 import javax.validation.Valid;
 

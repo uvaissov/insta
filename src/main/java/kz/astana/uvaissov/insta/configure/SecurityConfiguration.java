@@ -1,4 +1,4 @@
-package kz.astana.uvaissov.insta.conf;
+package kz.astana.uvaissov.insta.configure;
 
 
 import javax.sql.DataSource;

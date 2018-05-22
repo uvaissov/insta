@@ -1,4 +1,4 @@
-package kz.astana.uvaissov.insta.conf;
+package kz.astana.uvaissov.insta.configure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

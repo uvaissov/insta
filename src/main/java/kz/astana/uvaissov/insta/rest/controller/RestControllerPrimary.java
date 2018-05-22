@@ -1,4 +1,4 @@
-package kz.astana.uvaissov.insta.contrlrest;
+package kz.astana.uvaissov.insta.rest.controller;
 
 import javax.transaction.Transactional;
 

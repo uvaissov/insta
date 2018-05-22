@@ -24,9 +24,7 @@ public class LoginController {
 	@RequestMapping(value={"/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
 		ModelAndView modelAndView = new ModelAndView();
-		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}

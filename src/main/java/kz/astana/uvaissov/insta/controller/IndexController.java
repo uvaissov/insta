@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -45,18 +46,13 @@ public class IndexController {
     @RequestMapping( method = RequestMethod.GET)
     public ModelAndView workspace(Model model) {
     	ModelAndView modelAndView = new ModelAndView();
-    	//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	//User user = userService.findUserByEmail(auth.getName());
     	modelAndView.addObject("brand", "My Brand");
-    	//modelAndView.addObject("userName", user.getName() + " " + user.getLastName());
-    	
 		modelAndView.setViewName("index");
 		return modelAndView;
     }
     
     @RequestMapping(method = RequestMethod.GET,path = "/{userName:.+}")
-    public ModelAndView profile(@PathVariable String userName) {
-    	System.out.println(userName);
+    public ModelAndView profile(Device device, @PathVariable String userName) {
     	ModelAndView modelAndView = new ModelAndView();
     	ProfileInfo profileInfo = infoService.findByProfilename(userName.toLowerCase());
     	if(profileInfo == null) {
@@ -68,7 +64,7 @@ public class IndexController {
     	
     	List<ButtonContainer> buttons = new ArrayList();
     	for(Object[] url : listUrls) {
-    		ButtonContainer bu = new ButtonContainer(url);
+    		ButtonContainer bu = new ButtonContainer(url,device);
     		if(Arrays.asList("phone").contains(bu.getName())) {
     			bu.setType(0);//main
     		} else if(Arrays.asList("twitter","instagram","facebook").contains(bu.getName())) {

@@ -2,40 +2,32 @@ package kz.astana.uvaissov.insta.cabinet.model;
 
 import java.math.BigInteger;
 
+import org.springframework.mobile.device.Device;
+
+import kz.astana.uvaissov.insta.util.EncryptionUtil;
+
 public class ButtonContainer {
-	private String prefix,value,name,iconName;
+	private String url,name,iconName;
 	private int type = 1;//link
-	private long id;
-	public ButtonContainer(Object[] row) {
-		this.id = ((BigInteger) row[0]).longValue();
-		this.prefix = (String) row[1];
-		this.value = (String) row[2];
+	public ButtonContainer(Object[] row,Device device) {
+		Long id = ((BigInteger) row[0]).longValue();
+		
+		String prefix = (String) row[1];
+		if(device.isMobile() && row[4]!=null) {
+			prefix = (String) row[4];
+		}
+		
+		String url = String.format(prefix, (String) row[2]) ;
+		String json = "{\"url\":\""+url+ "\",\"id\":"+id+"}";
+		this.setUrl(EncryptionUtil.encode(json));
 		this.name = (String) row[3];
 		this.iconName =(String) row[3];
-	}
-	public String getPrefix() {
-		return prefix;
-	}
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
-	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
 	}
 	public int getType() {
 		return type;
@@ -48,6 +40,12 @@ public class ButtonContainer {
 	}
 	public void setIconName(String iconName) {
 		this.iconName = iconName;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 }

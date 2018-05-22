@@ -44,7 +44,6 @@ public class RestControllerLinks {
 	
 	@GetMapping
 	public ButtonsModel getInfo(@ModelAttribute("user") User user){
-		System.out.println("infoId:"+user.getId());
 		ButtonsModel model = new ButtonsModel();
 		List<ProfileUrls> list = linksService.findByProfileInfoId(user.getProfile_info_id());
 		
@@ -71,8 +70,6 @@ public class RestControllerLinks {
 				model.phone = url.getUrl_value();
 			}
 		}
-		
-		System.out.println(model.toString());
 		return model;
 	}
 	 

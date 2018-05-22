@@ -15,7 +15,7 @@ import org.apache.commons.codec.binary.Base64;
 public class EncryptionUtil
 {
   // some random salt
-  private static final byte[]	SALT			= { (byte) 0x25, (byte) 0x21, (byte) 0xF1, (byte) 0x25, (byte) 0xC9, (byte) 0x9F, (byte) 0x0A, (byte) 0x15,(byte) 0x21,(byte) 0x21};
+  private static final byte[]	SALT			= { (byte) 0x25, (byte) 0x21, (byte) 0xF1, (byte) 0x25, (byte) 0xC9, (byte) 0x9F, (byte) 0x0A, (byte) 0x15};
 
 	private final static int	ITERATION_COUNT	= 31;
 

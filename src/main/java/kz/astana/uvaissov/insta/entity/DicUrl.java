@@ -20,6 +20,14 @@ public class DicUrl {
 	private String abbr;
 	@Column(name="prefix")
 	private String prefix;
+	@Column(name="mobile_prefix")
+	private String mobile_prefix;
+	public String getMobile_prefix() {
+		return mobile_prefix;
+	}
+	public void setMobile_prefix(String mobile_prefix) {
+		this.mobile_prefix = mobile_prefix;
+	}
 	public long getId() {
 		return id;
 	}

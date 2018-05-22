@@ -32,12 +32,10 @@ public class RestControllerPrimary {
 	
 	@GetMapping
 	public PrimaryModel getInfo(@ModelAttribute("user") User user){
-		System.out.println("infoId:"+user.getId());
 		PrimaryModel primary = new PrimaryModel();
 		ProfileInfo profileInfo = infoService.findByInfoId(user.getProfile_info_id());
 		primary.username = profileInfo.getProfilename();
 		primary.description = profileInfo.getDescription();
-		System.out.println(primary.toString());
 		return primary;
 	}
 	 
@@ -54,8 +52,6 @@ public class RestControllerPrimary {
 		if(primary.background!=null) {
 			profileInfo.setBackground(primary.background);
 		}
-		System.out.println("profileInfo:"+profileInfo.getId());
-		System.out.println(primary.toString());
 		infoService.save(profileInfo);
 		return new ResponseEntity(primary, HttpStatus.OK);
 	}

@@ -47,7 +47,7 @@ public class LinksServiceImpl implements LinksService{
 	
 	@Override
 	public List<Object[]> getButtons(Long profile_info_id){
-		return em.createNativeQuery("select p.prof_url_id,u.prefix,p.url_value,u.name from profile_urls p \r\n" + 
+		return em.createNativeQuery("select p.prof_url_id,u.prefix,p.url_value,u.name,u.mobile_prefix from profile_urls p \r\n" + 
 				"join dic_url u on u.url_id=p.url_id\r\n" + 
 				"where p.profile_info_id=? ").setParameter(1, profile_info_id).getResultList();
 	}

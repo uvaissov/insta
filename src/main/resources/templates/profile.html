@@ -27,14 +27,14 @@
 	    		<div style="height: 50px; text-align: center;"></div>
 	    		<div style="max-height: 100px; margin-bottom : 5px; text-align: center;" th:utext="${customText}"></div>
 	    		<div style="text-align: center;    min-height: 150px;" class="buttons">
-				 	<a class="button-icon" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 1" >
+				 	<a  target="_blank" th:href="@{'/a/'+${button.url}}" class="button-icon" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 1" >
 					    <img th:src="@{'/assets/svg/'+${button.name}+'.svg'}">
 	    				<span th:text="${button.name}"></span>
 					</a>
 	    		</div>
 	    		<div style="text-align: center;font-size: x-small;opacity: 0.3;">follow us</div>
 	    		<div style="text-align: center;margin-top: 5px;">
-	    			<a class="button-icon-sm" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 2" >
+	    			<a  target="_blank" th:href="@{'/a/'+${button.url}}" class="button-icon-sm" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 2" >
 					    <img th:src="@{'/assets/svg/'+${button.name}+'.svg'}">
 					</a>
 	    		</div>

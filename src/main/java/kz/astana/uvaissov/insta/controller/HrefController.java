@@ -1,11 +1,16 @@
 package kz.astana.uvaissov.insta.controller;
 
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+
+import javax.transaction.Transactional;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +35,11 @@ import kz.astana.uvaissov.insta.cabinet.model.BackgroundItem;
 import kz.astana.uvaissov.insta.cabinet.model.ButtonContainer;
 import kz.astana.uvaissov.insta.cabinet.model.NavItem;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
+import kz.astana.uvaissov.insta.entity.UrlAction;
 import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.repository.GsonHttp;
 import kz.astana.uvaissov.insta.service.InfoService;
+import kz.astana.uvaissov.insta.service.LogService;
 import kz.astana.uvaissov.insta.service.UserService;
 import kz.astana.uvaissov.insta.util.EncryptionUtil;
 import kz.astana.uvaissov.insta.util.SitePreference;
@@ -44,9 +51,9 @@ import kz.astana.uvaissov.insta.util.SitePreference;
 public class HrefController {
 
 	@Autowired
-	private UserService userService;
-	@Autowired
 	private InfoService infoService;
+	@Autowired
+	private LogService logService;
 	@Autowired
 	private GsonHttp gson;
 	
@@ -56,14 +63,31 @@ public class HrefController {
     	RedirectView redirectView = new RedirectView();
     	//parse json
     	String json = EncryptionUtil.decode(url);
-    	Map<String,Object> map = new HashMap<String,Object>();
+    	Map<String,String> map = new HashMap<String,String>();
     	map = gson.getGson().fromJson(json, map.getClass());
     	
-    	//check device
-    	System.out.println("isMobile:"+ device.isMobile());
+    	System.out.println(json);
+    	System.out.println(map);
     	
+    	String urlId = (String) map.get("id");
+    	String profileId = (String) map.get("profileId");
+    	
+    	CompletableFuture<Void> future = CompletableFuture
+    	        .runAsync(() -> logAction(Long.valueOf(urlId), Long.valueOf(profileId), device), Executors.newCachedThreadPool());
+    	System.out.println(future.isDone());
+//    	logAction(Long.valueOf(urlId), Long.valueOf(profileId), device);
     	redirectView.setUrl(map.get("url").toString());
 		return redirectView;
     }
-   
+	
+	@Transactional
+	private void logAction(Long urlId,Long profileId,Device device) {
+    	UrlAction action = new UrlAction();
+    	action.setUrlId(urlId);
+    	action.setProfileInfoId(profileId);
+    	action.setMobile(device.isMobile());
+    	action.setMobileOs(device.getDevicePlatform().name());
+    	action.setActionDatetime(new Timestamp(System.currentTimeMillis()));
+    	logService.save(action);
+	}
 }

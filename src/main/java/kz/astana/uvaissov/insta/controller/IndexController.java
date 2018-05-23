@@ -24,6 +24,7 @@ import kz.astana.uvaissov.insta.cabinet.model.ButtonContainer;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.ProfileUrls;
 import kz.astana.uvaissov.insta.entity.User;
+import kz.astana.uvaissov.insta.repository.GsonHttp;
 import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.service.LinksService;
 import kz.astana.uvaissov.insta.service.UserService;
@@ -42,6 +43,9 @@ public class IndexController {
 	
 	@Autowired
 	private LinksService linksService;
+	
+	@Autowired
+	private GsonHttp gson;
 	
     @RequestMapping( method = RequestMethod.GET)
     public ModelAndView workspace(Model model) {
@@ -64,7 +68,7 @@ public class IndexController {
     	
     	List<ButtonContainer> buttons = new ArrayList();
     	for(Object[] url : listUrls) {
-    		ButtonContainer bu = new ButtonContainer(url,device);
+    		ButtonContainer bu = new ButtonContainer(url,device,gson.getGson(),profileInfo.getId());
     		if(Arrays.asList("phone").contains(bu.getName())) {
     			bu.setType(0);//main
     		} else if(Arrays.asList("twitter","instagram","facebook").contains(bu.getName())) {

@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
+import kz.astana.uvaissov.insta.entity.UrlAction;
 import kz.astana.uvaissov.insta.repository.InfoRepository;
 
 @Service("infoService")
@@ -36,4 +38,5 @@ public class InfoServiceImpl implements InfoService{
 	public ProfileInfo findByProfilename(String profileName) {
 		return infoRepository.findByProfilename(profileName);
 	}
+	
 }

@@ -78,7 +78,6 @@ public class RestControllerLinks {
 	public ResponseEntity save(@ModelAttribute("user") User user, @RequestBody ButtonsModel model) {
 		
 		List<ProfileUrls> list = linksService.findByProfileInfoId(user.getProfile_info_id());
-		//whatsapp 
 		innerEquals(list, UrlConstant.WHATSAPP, model.whatsapp,user.getProfile_info_id());
 		innerEquals(list, UrlConstant.TELEGRAM, model.telegram,user.getProfile_info_id());
 		innerEquals(list, UrlConstant.VIBER, model.viber,user.getProfile_info_id());
@@ -95,7 +94,7 @@ public class RestControllerLinks {
 	
 	
 	private void innerEquals(List<ProfileUrls> list,Long urlConstant,String value,Long profile_info_id) {
-		ProfileUrls service = getUrlByName(urlConstant, list);
+		ProfileUrls service = getUrlById(urlConstant, list);
 		if(StringUtils.isNotBlank(value)) {
 			if(service!=null) {
 				if(!service.getUrl_value().equalsIgnoreCase(value)) {
@@ -114,7 +113,7 @@ public class RestControllerLinks {
 		}
 	}
 	
-	private ProfileUrls getUrlByName(Long id,List<ProfileUrls> list) {
+	private ProfileUrls getUrlById(Long id,List<ProfileUrls> list) {
 		Optional<ProfileUrls> value = list.stream().filter(a -> id.equals(a.getUrl_id()) ).findFirst();
 		if(value!=null && value.isPresent()) {
 			return value.get();

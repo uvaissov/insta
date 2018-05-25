@@ -34,8 +34,10 @@ public class RestControllerPrimary {
 	public PrimaryModel getInfo(@ModelAttribute("user") User user){
 		PrimaryModel primary = new PrimaryModel();
 		ProfileInfo profileInfo = infoService.findByInfoId(user.getProfile_info_id());
-		primary.username = profileInfo.getProfilename();
-		primary.description = profileInfo.getDescription();
+		if(profileInfo!=null) {
+			primary.username = profileInfo.getProfilename();
+			primary.description = profileInfo.getDescription();
+		}
 		return primary;
 	}
 	 
@@ -43,6 +45,11 @@ public class RestControllerPrimary {
 	@Transactional
 	public ResponseEntity save(@ModelAttribute("user") User user, @RequestBody PrimaryModel primary) {
 		ProfileInfo profileInfo = infoService.findByInfoId(user.getProfile_info_id());
+		boolean isNew = false;
+		if(profileInfo==null) {
+			isNew = true;
+			profileInfo = new ProfileInfo();
+		}
 		if(primary.username!=null) {
 			profileInfo.setProfilename(primary.username.toLowerCase());
 		}
@@ -53,6 +60,10 @@ public class RestControllerPrimary {
 			profileInfo.setBackground(primary.background);
 		}
 		infoService.save(profileInfo);
+		if(isNew) {
+			user.setProfile_info_id(profileInfo.getId());
+			userService.save(user);
+		}
 		return new ResponseEntity(primary, HttpStatus.OK);
 	}
 }

@@ -52,8 +52,10 @@ public class CabinetController {
     	}
     	
     	ProfileInfo profileInfo = infoService.findByInfoId(user.getProfile_info_id());
-    	modelAndView.addObject("brand", "My Brand");
-    	modelAndView.addObject("username", "@"+profileInfo.getProfilename());
+    	if(profileInfo!=null) {
+    		modelAndView.addObject("brand", "My Brand");
+    		modelAndView.addObject("username", profileInfo.getProfilename());
+    	}
     	//Вкладки
     	List<NavItem> navItems = new ArrayList<NavItem>();
     	navItems.add(new NavItem("Профиль", "primary", true,"left"));
@@ -64,7 +66,7 @@ public class CabinetController {
     	//Список фонов
     	List<BackgroundItem> backItems = new ArrayList<BackgroundItem>();
     	for(String name : Backgrounds.list) {
-    		backItems.add(new BackgroundItem(name, name.equals(profileInfo.getBackground())));
+    		backItems.add(new BackgroundItem(name, profileInfo!=null? name.equals(profileInfo.getBackground()) : false));
     	}
     	modelAndView.addObject("backItems",backItems);
 		modelAndView.setViewName("/cabinet/index");

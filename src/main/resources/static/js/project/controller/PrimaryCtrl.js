@@ -2,9 +2,8 @@ app.controller('PrimaryCtrl', PrimaryCtrl);
 
 function PrimaryCtrl ($http) {
   var primary = this;
-  var pointUrl = '/cabinet/data/primary';
+  var pointUrl = _contextPath+'cabinet/data/primary';
   primary.backgroundList = backItems ;
-  console.log(primary.backgroundList);
   primary.message = null;
   primary.saveInfo = function(info){
 		if(	angular.isDefined(info) &&
@@ -47,7 +46,6 @@ function PrimaryCtrl ($http) {
 		.then(
 			       function(response){
 			    	   primary.info = response.data;
-			    	   console.log(primary.info);
 			       }, 
 			       function(response){
 			    	   console.log(response);

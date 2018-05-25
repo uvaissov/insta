@@ -15,10 +15,10 @@
 <body th:class="${background}" >
 	<div class=page>
 		<div class="panel">
-			<a class="button-icon"  href="/" >
+			<a class="button-icon"  th:href="@{/}" >
 	    		<img th:src="@{/assets/svg/home.svg}" style="height: 40px;">
 	    	</a>
-	    	<a class="button-icon" style="float: right;"  href="/cabinet" >
+	    	<a class="button-icon" style="float: right;"  th:href="@{/cabinet}" >
 	    		<img th:src="@{/assets/svg/setting.svg}" style="height: 37px;">
 	    	</a>
 		 </div>

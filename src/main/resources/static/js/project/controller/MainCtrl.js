@@ -1,7 +1,7 @@
 app.controller('MainCtrl', MainCtrl);
 function MainCtrl () {
   var main = this; 
-  var contentPrefixPath = "cabinet/container/";
+  var contentPrefixPath = _contextPath+"cabinet/container/";
   main.navigationList = navItems ;
   //init renderPage
   angular.forEach(main.navigationList, function(value) {

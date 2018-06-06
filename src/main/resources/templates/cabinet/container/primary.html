@@ -1,6 +1,21 @@
 <div ng-controller="PrimaryCtrl as primary">
-	<form name="FormProfileInfo" novalidate
-		ng-submit="primary.saveInfo(primary.info)">
+	<div>
+	<table>
+	<tr><td>
+	<div style="height: 84px ;width: 84px; margin-left: 5px;margin-right: 5px ;display: inline-block;">
+		<img th:src="@{/assets/logo/274807_1528106286.jpg}" style="height: 84px;border-radius: 84px;">
+	</div>
+	</td>
+	<td>
+	<div  style="height: 84px;width: 120px;">
+	<span style="display: inline-block;">Photo</span>
+	<input type="file" value="Choose Image" accept="image/*"  id="userImage" style="cursor:pointer; ; opacity:0;height: 84px; width:200px; left:-94px; top:-24px;position: relative;display: inline-block;">
+	</div>
+	</td>
+	</tr>
+	</table>
+	</div>
+	<form name="FormProfileInfo" novalidate ng-submit="primary.saveInfo(primary.info)">
 		<div class="form-group">
 			<label for="inputName" class="col-form-label">Наименование профиля</label>
 			<div class="col-md-12">
@@ -24,4 +39,14 @@
 		<button class="btn btn-primary" type="submit"
 			ng-disabled="FormProfileInfo.$invalid">Сохранить</button>
 	</form>
+	
+	<div id="modal-background"></div>
+	<div id="modal-content">
+		<div style="position: relative; overflow: hidden; margin: 0 auto; max-width: 320px;padding: 15px;">
+		<div id="upload-demo"></div>
+	    <span style="display: inline;">
+		  <button  class="btn btn-primary btn-lg">Использовать</button> <button class="btn btn-danger btn-lg float-right" ng-click="primary.tooglePhoto()" >Отмена</button>
+		</span>
+		</div>
+	</div>
 </div>

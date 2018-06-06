@@ -35,7 +35,7 @@ function PrimaryCtrl ($http) {
 			format: 'png',
 			circle: false
 		}).then(function (resp) {
-		    $http.post(_contextPath+'content',resp).then(
+		    $http.post(_contextPath+'content'+'/logo',resp).then(
 				       function(response){
 				    	   alert('Info updated');
 				       }, 

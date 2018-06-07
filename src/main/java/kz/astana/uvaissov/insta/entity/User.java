@@ -26,19 +26,27 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	private Long id;
+	
 	@Column(name = "email")
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
 	private String email;
+	
 	@Column(name = "password")
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your password")
 	@Transient
 	private String password;
+	
 	@Column(name = "active")
 	private int active;
+	
 	@Column(name = "profile_info_id")
 	private Long profile_info_id;
+	
+	@Column(name = "account_name")
+	@NotEmpty(message = "*Please provide an Account Name")
+	private String account_name;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
@@ -83,6 +91,14 @@ public class User {
 		this.profile_info_id = profile_info_id;
 	}
 
+	public String getAccount_name() {
+		return account_name;
+	}
+
+	public void setAccount_name(String account_name) {
+		this.account_name = account_name;
+	}
+
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -90,5 +106,5 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-
+	
 }

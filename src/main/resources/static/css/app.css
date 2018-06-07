@@ -35,6 +35,22 @@
     display: block;
 }
 
+#userLogo img {
+	height: 84px;
+	width:84px;
+	border-radius: 84px;
+	border: 1px solid #326a9a;
+}
+
+#userImage {
+	opacity: 0;
+    height: 90px;
+    width: 235px;
+    position: relative;
+    cursor: pointer;
+    top: -64px;
+    left: -95px;
+}
 
 .image-div{
 	height: 150px;

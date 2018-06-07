@@ -23,4 +23,6 @@ public interface StorageService {
 
 	void write(ByteArrayResource data, String fileName);
 
+	void delete(String fileName);
+
 }

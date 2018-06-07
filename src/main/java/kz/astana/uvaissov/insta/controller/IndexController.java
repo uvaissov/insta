@@ -58,7 +58,7 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET,path = "/{userName:.+}")
     public ModelAndView profile(Device device, @PathVariable String userName) {
     	ModelAndView modelAndView = new ModelAndView();
-    	ProfileInfo profileInfo = infoService.findByProfilename(userName.toLowerCase());
+    	ProfileInfo profileInfo = infoService.findByAccountname(userName.toLowerCase());
     	if(profileInfo == null) {
     		modelAndView.setViewName("redirect:/");
     		return modelAndView;
@@ -77,7 +77,13 @@ public class IndexController {
     		buttons.add(bu);
     	}
     	
-    	modelAndView.addObject("brand", "@"+profileInfo.getProfilename());
+    	modelAndView.addObject("logoUrl", profileInfo.getLogo_url());
+    	if(profileInfo.getLogo_url()==null && userName!=null && userName.length()>1) {
+    		modelAndView.addObject("firstLetter",userName.substring(0, 1).toUpperCase());
+    		modelAndView.addObject("secondLetter",userName.substring(1, 2).toUpperCase());
+    	}
+    	
+    	modelAndView.addObject("username", profileInfo.getProfilename());
     	modelAndView.addObject("customText",profileInfo.getDescription());
     	modelAndView.addObject("background", StringUtils.defaultString(profileInfo.getBackground(), Backgrounds.BG1) );
     	modelAndView.addObject("buttons",buttons);

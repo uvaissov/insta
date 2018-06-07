@@ -35,12 +35,13 @@ function PrimaryCtrl ($http) {
 			format: 'png',
 			circle: false
 		}).then(function (resp) {
-		    $http.post(_contextPath+'content'+'/logo',resp).then(
-				       function(response){
-				    	   alert('Info updated');
-				       }, 
+		    $http.post(_contextPath+'content/upload',resp).then(
 				       function(response){
 				    	   console.log(response);
+				    	   primary.tooglePhoto();
+				    	   $('#userLogo').html(response.data);
+				       }, 
+				       function(response){
 				    	   primary.message = response.message;
 				       }
 				    );
@@ -83,6 +84,7 @@ function PrimaryCtrl ($http) {
   }	
   
   $(document).ready(function() {
+	  
 	  //slicker
 	  $(".slicker-class").slick({
 		  infinite : true,
@@ -98,13 +100,11 @@ function PrimaryCtrl ($http) {
 	  
   	//croppie
   	$(document.body).on("change", "#userImage", function() {
-	  	$("#preloader").show();
 		readFile(this); 
 	});
-  
-  
   	function readFile(input) {
 		if (input.files && input.files[0]) {
+			$("#preloader").show();
             var reader = new FileReader();
             reader.onload = function (e) {
             	$("#preloader").hide();
@@ -119,9 +119,7 @@ function PrimaryCtrl ($http) {
         }
         
 	}
-  	
 	$uploadCrop = $('#upload-demo').croppie({
-		enableExif: true,
 		viewport: {
 			width: 200,
 			height: 200,
@@ -130,8 +128,10 @@ function PrimaryCtrl ($http) {
 	    boundary: {
 	        width: 300,
 	        height: 300
-	    }			
+	    },
+	    enableExif: true
 	});
+	
 	
 	
   });

@@ -49,8 +49,11 @@ public class CabinetController {
 	}
 	
 	@ModelAttribute("userSession")//Обьявим обьект сессии пользователя
-	public ActiveSession getSession() {
-		return new ActiveSession();
+	public ActiveSession getSession(@ModelAttribute("user") User user) {
+		ActiveSession session = new ActiveSession();
+		System.out.println("user.getProfile_info_id():"+user.getProfile_info_id());
+		session.profileId =user.getProfile_info_id();
+		return session;
 	}
 
 
@@ -64,13 +67,15 @@ public class CabinetController {
     	
     	ProfileInfo profileInfo = infoService.findByInfoId(user.getProfile_info_id());
     	if(profileInfo!=null) {
+    		System.out.println(profileInfo);
     		modelAndView.addObject("brand", "My Brand");
-    		modelAndView.addObject("username", profileInfo.getProfilename());
+    		modelAndView.addObject("username", user.getAccount_name());
+    		session.logoUrl = profileInfo.getLogo_url();
     	}
     	//Вкладки
     	List<NavItem> navItems = new ArrayList<NavItem>();
-    	navItems.add(new NavItem("Профиль", "primary", true,"left"));
-    	navItems.add(new NavItem("Кнопки", "links", false,"left"));
+    	navItems.add(new NavItem("Профайл", "primary", true,"left"));
+    	navItems.add(new NavItem("Ссылки", "links", false,"left"));
     	navItems.add(new NavItem("Аналитика", "analytics", false,"left"));
     	modelAndView.addObject("navItems",navItems);
     	
@@ -91,9 +96,12 @@ public class CabinetController {
     }
     
     @RequestMapping("/container/primary")
-    public String primary(@ModelAttribute("userSession") ActiveSession session){
+    public ModelAndView primary(@ModelAttribute("userSession") ActiveSession session){
+    	ModelAndView modelAndView = new ModelAndView();
     	session.selectedTab = "primary";
-    	return "/cabinet/container/primary";
+    	modelAndView.addObject("logoUrl", session.logoUrl);
+    	modelAndView.setViewName("/cabinet/container/primary");
+		return modelAndView;
     }
     
     @RequestMapping("/container/links")

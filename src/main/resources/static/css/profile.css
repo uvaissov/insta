@@ -61,8 +61,67 @@ html, body {
     right: 0;
     box-shadow: 0 8px 8px 0 rgba(0,0,0,0.05);
     -webkit-backdrop-filter: blur(2px);
-    border: 2px #e2d3d3 solid;
+    border: 3px #e2d3d3 solid;
 }
+
+.userLogo {
+    text-align: center;
+    margin-top: -62px;
+    position: relative;
+}
+.userLogo:before {
+    content: " ";
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 90px;
+    background: #e2d3d3;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 47.5px, 0 47.5px);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 47.5px, 0 47.5px);
+}
+.userLogo img {
+    box-sizing: border-box;
+    padding: 3px;
+    border-radius: 90px;
+    width: 90px;
+    height: 90px;
+    z-index: 2;
+    position: relative;
+}
+.userLogo svg {
+    box-sizing: border-box;
+    padding: 3px;
+    border-radius: 90px;
+    width: 90px;
+    height: 90px;
+    z-index: 2;
+    position: relative;
+}
+
+.profName {
+	color: black;
+    font-weight: 500;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.profInfo {
+	font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    color: #7e7e7e;
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 2px;
+    margin-bottom: 14px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
 .button-icon {
 	outline: 0;
     display: inline-block;

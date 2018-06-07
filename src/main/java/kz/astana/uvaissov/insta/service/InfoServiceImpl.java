@@ -35,8 +35,11 @@ public class InfoServiceImpl implements InfoService{
 		
 	}
 	
-	public ProfileInfo findByProfilename(String profileName) {
-		return infoRepository.findByProfilename(profileName);
+	public ProfileInfo findByAccountname(String profileName) {
+		return infoRepository.findByAccountName(profileName);
 	}
 	
+	public void setLogo(Long profile_info_id, String fileName) {
+		infoRepository.getOne(profile_info_id).setLogo_url(fileName);
+	}
 }

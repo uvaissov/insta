@@ -21,6 +21,10 @@ public class ProfileInfo {
 	private String profilename;
 	@Column(name="background")
 	private String background;
+	@Column(name="logo_url")
+	private String logo_url;
+	@Column(name="background_url")
+	private String background_url;
 
 	public Long getId() {
 		return id;
@@ -45,6 +49,23 @@ public class ProfileInfo {
 	}
 	public void setBackground(String background) {
 		this.background = background;
+	}
+	public String getLogo_url() {
+		return logo_url;
+	}
+	public void setLogo_url(String logo_url) {
+		this.logo_url = logo_url;
+	}
+	public String getBackground_url() {
+		return background_url;
+	}
+	public void setBackground_url(String background_url) {
+		this.background_url = background_url;
+	}
+	@Override
+	public String toString() {
+		return "ProfileInfo [id=" + id + ", description=" + description + ", profilename=" + profilename
+				+ ", background=" + background + ", logo_url=" + logo_url + ", background_url=" + background_url + "]";
 	}
 	
 }

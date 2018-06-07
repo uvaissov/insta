@@ -3,6 +3,8 @@ package kz.astana.uvaissov.insta.controller;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +31,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import groovy.transform.EqualsAndHashCode;
+import kz.astana.uvaissov.insta.cabinet.model.ActiveSession;
 import kz.astana.uvaissov.insta.entity.User;
+import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.util.StorageFileNotFoundException;
 import kz.astana.uvaissov.insta.util.StorageService;
 
 
 @Controller
-@SessionAttributes({"user"})
+@SessionAttributes({"userSession"})
 @RequestMapping("/content")
 public class FileUploadController {
 
@@ -43,6 +47,12 @@ public class FileUploadController {
     
     @Autowired
     ServletContext context;
+    
+    @Autowired
+    private HttpServletRequest request;
+    
+    @Autowired
+    InfoService infoService;
 
     @Autowired
     public FileUploadController(StorageService storageService) {
@@ -57,15 +67,25 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
     
-    @PostMapping("/{type:.+}")
-    public ResponseEntity<String> handleFileUpload(@ModelAttribute("User") User user,@PathVariable String type,@RequestBody String data,
-            RedirectAttributes redirectAttributes) {
-    	ByteArrayResource resource =new ByteArrayResource (DatatypeConverter.parseBase64Binary(data.split(",")[1]));
-    	storageService.write(resource,user.getProfile_info_id()+"_"+type+".png");
-    	 HttpHeaders headers = new HttpHeaders();
-         headers.setContentType(MediaType.TEXT_HTML);
-    	return new ResponseEntity<String>("<img src='https://mssg.me/assets/274807_1528283167.jpg'>",headers, HttpStatus.OK);
-    }
+	@PostMapping("/upload")
+	@Transactional
+	public ResponseEntity<String> handleFileUpload(@ModelAttribute("userSession") ActiveSession session,
+			@RequestBody String data, RedirectAttributes redirectAttributes) {
+		ByteArrayResource resource = new ByteArrayResource(DatatypeConverter.parseBase64Binary(data.split(",")[1]));
+		String fileName = session.profileId + "_" + (System.nanoTime()) + ".png";
+		storageService.write(resource, fileName);//запишем новый файл
+		infoService.setLogo(session.profileId, fileName); //запишем в БД информацию
+		if(session.logoUrl!=null) {
+			storageService.delete(session.logoUrl);//Удалим старый файл
+		}
+		session.logoUrl = fileName;//сохраним в сессию информацию о файле
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.TEXT_HTML);//отправляем как HTMl тэг
+		
+		
+		return new ResponseEntity<String>("<img src='http://"+request.getServerName()+":"+request.getServerPort()+"/content/file/" + fileName + "'>", headers,
+				HttpStatus.OK);
+	}
     
     @ExceptionHandler(StorageFileNotFoundException.class)
     public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {

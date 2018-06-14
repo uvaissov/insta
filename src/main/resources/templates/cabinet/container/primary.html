@@ -1,4 +1,4 @@
-<div ng-controller="PrimaryCtrl as primary">
+<div ng-controller="PrimaryCtrl as primary" class="container">
 	<div>
 		<table id="userTable">
 		<tr>
@@ -37,25 +37,25 @@
 		</div>
 		<label>Фон страницы</label>
 		<div class="center">
-			<div class="slicker-class">
+			<div class="slicker-class" style="display: none;">
 				<div ng-repeat="background in primary.backgroundList" ng-click="primary.selectBackground(background)">
 					<img class="image-div" ng-class="primary.rowClassBack(background)"></img>
 				</div>
 			</div>
 		</div>
 		<label>Собственный фон страницы</label>
-		<div class="center">
-			<div class="slicker-class">
-				<div>
-					<svg baseProfile="full" class="image-div" id="userSvgLogo" version="1.1" xmlns="http://www.w3.org/2000/svg">  
-					    <rect fill="white" height="100%" width="100%" style="stroke: gray;stroke-opacity: 0.5; stroke-width: 14px;"></rect>  
-						<line x1="50%" y1="25%" x2="50%" y2="75%" style="stroke: gray;stroke-width: 7px;"></line>
-						<line x1="25%" y1="50%" x2="75%" y2="50%" style="stroke: gray;stroke-width: 7px;"></line>  
-					</svg>
-				</div>
-			</div>
+		<div class="form-group">
+				<table><tr>
+					<td> <div id="userBackground" ><img class="nophoto" th:src="@{'/assets/svg/no-photo.svg'}"></div> 	</td>
+					<td>
+						<span style="display: inline-block;"><button class="btn btn-outline-primary mt-4 ml-3" ng-click="primary.changeBackGround()" >Изменить фон</button> </span>
+						<input type="file" value="Choose Image" accept="image/*" id="userBackgroundImage">
+					</td>
+				</tr></table>
+				
+				
 		</div>
-		<button class="btn btn-primary" type="submit"
+		<button class="btn btn-primary mt-4 mb-4" type="submit"
 			ng-disabled="FormProfileInfo.$invalid">Сохранить</button>
 	</form>
 	
@@ -64,7 +64,8 @@
 		<div style="position: relative; overflow: hidden; margin: 0 auto; max-width: 320px;padding: 15px;">
 		<div id="upload-demo"></div>
 	    <span style="display: inline;">
-		  <button  class="btn btn-primary btn-lg" ng-click="primary.changePhoto()">Использовать</button> <button class="btn btn-danger btn-lg float-right" ng-click="primary.tooglePhoto()" >Отмена</button>
+		  <button  class="btn btn-primary btn-lg" ng-click="primary.changePhoto()">Использовать</button> <button class="btn btn-danger btn-lg float-right" ng-click="primary.tooglePhoto('cancel')" >Отмена</button>
+		  
 		</span>
 		</div>
 	</div>

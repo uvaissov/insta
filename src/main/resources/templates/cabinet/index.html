@@ -16,8 +16,9 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
 <!-- angular js -->
-<script th:src="@{/js/angular.min.js}"></script>
-<script th:src="@{/js/mask.min.js}"></script>
+<script th:src="@{/js/angular/angular.min.js}"></script>
+<script th:src="@{/js/angular/angular-cookies.js}"></script>
+<script th:src="@{/js/angular/mask.min.js}"></script>
 <script src="//cdn.jsdelivr.net/angular.bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.js"></script>
 
@@ -42,13 +43,15 @@
 <script th:src="@{/js/project/controller/LinksCtrl.js}"></script>
 
 <script th:inline="javascript">
-		var _contextPath = [[@{/}]];
-		/*<![CDATA[*/ 
+		
+		/*<![CDATA[*/
+			var _contextPath = [[@{/}]];
 			var navItems = [[${navItems}]];
 			var backItems = [[${backItems}]];
+			var device = {isMobile:[[${isMobile}]] , isTablet:[[${isTablet}]] ,isNormal:[[${isNormal}]] ,}
 		/*]]>*/
 		var croppie = undefined;
-	</script>
+</script>
 </head>
 <!-- http://freefrontend.com/css-tabs/ -->
 <body ng-cloak ng-controller="MainCtrl as main">

@@ -42,6 +42,20 @@
 	border: 1px solid #326a9a;
 }
 
+.nophoto{
+	width: 115px;
+    border: 3px solid #505050;
+    padding: 5px;
+}
+
+#userBackground>img {
+	height: 140px;
+	border: 5px solid white;
+	width: 115px;
+	padding: 5px;
+}
+
+
 #userImage {
 	opacity: 0;
     height: 90px;
@@ -51,14 +65,41 @@
     top: -64px;
     left: -95px;
 }
+#userBackgroundImage{
+    opacity: 0;
+    height: 140px;
+    width: 280px;
+    position: relative;
+    cursor: pointer;
+    top: -7px;
+    left: -280px;
+}
+
+#userSvgLogo rect {
+	stroke: gray;
+    stroke-opacity: 0.5;
+    stroke-width: 14px;
+}
+#userSvgLogo rect:hover {
+    stroke-opacity: 1;
+}
 
 .image-div{
-	height: 150px;
+	height: 140px;
 	border: 5px solid white;
-	/*margin: 10px;*/
 	max-width: 170px;
 	width: 100%;
-	
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .image-div{
+		height: 110px;
+		border: 5px solid white;
+		max-width: 170px;
+		width: 100%;
+	}
 }
 
 .image-div.selected {
@@ -68,7 +109,8 @@
 .center {
     margin: auto;
     width: 90%;
-    max-width: 650px;
+    /*max-width: 1050px;*/
+    /*margin-left: 15px;*/
     padding: 10px;
 }
 

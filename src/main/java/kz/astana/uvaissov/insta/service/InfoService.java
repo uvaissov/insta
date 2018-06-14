@@ -7,4 +7,5 @@ public interface InfoService {
 	public ProfileInfo findByInfoId(Long infoId);
 	public ProfileInfo findByAccountname(String profileName);
 	public void setLogo(Long profile_info_id, String fileName);
+	public void setBackGround(Long profile_info_id, String fileName);
 }

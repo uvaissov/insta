@@ -42,4 +42,7 @@ public class InfoServiceImpl implements InfoService{
 	public void setLogo(Long profile_info_id, String fileName) {
 		infoRepository.getOne(profile_info_id).setLogo_url(fileName);
 	}
+	public void setBackGround(Long profile_info_id, String fileName) {
+		infoRepository.getOne(profile_info_id).setBackground_url(fileName);
+	}
 }

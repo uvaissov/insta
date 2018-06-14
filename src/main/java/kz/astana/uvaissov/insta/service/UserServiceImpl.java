@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import kz.astana.uvaissov.insta.cabinet.constant.Backgrounds;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.Role;
 import kz.astana.uvaissov.insta.entity.User;
@@ -44,7 +45,8 @@ public class UserServiceImpl implements UserService{
         
         ProfileInfo info = new ProfileInfo();
         info.setProfilename(user.getAccount_name());
-        info.setDescription("");
+        info.setDescription("Будь на свзяи!");
+        info.setBackground(Backgrounds.BG1);
         infoService.save(info);
         user.setProfile_info_id(info.getId());
 		userRepository.save(user);

@@ -24,10 +24,10 @@ public class AnalyticsServiceImpl implements AnalyticsService{
 	
 	@Override
 	public List<Object[]> getShort(Long profile_info_id){
-		return em.createNativeQuery("select 'total' as \"time\",count(a.id) from url_actions a where a.profile_info_id=?\r\n" + 
+		return em.createNativeQuery("select 'total' as \"time\",count(a.id) from log_actions a where a.profile_info_id=?\r\n" + 
 				"union all\r\n" + 
-				"select 'week',count(a.id) from url_actions a where a.profile_info_id=? and a.action_datetime > (now() - interval '1 week')\r\n" + 
+				"select 'week',count(a.id) from log_actions a where a.profile_info_id=? and a.action_datetime > (now() - interval '1 week')\r\n" + 
 				"union all\r\n" + 
-				"select 'day',count(a.id) from url_actions a where a.profile_info_id=? and a.action_datetime > (now() - interval '1 day')").setParameter(1, profile_info_id).setParameter(2, profile_info_id).setParameter(3, profile_info_id).getResultList();
+				"select 'day',count(a.id) from log_actions a where a.profile_info_id=? and a.action_datetime > (now() - interval '1 day')").setParameter(1, profile_info_id).setParameter(2, profile_info_id).setParameter(3, profile_info_id).getResultList();
 	}
 }

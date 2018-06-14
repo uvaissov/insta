@@ -1,4 +1,4 @@
-var app = angular.module('BookingApp',['ui.bootstrap','ui.mask','ngAnimate']);
+var app = angular.module('BookingApp',['ui.bootstrap','ui.mask','ngAnimate','ngCookies']);
 
 
 app.directive('ngConfirmClick', [

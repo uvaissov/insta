@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -59,7 +60,7 @@ public class CabinetController {
 
 
     @RequestMapping( method = RequestMethod.GET)
-    public ModelAndView workspace(Model model,@ModelAttribute("user") User user,@ModelAttribute("userSession") ActiveSession session) {
+    public ModelAndView workspace(Model model,@ModelAttribute("user") User user,@ModelAttribute("userSession") ActiveSession session,Device device) {
     	ModelAndView modelAndView = new ModelAndView();
     	if(user==null || user.getId()==null) {
     		modelAndView.setViewName("login");
@@ -72,19 +73,19 @@ public class CabinetController {
     		modelAndView.addObject("brand", "My Brand");
     		modelAndView.addObject("username", user.getAccount_name());
     		session.logoUrl = profileInfo.getLogo_url();
+    		session.backgroundUrl= profileInfo.getBackground_url();
     	}
+    	//Device
+    	modelAndView.addObject("isMobile",device.isMobile());
+    	modelAndView.addObject("isTablet",device.isTablet());
+    	modelAndView.addObject("isNormal",device.isNormal());
+    	
     	//Вкладки
     	List<NavItem> navItems = new ArrayList<NavItem>();
     	navItems.add(new NavItem("Профайл", "primary", true,"left"));
     	navItems.add(new NavItem("Ссылки", "links", false,"left"));
     	navItems.add(new NavItem("Аналитика", "analytics", false,"left"));
     	modelAndView.addObject("navItems",navItems);
-    	
-    	if(session.selectedTab!=null) {
-    		for(NavItem item : navItems) {
-    			item.setActive(session.selectedTab.equalsIgnoreCase(item.getItemPage()));
-    		}
-    	}
     	
     	//Список фонов
     	List<BackgroundItem> backItems = new ArrayList<BackgroundItem>();
@@ -99,7 +100,6 @@ public class CabinetController {
     @RequestMapping("/container/primary")
     public ModelAndView primary(@ModelAttribute("userSession") ActiveSession session){
     	ModelAndView modelAndView = new ModelAndView();
-    	session.selectedTab = "primary";
     	modelAndView.addObject("logoUrl", session.logoUrl);
     	String userName = session.userName;
     	if(session.logoUrl==null && userName!=null && userName.length()>1) {
@@ -113,12 +113,10 @@ public class CabinetController {
     
     @RequestMapping("/container/links")
     public String links(@ModelAttribute("userSession") ActiveSession session){
-    	session.selectedTab = "links";
     	return "/cabinet/container/links";
     }
     @RequestMapping("/container/analytics")
     public ModelAndView analytics(@ModelAttribute("user") User user,@ModelAttribute("userSession") ActiveSession session){
-    	session.selectedTab = "analytics";
     	ModelAndView modelAndView = new ModelAndView();
     	
     	List<Object[]> list = analytics.getShort(user.getProfile_info_id());

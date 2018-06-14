@@ -22,7 +22,7 @@ public class LogAction {
 	@Column(name="action_type")
 	private int action_type;
 	@Column(name="url_id")
-	private long urlId;
+	private Long urlId;
 	@Column(name="action_datetime")
 	private Timestamp actionDatetime;
 	@Column(name="is_mobile")

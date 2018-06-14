@@ -1,93 +1,95 @@
-
-<div ng-controller="LinksCtrl as link">
+<div ng-controller="LinksCtrl as link" class="container">
 	<form name="FormLinks" novalidate ng-submit="link.save(link.data)">
 		<h3>Messengers</h3>
 		<hr style="min-width:85%; background-color:#ced4da !important;"/>
-		<div class="input-group mb-3">
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="basic-addon1">
-		    <img th:src="@{/assets/svg/whatsapp.svg}" style="width: 35px;height: 35px;">
-		    </span>
-		  </div>
-		  <input ng-model="link.data.whatsapp"  type="text"  class="form-control" placeholder="phone number" aria-label="Username" aria-describedby="basic-addon1">
+		<div class="row">
+			<div class="input-group mb-3 col-lg-6">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon1">
+			    <img th:src="@{/assets/svg/whatsapp.svg}" style="width: 35px;height: 35px;">
+			    </span>
+			  </div>
+			  <input ng-model="link.data.whatsapp"  type="text"  class="form-control" placeholder="phone number" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+			<div class="input-group mb-3 col-lg-6"  >
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon1">
+			    <img th:src="@{/assets/svg/telegram.svg}" style="width: 35px;height: 35px;">
+			    </span>
+			    <span class="input-group-text" style="min-width: 73.47px;" id="basic-addon2">t.me/
+			    </span>
+			  </div>
+			  	<input ng-model="link.data.telegram"  type="text" class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon2">
+			</div>
+			<div class="input-group mb-3 col-lg-6" >
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon5">
+			    <img th:src="@{/assets/svg/skype.svg}" style="width: 35px;height: 35px;">
+			    </span>
+			  </div>
+			  <input ng-model="link.data.skype" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
+			</div>
+			<div class="input-group mb-3 col-lg-6" >
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon3">
+			    	<img th:src="@{/assets/svg/messenger.svg}" style="width: 35px;height: 35px;">
+			    </span>
+			    <span class="input-group-text"  style="min-width: 73.47px;" id="basic-addon4">m.me/</span>
+			  </div>
+			  <input ng-model="link.data.messenger" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon4">
+			</div>
+			
+			<div class="input-group mb-3 col-lg-6 offset-lg-6" >
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon5">
+			    <img th:src="@{/assets/svg/vk.svg}" style="width: 35px;height: 35px;">
+			    </span>
+			    <span class="input-group-text" id="basic-addon4">vk.me/</span>
+			  </div>
+			  <input ng-model="link.data.vk" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
+			</div>
 		</div>
-		
-		<div class="input-group mb-3" >
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="basic-addon1">
-		    <img th:src="@{/assets/svg/telegram.svg}" style="width: 35px;height: 35px;">
-		    </span>
-		    <span class="input-group-text" style="min-width: 73.47px;" id="basic-addon2">t.me/
-		    </span>
-		  </div>
-		  	<input ng-model="link.data.telegram"  type="text" class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon2">
-		</div>
-		
-		<div class="input-group mb-3" >
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="basic-addon3">
-		    	<img th:src="@{/assets/svg/messenger.svg}" style="width: 35px;height: 35px;">
-		    </span>
-		    <span class="input-group-text"  style="min-width: 73.47px;" id="basic-addon4">m.me/</span>
-		  </div>
-		  <input ng-model="link.data.messenger" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon4">
-		</div>
-		
-		<div class="input-group mb-3" >
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="basic-addon5">
-		    <img th:src="@{/assets/svg/vk.svg}" style="width: 35px;height: 35px;">
-		    </span>
-		    <span class="input-group-text" id="basic-addon4">vk.me/</span>
-		  </div>
-		  <input ng-model="link.data.vk" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
-		</div>
-		
-		<div class="input-group mb-3" >
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="basic-addon5">
-		    <img th:src="@{/assets/svg/skype.svg}" style="width: 35px;height: 35px;">
-		    </span>
-		  </div>
-		  <input ng-model="link.data.skype" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
-		</div>
-		
 		<h3>Call</h3>
 		<hr style="min-width:85%; background-color:#ced4da !important;"/>
-		
-		<div class="input-group mb-3">
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="basic-addon1">
-		    <img th:src="@{/assets/svg/whatsapp.svg}" style="width: 35px;height: 35px;">
-		    </span>
-		  </div>
-		  <input  ng-model="link.data.phone" type="text"  class="form-control" placeholder="phone number" aria-label="Username" aria-describedby="basic-addon1">
+		<div class="row">
+			<div class="input-group mb-3 col-lg-6">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon1">
+			    <img th:src="@{/assets/svg/whatsapp.svg}" style="width: 35px;height: 35px;">
+			    </span>
+			  </div>
+			  <input  ng-model="link.data.phone" type="text"  class="form-control" placeholder="phone number" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
 		</div>
 		<h3>Follow Us</h3>
 		<hr style="min-width:85%; background-color:#ced4da !important;"/>
-		<div class="input-group mb-3" >
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="basic-addon5">
-		    <img th:src="@{/assets/svg/instagram.svg}" style="width: 35px;height: 35px;">
-		    </span>
-		  </div>
-		  <input ng-model="link.data.instagram" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
-		</div>
-		<div class="input-group mb-3" >
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="basic-addon5">
-		    <img th:src="@{/assets/svg/twitter.svg}" style="width: 35px;height: 35px;">
-		    </span>
-		  </div>
-		  <input ng-model="link.data.twitter" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
-		</div>
-		<div class="input-group mb-3" >
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="basic-addon5">
-		    <img th:src="@{/assets/svg/facebook.svg}" style="width: 35px;height: 35px;">
-		    </span>
-		  </div>
-		  <input ng-model="link.data.facebook" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
+		<div class="row">
+			<div class="input-group mb-3 col-lg-6" >
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon5">
+			    <img th:src="@{/assets/svg/instagram.svg}" style="width: 35px;height: 35px;">
+			    </span>
+			  </div>
+			  <input ng-model="link.data.instagram" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
+			</div>
+			
+			<div class="input-group mb-3 col-lg-6" >
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon5">
+			    <img th:src="@{/assets/svg/twitter.svg}" style="width: 35px;height: 35px;">
+			    </span>
+			  </div>
+			  <input ng-model="link.data.twitter" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
+			</div>
+			
+			<div class="input-group mb-3 col-lg-6" >
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon5">
+			    <img th:src="@{/assets/svg/facebook.svg}" style="width: 35px;height: 35px;">
+			    </span>
+			  </div>
+			  <input ng-model="link.data.facebook" type="text"  class="form-control" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
+			</div>
 		</div>
 		<button class="btn btn-primary" type="submit" ng-disabled="FormLinks.$invalid">Сохранить</button>
 	</form>

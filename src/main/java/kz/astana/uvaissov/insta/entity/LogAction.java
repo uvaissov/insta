@@ -11,14 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "url_actions")
-public class UrlAction {
+@Table(name = "log_actions")
+public class LogAction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
 	@Column(name="profile_info_id")
 	private long profileInfoId;
+	@Column(name="action_type")
+	private int action_type;
 	@Column(name="url_id")
 	private long urlId;
 	@Column(name="action_datetime")
@@ -40,6 +42,12 @@ public class UrlAction {
 	}
 	public void setProfileInfoId(long profileInfoId) {
 		this.profileInfoId = profileInfoId;
+	}
+	public int getAction_type() {
+		return action_type;
+	}
+	public void setAction_type(int action_type) {
+		this.action_type = action_type;
 	}
 	public long getUrlId() {
 		return urlId;

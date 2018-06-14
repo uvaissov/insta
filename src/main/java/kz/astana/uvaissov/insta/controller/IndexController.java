@@ -1,9 +1,14 @@
 package kz.astana.uvaissov.insta.controller;
 
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+
+import javax.transaction.Transactional;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +28,12 @@ import kz.astana.uvaissov.insta.cabinet.constant.Backgrounds;
 import kz.astana.uvaissov.insta.cabinet.model.ButtonContainer;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.ProfileUrls;
+import kz.astana.uvaissov.insta.entity.LogAction;
 import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.repository.GsonHttp;
 import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.service.LinksService;
+import kz.astana.uvaissov.insta.service.LogService;
 import kz.astana.uvaissov.insta.service.UserService;
 
 
@@ -43,6 +50,9 @@ public class IndexController {
 	
 	@Autowired
 	private LinksService linksService;
+	
+	@Autowired
+	private LogService logService;
 	
 	@Autowired
 	private GsonHttp gson;
@@ -77,6 +87,10 @@ public class IndexController {
     		buttons.add(bu);
     	}
     	
+    	CompletableFuture<Void> future = CompletableFuture
+    	        .runAsync(() -> logAction(Long.valueOf(profileInfo.getId()), device), Executors.newCachedThreadPool());
+    	System.out.println(future.isDone());
+    	
     	modelAndView.addObject("logoUrl", profileInfo.getLogo_url());
     	if(profileInfo.getLogo_url()==null && userName!=null && userName.length()>1) {
     		modelAndView.addObject("firstLetter",userName.substring(0, 1).toUpperCase());
@@ -96,5 +110,16 @@ public class IndexController {
     public String setting(){
     	return "redirect:/setting.do";
     }
+    
+    @Transactional
+	private void logAction(Long profileId,Device device) {
+    	LogAction action = new LogAction();
+    	action.setAction_type(1);//view
+    	action.setProfileInfoId(profileId);
+    	action.setMobile(device.isMobile());
+    	action.setMobileOs(device.getDevicePlatform().name());
+    	action.setActionDatetime(new Timestamp(System.currentTimeMillis()));
+    	logService.save(action);
+	}
    
 }

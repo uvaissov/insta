@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kz.astana.uvaissov.insta.entity.UrlAction;
+import kz.astana.uvaissov.insta.entity.LogAction;
 import kz.astana.uvaissov.insta.repository.LogRepository;
 
 @Service("logService")
@@ -24,7 +24,7 @@ public class LogServiceImpl implements LogService{
 	
 	
 	@Override
-	public void save(UrlAction action) {
+	public void save(LogAction action) {
 		logRepository.save(action);
 		
 	}

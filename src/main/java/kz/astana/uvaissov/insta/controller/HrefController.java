@@ -35,7 +35,7 @@ import kz.astana.uvaissov.insta.cabinet.model.BackgroundItem;
 import kz.astana.uvaissov.insta.cabinet.model.ButtonContainer;
 import kz.astana.uvaissov.insta.cabinet.model.NavItem;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
-import kz.astana.uvaissov.insta.entity.UrlAction;
+import kz.astana.uvaissov.insta.entity.LogAction;
 import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.repository.GsonHttp;
 import kz.astana.uvaissov.insta.service.InfoService;
@@ -75,14 +75,14 @@ public class HrefController {
     	CompletableFuture<Void> future = CompletableFuture
     	        .runAsync(() -> logAction(Long.valueOf(urlId), Long.valueOf(profileId), device), Executors.newCachedThreadPool());
     	System.out.println(future.isDone());
-//    	logAction(Long.valueOf(urlId), Long.valueOf(profileId), device);
     	redirectView.setUrl(map.get("url").toString());
 		return redirectView;
     }
 	
 	@Transactional
 	private void logAction(Long urlId,Long profileId,Device device) {
-    	UrlAction action = new UrlAction();
+    	LogAction action = new LogAction();
+    	action.setAction_type(2);//redirect
     	action.setUrlId(urlId);
     	action.setProfileInfoId(profileId);
     	action.setMobile(device.isMobile());

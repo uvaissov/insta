@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
-import kz.astana.uvaissov.insta.entity.UrlAction;
+import kz.astana.uvaissov.insta.entity.LogAction;
 import kz.astana.uvaissov.insta.repository.InfoRepository;
 
 @Service("infoService")

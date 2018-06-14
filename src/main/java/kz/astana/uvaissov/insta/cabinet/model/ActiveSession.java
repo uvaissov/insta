@@ -4,4 +4,5 @@ public class ActiveSession {
 	public String selectedTab;
 	public long profileId =-1;
 	public String logoUrl;
+	public String userName;
 }

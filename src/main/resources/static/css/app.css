@@ -35,7 +35,7 @@
     display: block;
 }
 
-#userLogo img {
+#userLogo>img,#userLogo>svg {
 	height: 84px;
 	width:84px;
 	border-radius: 84px;
@@ -68,7 +68,7 @@
 .center {
     margin: auto;
     width: 90%;
-    max-width : 650px;
+    max-width: 650px;
     padding: 10px;
 }
 

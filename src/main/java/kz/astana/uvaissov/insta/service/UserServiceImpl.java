@@ -43,6 +43,8 @@ public class UserServiceImpl implements UserService{
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         
         ProfileInfo info = new ProfileInfo();
+        info.setProfilename(user.getAccount_name());
+        info.setDescription("");
         infoService.save(info);
         user.setProfile_info_id(info.getId());
 		userRepository.save(user);

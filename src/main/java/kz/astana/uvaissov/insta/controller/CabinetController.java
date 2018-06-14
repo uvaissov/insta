@@ -53,6 +53,7 @@ public class CabinetController {
 		ActiveSession session = new ActiveSession();
 		System.out.println("user.getProfile_info_id():"+user.getProfile_info_id());
 		session.profileId =user.getProfile_info_id();
+		session.userName = user.getAccount_name();
 		return session;
 	}
 
@@ -100,6 +101,12 @@ public class CabinetController {
     	ModelAndView modelAndView = new ModelAndView();
     	session.selectedTab = "primary";
     	modelAndView.addObject("logoUrl", session.logoUrl);
+    	String userName = session.userName;
+    	if(session.logoUrl==null && userName!=null && userName.length()>1) {
+    		modelAndView.addObject("firstLetter",userName.substring(0, 1).toUpperCase());
+    		modelAndView.addObject("secondLetter",userName.substring(1, 2).toUpperCase());
+    	}
+    	
     	modelAndView.setViewName("/cabinet/container/primary");
 		return modelAndView;
     }

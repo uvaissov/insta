@@ -80,16 +80,7 @@ html, body {
     clip-path: polygon(0 0, 100% 0, 100% 47.5px, 0 47.5px);
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 47.5px, 0 47.5px);
 }
-.userLogo img {
-    box-sizing: border-box;
-    padding: 3px;
-    border-radius: 90px;
-    width: 90px;
-    height: 90px;
-    z-index: 2;
-    position: relative;
-}
-.userLogo svg {
+.userLogo img ,.userLogo svg {
     box-sizing: border-box;
     padding: 3px;
     border-radius: 90px;

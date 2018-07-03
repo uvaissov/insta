@@ -50,7 +50,7 @@
 
 #userBackground>img {
 	height: 140px;
-	border: 5px solid white;
+	border: 5px solid #f1f2ed;
 	width: 115px;
 	padding: 5px;
 }
@@ -66,13 +66,13 @@
     left: -95px;
 }
 #userBackgroundImage{
-    opacity: 0;
+opacity: 0;
     height: 140px;
-    width: 280px;
+    width: 160px;
     position: relative;
     cursor: pointer;
     top: -7px;
-    left: -280px;
+    left: -140px;
 }
 
 #userSvgLogo rect {

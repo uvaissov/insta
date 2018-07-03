@@ -101,6 +101,9 @@ public class CabinetController {
     public ModelAndView primary(@ModelAttribute("userSession") ActiveSession session){
     	ModelAndView modelAndView = new ModelAndView();
     	modelAndView.addObject("logoUrl", session.logoUrl);
+    	if(session.backgroundUrl!=null) {
+    		modelAndView.addObject("backgroundUrl", session.backgroundUrl.split("\\.")[0]+"_thumb."+session.backgroundUrl.split("\\.")[1]);
+    	}
     	String userName = session.userName;
     	if(session.logoUrl==null && userName!=null && userName.length()>1) {
     		modelAndView.addObject("firstLetter",userName.substring(0, 1).toUpperCase());

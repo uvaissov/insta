@@ -46,7 +46,11 @@
 		<label>Собственный фон страницы</label>
 		<div class="form-group">
 				<table><tr>
-					<td> <div id="userBackground" ><img class="nophoto" th:src="@{'/assets/svg/no-photo.svg'}"></div> 	</td>
+					<td>
+						<div id="userBackground" >
+								<img th:if="${backgroundUrl!=null}" th:src="@{'/content/file/'+${backgroundUrl}}"  >
+								<img th:if="${backgroundUrl==null}" class="nophoto" th:src="@{'/assets/svg/no-photo.svg'}">
+						</div></td>
 					<td>
 						<span style="display: inline-block;"><button class="btn btn-outline-primary mt-4 ml-3" ng-click="primary.changeBackGround()" >Изменить фон</button> </span>
 						<input type="file" value="Choose Image" accept="image/*" id="userBackgroundImage">

@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -38,6 +39,7 @@ import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.service.LinksService;
 import kz.astana.uvaissov.insta.service.LogService;
 import kz.astana.uvaissov.insta.service.UserService;
+import kz.astana.uvaissov.insta.util.EncryptionUtil;
 
 
 @Controller
@@ -66,7 +68,12 @@ public class IndexController {
     }
     
     @RequestMapping(method = RequestMethod.GET,path = "/{userName:.+}")
-    public ModelAndView profile(Device device, @PathVariable String userName,@CookieValue(value = "comming", defaultValue="none") String comming,HttpServletResponse response ) {
+    public ModelAndView profile(
+    		Device device, 
+    		@PathVariable String userName,
+    		@CookieValue(value = "comming", defaultValue="none") String comming,
+    		HttpServletResponse response,
+    		@RequestHeader(value = "referer", required = false) final String referer) {
     	ModelAndView modelAndView = new ModelAndView();
     	ProfileInfo profileInfo = infoService.findByAccountname(userName.toLowerCase());
     	
@@ -87,6 +94,8 @@ public class IndexController {
     		}
     		buttons.add(bu);
     	}
+    	System.out.println("referer:"+referer);
+    	System.out.println(EncryptionUtil.getDomainName(referer));
     	
     	//Логирование просмотра страницы
     	if("none".equalsIgnoreCase(comming)) {
@@ -112,7 +121,7 @@ public class IndexController {
     	modelAndView.addObject("customText",profileInfo.getDescription());
     	modelAndView.addObject("background", profileInfo.getBackground());
     	modelAndView.addObject("buttons",buttons);
-    	modelAndView.setViewName("/profile");
+    	modelAndView.setViewName("/profile2");
 		return modelAndView;
     }
     

@@ -1,6 +1,8 @@
 package kz.astana.uvaissov.insta.util;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.KeySpec;
 
@@ -11,6 +13,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang.StringUtils;
 
 public class EncryptionUtil
 {
@@ -90,6 +93,25 @@ public class EncryptionUtil
 		}
 
 		return null;
+	}
+	
+	public static String getDomainName(String url)  {
+	   String result = url;
+	   if(StringUtils.isBlank(result)) return result;
+		try {
+			 URI uri = new URI(url);
+			 String domain = uri.getHost();
+			 result= domain.startsWith("www.") ? domain.substring(4) : domain;
+			 if(result!=null) {
+				 String[] split = result.split("\\.");
+				 if(split.length>2) {
+					 result= split[split.length-2]+"."+split[split.length-1];
+				 }
+			 }
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+	    return result ;
 	}
 	
 }

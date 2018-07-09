@@ -90,7 +90,7 @@ public class IndexController {
     		if(Arrays.asList("phone").contains(bu.getName())) {
     			bu.setType(0);//main
     		} else if(Arrays.asList("twitter","instagram","facebook").contains(bu.getName())) {
-    			bu.setType(2);//followUs
+    			//bu.setType(2);//followUs
     		}
     		buttons.add(bu);
     	}
@@ -121,7 +121,7 @@ public class IndexController {
     	modelAndView.addObject("customText",profileInfo.getDescription());
     	modelAndView.addObject("background", profileInfo.getBackground());
     	modelAndView.addObject("buttons",buttons);
-    	modelAndView.setViewName("/profile2");
+    	modelAndView.setViewName("/profile3");
 		return modelAndView;
     }
     

@@ -29,6 +29,4 @@ function MainCtrl ($cookies) {
 	  main.pageUrl = contentPrefixPath+item.itemPage;
 	  $cookies.put('selectedTab',main.pageUrl);
   }
-  console.log(selectedTab);
-  console.log(main.pageUrl);
 };

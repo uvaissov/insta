@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.img40 img {
+	width: 40px;
+	height: 40px;
+}
+
 #modal-background {
     display: none;
     position: fixed;
@@ -58,12 +63,11 @@
 
 #userImage {
 	opacity: 0;
-    height: 90px;
-    width: 235px;
+    height: 160px;
+    width: 120px;
     position: relative;
     cursor: pointer;
-    top: -64px;
-    left: -95px;
+    top: -140px;
 }
 #userBackgroundImage{
 opacity: 0;
@@ -109,8 +113,8 @@ opacity: 0;
 .center {
     margin: auto;
     width: 90%;
-    /*max-width: 1050px;*/
-    /*margin-left: 15px;*/
+    text-align: center;
+    text-align: -webkit-center;
     padding: 10px;
 }
 

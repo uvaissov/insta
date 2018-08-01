@@ -1,9 +1,7 @@
 <div ng-controller="PrimaryCtrl as primary" class="container">
 	<div>
-		<table id="userTable">
-		<tr>
-			<td>
-				<div id="userLogo" style="height: 84px ;width: 84px; margin-left: 5px;margin-right: 5px ;display: inline-block;">
+			<div class="center">
+				<div id="userLogo" style="height: 84px ;width: 84px;">
 					<img th:if="${logoUrl!=null}" th:src="@{'/content/file/'+${logoUrl}}"  >
 					<svg th:if="${logoUrl==null}" baseProfile="full" id="userSvgLogo" version="1.1" xmlns="http://www.w3.org/2000/svg">  
 					    <rect fill="white" height="100%" width="100%"></rect>  
@@ -12,29 +10,23 @@
 						<text name="textName2" text-anchor="middle" x="53" y="65" style="font-size: 55px;fill: dodgerblue;font-family: fantasy;" th:text="${secondLetter}">K</text>  
 					</svg>
 				</div>
-			</td>
-			<td>
-				<div style="height: 84px;width: 120px;">
-					<span style="display: inline-block;"><button class="btn btn-outline-primary mt-4 ml-2" >Выбрать фото</button> </span>
+				<div style="height: 35px;width: 120px;">
+					<span style="display: inline-block;"><button class="btn  btn-sm btn-primary mt-2 ml-2" >Изменить</button> </span>
 					<input type="file" value="Choose Image" accept="image/*" id="userImage">
 				</div>
-			</td>
-		</tr>
-		</table>
+			</div>
 	</div>
 	<form name="FormProfileInfo" novalidate ng-submit="primary.saveInfo(primary.info)">
-		<div class="form-group">
-			<label for="inputName" class="col-form-label">Наименование профиля</label>
-			<div class="col-md-12">
-				<input class="form-control" type="text" ng-model="primary.info.username" id="inputName"  required>
-			</div>
+		<div class="md-form form-group">
+			<input class="form-control" type="text" ng-model="primary.info.username" id="inputName"  required>
+			<label for="inputName" class="active">Наименование профиля</label>
 		</div>
-		<div class="form-group">
-			<label for="inputDescription" class="col-form-label">Описание страницы</label>
-			<div class="col-md-12">
-				<input class="form-control" type="text" ng-model="primary.info.description" id="inputDescription"  required>
-			</div>
+		<div class="form-group md-form">
+			<input class="form-control" type="text" ng-model="primary.info.description" id="inputDescription"  required>
+			<label for="inputDescription" class="active">Описание страницы</label>
 		</div>
+		<div><a th:href="@{/assets/vcf/vcard.vcf}">vCard</a></div>
+		<div><a th:href="@{/assets/vcf/sample.ics}">vCalendar</a></div>
 		<label>Фон страницы</label>
 		<div class="center">
 			<div class="slicker-class" style="display: none;">

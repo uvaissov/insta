@@ -3,55 +3,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 <title th:utext="${brand}"></title>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 <!-- bootstrap 4 -->
+<!-- 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
-	
-<!-- icons -->
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-
-<!-- angular js -->
-<script th:src="@{/js/angular/angular.min.js}"></script>
-<script th:src="@{/js/angular/angular-cookies.js}"></script>
-<script th:src="@{/js/angular/mask.min.js}"></script>
-<script src="//cdn.jsdelivr.net/angular.bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.js"></script>
-
+-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/bs/4.1.1/bootstrap.min.css}" />
+<!-- mdb -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/mdb/4.5.6/mdb.min.css}" />
 <!-- croppie  -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/croppie/croppie.css}" />
-<script th:src="@{/js/croppie/croppie.min.js}"></script>
-<script th:src="@{/js/croppie/exif.js}"></script>
-
 <!-- slick js -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/slick.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/slick-theme.css}" />
-<script th:src="@{/js/slick.js}"></script>
-
 <!-- app js -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/app.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/background.css}" />
-<script th:src="@{/js/project/app/app.js}"></script>
-<script th:src="@{/js/project/controller/MainCtrl.js}"></script>
 
-<!-- setting ctrl -->
-<script th:src="@{/js/project/controller/PrimaryCtrl.js}"></script>
-<script th:src="@{/js/project/controller/LinksCtrl.js}"></script>
 
-<script th:inline="javascript">
-		
-		/*<![CDATA[*/
-			var _contextPath = [[@{/}]];
-			var navItems = [[${navItems}]];
-			var backItems = [[${backItems}]];
-			var device = {isMobile:[[${isMobile}]] , isTablet:[[${isTablet}]] ,isNormal:[[${isNormal}]] ,}
-		/*]]>*/
-		var croppie = undefined;
-</script>
 </head>
 <!-- http://freefrontend.com/css-tabs/ -->
 <body ng-cloak ng-controller="MainCtrl as main">
@@ -90,32 +66,22 @@
 			</ul>
 		</div>
 	</header>
-	<ul class="nav nav-tabs">
-		<li class="nav-item" ng-repeat="section in main.navigationList" >
-	       	<a class="nav-link" href="#"  ng-class="{'active':section.active}" ng-click="main.changeContent(section)" >
-	       		{{section.itemName}}
-	       		<span ng-if="section.active" class="sr-only">(current)</span>
-	       	</a>
-	   	</li>
-	</ul>
-	<div class="row">
-	<nav class="col-lg-2 d-none d-md-block bg-light sidebar">
-	<div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item" ng-repeat="section in main.navigationList" >
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-		       	<a class="nav-link" href="#"  ng-class="{'active':section.active}" ng-click="main.changeContent(section)" >
-		       	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-		       		{{section.itemName}}
+
+	  <!-- Nav tabs -->
+	  <div class="tabs-wrapper">
+	      <ul class="nav tabs-cyan nav-justified" role="tablist" data-toggle="tab">
+	          <li class="nav-item" ng-repeat="section in main.navigationList" >
+		       	<a class="nav-link waves-light text-primary" href="#"  ng-class="{'active':section.active}" ng-click="main.changeContent(section)" >
+		       		<i class="fa fa-heart fa-2x" aria-hidden="true"></i>
+		       		<br>{{section.itemName}}
 		       		<span ng-if="section.active" class="sr-only">(current)</span>
 		       	</a>
-		       	</h6>
 		   	</li>
-            </ul>
-          </div>
-	</nav>
+	      </ul>
+	  </div>
+	
 	<div class=" col-md-8 container-fluid pt-2" ng-include="main.pageUrl"></div>
-	</div>
+
 	<div id="preloader">
   		<div id="loader"></div>
 	</div>
@@ -123,5 +89,40 @@
 		//document.getElementById('preloader').style="display:none;";
 	</script>
 	<div class="clearfix"></div>
+
+<!-- jquery -->
+<script th:src="@{/js/jquery/jquery-3.3.1.min.js}"></script>
+<!-- bootstrap -->
+<script th:src="@{/js/bs/4.1.1/bootstrap.min.js}"></script>
+<!-- mdb -->
+<script th:src="@{/js/mdb/4.5.6/mdb.js}"></script>
+<!-- angular js -->
+<script th:src="@{/js/angular/angular.min.js}"></script>
+<script th:src="@{/js/angular/angular-cookies.js}"></script>
+<script th:src="@{/js/angular/mask.min.js}"></script>
+<script src="//cdn.jsdelivr.net/angular.bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.js"></script>
+<!-- croppie  -->
+<script th:src="@{/js/croppie/croppie.min.js}"></script>
+<script th:src="@{/js/croppie/exif.js}"></script>
+<!-- slick js -->
+<script th:src="@{/js/slick.js}"></script>
+<!-- app js -->
+<script th:src="@{/js/project/app/app.js}"></script>
+<script th:src="@{/js/project/controller/MainCtrl.js}"></script>
+<!-- setting ctrl -->
+<script th:src="@{/js/project/controller/PrimaryCtrl.js}"></script>
+<script th:src="@{/js/project/controller/LinksCtrl.js}"></script>
+
+<script th:inline="javascript">
+		
+		/*<![CDATA[*/
+			var _contextPath = [[@{/}]];
+			var navItems = [[${navItems}]];
+			var backItems = [[${backItems}]];
+			var device = {isMobile:[[${isMobile}]] , isTablet:[[${isTablet}]] ,isNormal:[[${isNormal}]] ,}
+		/*]]>*/
+		var croppie = undefined;
+</script>
 </body>
 </html>

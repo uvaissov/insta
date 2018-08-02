@@ -4,11 +4,13 @@ function MainCtrl ($cookies) {
   var contentPrefixPath = _contextPath+"cabinet/container/";
   main.navigationList = navItems ;
   //init renderPage
+  main.selectedPage =null;
   var selectedTab = $cookies.get('selectedTab');
   angular.forEach(main.navigationList, function(value) {
 	  if(selectedTab!=null){
 		  if( contentPrefixPath+value.itemPage===selectedTab){
 			  main.pageUrl = contentPrefixPath+value.itemPage
+			  main.selectedPage=value.itemPage;
 			  value.active= true;
 		  } else {
 			  value.active= false;
@@ -16,6 +18,7 @@ function MainCtrl ($cookies) {
 	  } else {
 		  if(value.active===true){
 			  main.pageUrl = contentPrefixPath+value.itemPage
+			  main.selectedPage=value.itemPage;
 		  }
 	  }
   });
@@ -27,6 +30,7 @@ function MainCtrl ($cookies) {
 		});
 	  item.active=true;
 	  main.pageUrl = contentPrefixPath+item.itemPage;
+	  main.selectedPage=item.itemPage;
 	  $cookies.put('selectedTab',main.pageUrl);
   }
 };

@@ -1,17 +1,22 @@
 package kz.astana.uvaissov.insta.controller;
 
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
+import javax.xml.bind.DatatypeConverter;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
@@ -37,6 +42,7 @@ import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.repository.GsonHttp;
 import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.service.LinksService;
+import kz.astana.uvaissov.insta.service.LocalDataService;
 import kz.astana.uvaissov.insta.service.LogService;
 import kz.astana.uvaissov.insta.service.UserService;
 import kz.astana.uvaissov.insta.util.EncryptionUtil;
@@ -56,8 +62,15 @@ public class IndexController {
 	@Autowired
 	private LogService logService;
 	
+	
+	@Autowired
+	private LocalDataService localDataService;
+	
 	@Autowired
 	private GsonHttp gson;
+	
+	@Autowired
+	ServletContext servletContext;
 	
     @RequestMapping( method = RequestMethod.GET)
     public ModelAndView workspace(Model model) {
@@ -121,8 +134,23 @@ public class IndexController {
     	modelAndView.addObject("customText",profileInfo.getDescription());
     	modelAndView.addObject("background", profileInfo.getBackground());
     	modelAndView.addObject("buttons",buttons);
+    	
+    	//System.out.println(servletContext.getResourceAsStream("\\static\\assets\\bg_svg\\eyes.svg"));
+    	addSvgTemplate(modelAndView,profileInfo);
+    	
     	modelAndView.setViewName("/profile3");
 		return modelAndView;
+    }
+    
+    private void addSvgTemplate(ModelAndView modelAndView, ProfileInfo profileInfo) {
+    	String body = localDataService.getSvgBackgroundByName("circles-and-squares.svg");
+    	body = body.replaceAll("@color", "#ab98c7ad").replaceAll("@opacity", "1");
+    	body = body.replaceAll("\r\n", "");
+    	body = body.replaceAll("\r", "");
+    	body = body.replaceAll("\n", "");
+    	//String encoded = DatatypeConverter.printBase64Binary(body.getBytes());
+    	modelAndView.addObject("svg_body",body);
+    	modelAndView.addObject("backgroundBody","#7855ab");
     }
     
    

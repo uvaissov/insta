@@ -27,7 +27,7 @@ public class InstaApplication {
 	            //storageService.deleteAll();
 	            storageService.init();
 	        };
-	    }
+	}
 	
 //	@Bean public CommonsMultipartResolver multipartResolver() { 
 //		CommonsMultipartResolver multipart = new CommonsMultipartResolver(); 

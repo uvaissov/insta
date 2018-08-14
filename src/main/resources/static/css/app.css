@@ -1,4 +1,7 @@
 @charset "UTF-8";
+html {
+	    overflow-y: scroll;
+}
 
 body {
 	
@@ -133,7 +136,7 @@ opacity: 0;
 
 .bd-navbar {
     min-height: 4rem;
-    background-color: #428BCA;
+    background-color: #4285f4!important;
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
 }
 

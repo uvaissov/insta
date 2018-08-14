@@ -22,8 +22,8 @@
 			<label for="inputName" class="active">Наименование профиля</label>
 		</div>
 		<div class="form-group md-form">
-			<input class="form-control" type="text" ng-model="primary.info.description" id="inputDescription"  required>
 			<label for="inputDescription" class="active">Описание страницы</label>
+			<textarea class="md-textarea form-control" id="inputDescription" ng-model="primary.info.description" rows="1"></textarea>
 		</div>
 		<div><a th:href="@{/assets/vcf/vcard.vcf}">vCard</a></div>
 		<div><a th:href="@{/assets/vcf/sample.ics}">vCalendar</a></div>

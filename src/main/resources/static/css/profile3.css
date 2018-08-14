@@ -9,20 +9,18 @@ html {
 	overflow: hidden;
 	font-family: Verdana, sans-serif;
 	font-weight: normal;
-	background-color: #7855ab;
 }
 
 .header{
-	background-image: url(/assets/bg_svg/tic-tac-toe.svg);
-	height: 100px;
+	height: 0px;
 	width: 100%;
-	background-color: #7855ab;
-	background-blend-mode: overlay;
+	transition: 1.3s;
+	opacity: 0;
 }
 
 .page{
 	height: calc(100%);
-	background: #f8f6f9;
+	background: white;
 	box-shadow: inset 0px 0.1em 1em 0px #ad8f8f;
 	
 }
@@ -36,8 +34,9 @@ html {
 }
 
 .container_layout{
-	top: -45px;
+	top: 5px;
     position: relative;
+    transition: 1.3s;
 }
 
 .userLogo {
@@ -60,6 +59,7 @@ html {
     font-size: 2em;
     word-wrap: break-word;
     text-align: center;
+    margin-top: 5px;
 }
 
 .profInfo {
@@ -90,7 +90,7 @@ html {
 	transition: 2s;
 }
 
-.button-icon > img{
+.button-icon.active > img{
 	box-shadow: 0px 0.1em 1em -4px #ad8f8f;
 }
 

@@ -9,12 +9,10 @@
 <!-- icons -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/normalize/normalize.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/profile3.css}" />
-<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/background.css}" />  -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </head>
-<body class="bodyfill" >
- 	<div class="header">
- 		
+<body class="bodyfill" th:style="'background-color:'+${backgroundBody}">
+ 	<div class="header" >
  	</div>
 	<div class=page>
 		<div class="panel" style="display: none;">
@@ -53,14 +51,32 @@
 					    <img th:src="@{'/assets/svg2/'+${button.name}+'.svg'}">
 					</a>
 	    		</div>
+	    		
 	    	</div>
 	    </div>
 	    
 	</div>
 </body>
+<script th:inline="javascript">
+		//th:style="'background-image:url(&quot;data:image/svg+xml,' + ${svg_body} + '&quot;); background-color:'+ ${backgroundBody} +';'"
+		/*<![CDATA[*/
+			var _contextPath = [[@{/}]];
+			var svg_body = [[${svg_body}]];
+			var backgroundBody = [[${backgroundBody}]];
+		/*]]>*/
+</script>
 <script type="text/javascript">
 $(function(){
 	$(".button-icon").addClass("active");
+	var svg = svg_body.replace('fill="#000"', 'fill="' + '#000' + '" fill-opacity="' + 1 + '"').replace(/\"/g, '\'').replace(/\</g, '%3C').replace(/\>/g, '%3E').replace(/\&/g, '%26').replace(/\#/g, '%23');
+	var url = 'url("data:image/svg+xml,' + svg + '")'
+	$(".header").css("backgroundImage",url);
+	$(".header").css("background-color",backgroundBody);
+	$(".header").css("height",'100px');
+	$(".header").css("opacity",1);
+	
+	$(".container_layout").css("top",'-45px');
+	
 });
 </script>
 </html>

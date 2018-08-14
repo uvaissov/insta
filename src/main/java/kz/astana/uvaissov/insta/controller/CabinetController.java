@@ -119,6 +119,10 @@ public class CabinetController {
     public String links(@ModelAttribute("userSession") ActiveSession session){
     	return "/cabinet/container/links";
     }
+    @RequestMapping("/container/design")
+    public String design(@ModelAttribute("userSession") ActiveSession session){
+    	return "/cabinet/container/design";
+    }
     @RequestMapping("/container/analytics")
     public ModelAndView analytics(@ModelAttribute("user") User user,@ModelAttribute("userSession") ActiveSession session){
     	ModelAndView modelAndView = new ModelAndView();

@@ -4,6 +4,7 @@ package kz.astana.uvaissov.insta.controller;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.service.AnalyticsService;
 import kz.astana.uvaissov.insta.service.InfoService;
+import kz.astana.uvaissov.insta.service.LocalDataService;
 import kz.astana.uvaissov.insta.service.UserService;
 
 
@@ -41,6 +43,8 @@ public class CabinetController {
 	private InfoService infoService;
 	@Autowired
 	private AnalyticsService analytics;
+	@Autowired
+	private LocalDataService localDataService;
 	
 	@ModelAttribute("user")//Обьявим основной аттрибут пользователя
 	public User getUser() {
@@ -88,12 +92,26 @@ public class CabinetController {
     	navItems.add(new NavItem("Аналитика", "analytics", false,"left"));
     	modelAndView.addObject("navItems",navItems);
     	
-    	//Список фонов
-    	List<BackgroundItem> backItems = new ArrayList<BackgroundItem>();
+    	//Список фонов casual
+    	List<BackgroundItem> backItemsCasual = new ArrayList<BackgroundItem>();
     	for(String name : Backgrounds.list) {
-    		backItems.add(new BackgroundItem(name, profileInfo!=null? name.equals(profileInfo.getBackground()) : false));
+    		backItemsCasual.add(new BackgroundItem(name, profileInfo!=null? name.equals(profileInfo.getBackground()) : false));
     	}
-    	modelAndView.addObject("backItems",backItems);
+    	modelAndView.addObject("backItemsCasual",backItemsCasual);
+    	
+    	//Список фонов material
+    	List<BackgroundItem> backItemsMaterial = new ArrayList<BackgroundItem>();
+    	Iterator<String> iter = localDataService.getMapSvgBackground().keySet().iterator();
+    	while(iter.hasNext()) {
+    		String name = iter.next();
+    		BackgroundItem item = new BackgroundItem(name, profileInfo!=null? name.equals(profileInfo.getBackground()) : false);
+    		item.setBody(localDataService.getMapSvgBackground().get(name));
+    		backItemsMaterial.add(item);
+    		break;
+    	}
+    	modelAndView.addObject("backItemsMaterial",backItemsMaterial);
+    	
+    	
 		modelAndView.setViewName("/cabinet/index");
 		return modelAndView;
     }

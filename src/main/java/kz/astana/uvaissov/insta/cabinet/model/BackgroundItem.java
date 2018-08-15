@@ -8,6 +8,7 @@ public class BackgroundItem {
 		this.active = active;
 	}
 	private String name;
+	private String body;
 	private boolean active = false;
 	public String getName() {
 		return name;
@@ -20,6 +21,12 @@ public class BackgroundItem {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public String getBody() {
+		return body;
+	}
+	public void setBody(String body) {
+		this.body = body;
 	}
 	
 }

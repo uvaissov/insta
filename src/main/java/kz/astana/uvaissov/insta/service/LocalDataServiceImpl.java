@@ -35,7 +35,11 @@ public class LocalDataServiceImpl implements LocalDataService{
     	String[] list =  folder.list();
     	try {
     	    for(String file : list) {
-    	    	svgMap.put(file, IOUtils.toString(classLoader.getResourceAsStream(folderPath+"/"+file)));
+    	    	String body = IOUtils.toString(classLoader.getResourceAsStream(folderPath+"/"+file));
+    	    	body = body.replaceAll("\r\n", "");
+    	    	body = body.replaceAll("\r", "");
+    	    	body = body.replaceAll("\n", "");
+    	    	svgMap.put(file,body );
         	}
     	} catch (IOException e) {
     		e.printStackTrace();

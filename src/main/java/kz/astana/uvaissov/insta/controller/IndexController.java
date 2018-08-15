@@ -145,9 +145,6 @@ public class IndexController {
     private void addSvgTemplate(ModelAndView modelAndView, ProfileInfo profileInfo) {
     	String body = localDataService.getSvgBackgroundByName("circles-and-squares.svg");
     	body = body.replaceAll("@color", "#ab98c7ad").replaceAll("@opacity", "1");
-    	body = body.replaceAll("\r\n", "");
-    	body = body.replaceAll("\r", "");
-    	body = body.replaceAll("\n", "");
     	//String encoded = DatatypeConverter.printBase64Binary(body.getBytes());
     	modelAndView.addObject("svg_body",body);
     	modelAndView.addObject("backgroundBody","#7855ab");

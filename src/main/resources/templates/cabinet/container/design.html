@@ -12,19 +12,26 @@
 		</div>
 		<div id="colorPicker" ng-show="design.type=='material'">
 			<div class="row mt-3">
-			<div class="form-control mb-3 col-lg-6 input-group">
+			<div class="form-control mb-3 mr-1 col-lg-5 input-group">
 				<label>Основной цвет:</label>
 				<div class="color-input">	
 					<input type='text' id="custom1" />
 				</div>
 			</div>
-			<div class="form-control mb-3 col-lg-6 input-group">
+			<div class="form-control mb-3 mr-1 col-lg-5 input-group">
 				<label>Дополнительный цвет:</label>
 				<div class="color-input">	
 					<input type='text' id="custom2" />
 				</div>
 			</div>
 			</div>
+			<div class="center">
+			<div class="slicker-class" style="display: none;">
+				<div ng-repeat="background in design.backgroundList" ng-click="design.selectBackground(background)">
+					<div id="{{background.name}}_img" class="image-div" ng-class="design.rowClassBack(this,background)"></div>
+				</div>
+			</div>
+		</div>
 		</div>
 		<div ng-show="design.type=='casual'">Casual</div>
 	</div>

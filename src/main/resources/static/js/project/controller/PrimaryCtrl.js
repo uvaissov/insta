@@ -5,7 +5,7 @@ function PrimaryCtrl ($http,$window,$cookies) {
 	var primary = this;
 	var pointUrl = _contextPath+'cabinet/data/primary';
 	
-	primary.backgroundList = backItems ;
+	primary.backgroundList = backItemsCasual ;
 	primary.message = null;
 	primary.saveInfo = function(info){
 		if(	angular.isDefined(info) &&

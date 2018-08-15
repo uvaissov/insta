@@ -1,14 +1,31 @@
 <div ng-controller="DesignCtrl as design" class="container">
 	<div>
 		<div class="btn-group py-1" data-toggle="buttons">
-			<label class="btn btn-primary waves-effect waves-light active"> <input type="radio"
-				name="options" id="option1" autocomplete="off" checked="true" style="opacity: 0">
+			<label class="btn btn-sm  btn-primary waves-effect waves-light" ng-class="{'active': design.type=='material'}" ng-click="design.changeType('material')"> 
+			<input type="radio" name="options"  style="display:none"  id="materialRadio"   ng-model="design.type"  value="material"> 
 				Material Design
 			</label> 
-			<label class="btn btn-primary waves-effect waves-light ml-2"> 
-				<input type="radio" name="options" id="option2" autocomplete="off"  style="opacity: 0">
+			<label class="btn btn-sm  btn-primary waves-effect waves-light ml-2" ng-class="{'active': design.type=='casual'}"   ng-click="design.changeType('casual')"> 
+				<input type="radio" name="options"  style="display:none" id="casualRadio"  ng-model="design.type" value="casual"  >
 				Casual Design
 			</label>
 		</div>
+		<div id="colorPicker" ng-show="design.type=='material'">
+			<div class="row mt-3">
+			<div class="form-control mb-3 col-lg-6 input-group">
+				<label>Основной цвет:</label>
+				<div class="color-input">	
+					<input type='text' id="custom1" />
+				</div>
+			</div>
+			<div class="form-control mb-3 col-lg-6 input-group">
+				<label>Дополнительный цвет:</label>
+				<div class="color-input">	
+					<input type='text' id="custom2" />
+				</div>
+			</div>
+			</div>
+		</div>
+		<div ng-show="design.type=='casual'">Casual</div>
 	</div>
 </div>

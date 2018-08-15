@@ -129,6 +129,45 @@ opacity: 0;
     overflow: auto;
 }
 
+.sp-dd {
+    display: none;
+}
+
+.sp-preview {
+    height: auto;
+    width: 100%;
+    border: none;
+    margin-right: 0;
+}
+
+.sp-preview-inner {
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+#colorPicker .form-control {
+    display: inline-block;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.color-input{
+	display: flex;
+    border-radius: 0.25em;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    height: 36px;
+}
+
+.color-input-swatch {
+    border: none;
+    display: flex;
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 6px;
+}
+
 .nopadding {
    padding: 0 !important;
    margin: 0 !important;

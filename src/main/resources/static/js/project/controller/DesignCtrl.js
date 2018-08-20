@@ -21,6 +21,14 @@ function DesignCtrl ($http,$window,$cookies) {
 		return str;
 	};
   
+	me.selectBackground=function(item){
+		angular.forEach(me.backgroundList, function(value) {
+			if(value.active===true){
+				value.active=false;
+			}
+		});
+		item.active=true;
+	};
   
   
 $(document).ready(function() {

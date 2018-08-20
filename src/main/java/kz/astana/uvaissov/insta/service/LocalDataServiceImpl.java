@@ -33,8 +33,11 @@ public class LocalDataServiceImpl implements LocalDataService{
     	ClassLoader classLoader = getClass().getClassLoader();
     	File folder = new File(classLoader.getResource(folderPath).getFile());
     	String[] list =  folder.list();
-    	try {
+    	try { 
     	    for(String file : list) {
+    	    	if(!file.toLowerCase().contains(".svg")) {
+    	    		continue;
+    	    	}
     	    	String body = IOUtils.toString(classLoader.getResourceAsStream(folderPath+"/"+file));
     	    	body = body.replaceAll("\r\n", "");
     	    	body = body.replaceAll("\r", "");

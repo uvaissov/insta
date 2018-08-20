@@ -107,7 +107,6 @@ public class CabinetController {
     		BackgroundItem item = new BackgroundItem(name, profileInfo!=null? name.equals(profileInfo.getBackground()) : false);
     		item.setBody(localDataService.getMapSvgBackground().get(name));
     		backItemsMaterial.add(item);
-    		break;
     	}
     	modelAndView.addObject("backItemsMaterial",backItemsMaterial);
     	

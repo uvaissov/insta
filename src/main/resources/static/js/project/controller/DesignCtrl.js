@@ -8,6 +8,10 @@ function DesignCtrl ($http,$window,$cookies) {
 	  me.type=type;
   }
   
+  me.init = { mainColor:"rgb(87, 168, 203)" , backgroundColor:"rgb(202, 155, 155)" };
+  me.mainColor = me.init.mainColor;
+  me.backgroundColor = me.init.backgroundColor;
+  
   
   me.rowClassBack = function(div,background){
 		var str = background.name;
@@ -21,9 +25,42 @@ function DesignCtrl ($http,$window,$cookies) {
   
 $(document).ready(function() {
 	  //spectrum
-	  $("#custom1").spectrum({ color: "rgb(87, 168, 203)",showAlpha: true,chooseText: "Выбрать",cancelText: "Отмена" ,replacerClassName: 'color-input-swatch'});
-	  $("#custom2").spectrum({ color: "rgb(202, 155, 155)",showAlpha: true,chooseText: "Выбрать",cancelText: "Отмена", replacerClassName: 'color-input-swatch'});
-	  
+	  $("#custom1").spectrum(
+			  { 
+				  color: me.backgroundColor,
+				  chooseText: "Выбрать",
+				  cancelText: "Отмена" ,
+				  replacerClassName: 'color-input-swatch',
+		            preferredFormat: "hex",
+		            clickoutFiresChange: true,
+		            move: function move(color) {
+		            	me.mainColor = color.toHexString();
+		            	setColorBackground();
+		            },
+		            change: function change(color) {
+		            	me.mainColor = color.toHexString();
+		            	setColorBackground();
+		            }
+					  
+			  });
+	  $("#custom2").spectrum(
+			  { 
+				  color: me.mainColor,
+				  chooseText: "Выбрать",
+				  cancelText: "Отмена" ,
+				  replacerClassName: 'color-input-swatch',
+		            preferredFormat: "hex",
+		            clickoutFiresChange: true,
+		            move: function move(color) {
+		            	me.backgroundColor = color.toHexString();
+		            	setColorBackground();
+		            },
+		            change: function change(color) {
+		            	me.backgroundColor = color.toHexString();
+		            	setColorBackground();
+		            }
+					  
+			  });
 	  //slicker
 	  var slickerVal = Math.floor($window.innerWidth/180);
 	  slickerVal=slickerVal<3?3:slickerVal>8?8:slickerVal;
@@ -34,6 +71,7 @@ $(document).ready(function() {
 		  speed : 400,
 		  slidesToScroll : slickerVal
 	  });
+	  setColorBackground();
 	  angular.element($window).bind('resize', function(){
 	      slicker(Math.floor($window.innerWidth/180));
 	    });
@@ -44,22 +82,15 @@ $(document).ready(function() {
 	  });
 	  
   	function setColorBackground(){
-  		
   		$.each(me.backgroundList, function( index, value ) {
-  		var id = value.name+'_img';
-  		var svg = value.body.replace('fill="#000"', 'fill="' + '#000' + '" fill-opacity="' + 1 + '"').replace(/\"/g, '\'').replace(/\</g, '%3C').replace(/\>/g, '%3E').replace(/\&/g, '%26').replace(/\#/g, '%23');
-   		var url = 'url("data:image/svg+xml,' + svg + '")';
-   		$('#'+id).css("backgroundImage",url);
-   		console.log(id);
-   		console.log(url);
-   		console.log($('#'+id));
-   		
+  			var id = value.name+'_img';
+	  		var svg = value.body.replace('fill="#000"', 'fill="' +me.mainColor  + '" fill-opacity="' + 1 + '"').replace(/\"/g, '\'').replace(/\</g, '%3C').replace(/\>/g, '%3E').replace(/\&/g, '%26').replace(/\#/g, '%23');
+	   		var url = 'url("data:image/svg+xml,' + svg + '")';
+	   		$(document.getElementById(id)).css("backgroundImage",url);
+	   		$(document.getElementById(id)).css("backgroundColor",me.backgroundColor);
   		});
+  		  		
   	};
-  	setTimeout(() => {
-  		setColorBackground();
-	}, 1000);
-  	
   
   function slicker(slickerVal){
 	  slickerVal=slickerVal<3?3:slickerVal>8?8:slickerVal;

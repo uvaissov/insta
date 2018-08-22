@@ -35,7 +35,7 @@
 		</div>
 		<div id="colorPicker" ng-show="design.type=='casual'">
 		<div class="row mt-3 form-control">
-		<label>Фон страницы</label>
+		<label>Выберите фон страницы</label>
 		<div class="center">
 			<div class="slicker-class slicker-casual" style="display: none;transition: 1.3s;">
 				<div ng-repeat="background in design.backgroundListC" ng-click="design.selectBackground(background)">
@@ -45,6 +45,6 @@
 		</div>
 		</div>
 		</div>
-		<button class="btn btn-primary mt-4 mb-4" >Сохранить</button>
+		<button class="btn btn-primary mt-4 mb-4" ng-click="design.saveInfo()" >Сохранить</button>
 	</div>
 </div>

@@ -21,7 +21,7 @@ html {
 .page{
 	height: calc(100%);
 	background: white;
-	box-shadow: inset 0px 0.1em 1em 0px #ad8f8f;
+	box-shadow: inset 0px 0.5px 2px 0px #000000;
 	
 }
 

@@ -9,8 +9,7 @@ function MainCtrl ($cookies) {
   angular.forEach(main.navigationList, function(value) {
 	  if(selectedTab!=null){
 		  if( contentPrefixPath+value.itemPage===selectedTab){
-			  //main.pageUrl = contentPrefixPath+value.itemPage
-			  main.pageUrl = value.itemPage
+			  main.pageUrl = contentPrefixPath+value.itemPage
 			  main.selectedPage=value.itemPage;
 			  value.active= true;
 		  } else {
@@ -18,8 +17,7 @@ function MainCtrl ($cookies) {
 		  }
 	  } else {
 		  if(value.active===true){
-			  //main.pageUrl = contentPrefixPath+value.itemPage
-			  main.pageUrl = value.itemPage
+			  main.pageUrl = contentPrefixPath+value.itemPage
 			  main.selectedPage=value.itemPage;
 		  }
 	  }
@@ -31,8 +29,7 @@ function MainCtrl ($cookies) {
 		  }
 		});
 	  item.active=true;
-	  //main.pageUrl = contentPrefixPath+item.itemPage;
-	  main.pageUrl = item.itemPage
+	  main.pageUrl = contentPrefixPath+item.itemPage;
 	  main.selectedPage=item.itemPage;
 	  $cookies.put('selectedTab',main.pageUrl);
   }

@@ -25,6 +25,14 @@ public class ProfileInfo {
 	private String logo_url;
 	@Column(name="background_url")
 	private String background_url;
+	@Column(name="design_type")
+	private String design_type;
+	@Column(name="background_svg")
+	private String background_svg;
+	@Column(name="element_color")
+	private String element_color;
+	@Column(name="background_color")
+	private String background_color;
 
 	public Long getId() {
 		return id;
@@ -61,6 +69,30 @@ public class ProfileInfo {
 	}
 	public void setBackground_url(String background_url) {
 		this.background_url = background_url;
+	}
+	public String getDesign_type() {
+		return design_type;
+	}
+	public void setDesign_type(String design_type) {
+		this.design_type = design_type;
+	}
+	public String getBackground_svg() {
+		return background_svg;
+	}
+	public void setBackground_svg(String background_svg) {
+		this.background_svg = background_svg;
+	}
+	public String getElement_color() {
+		return element_color;
+	}
+	public void setElement_color(String element_color) {
+		this.element_color = element_color;
+	}
+	public String getBackground_color() {
+		return background_color;
+	}
+	public void setBackground_color(String background_color) {
+		this.background_color = background_color;
 	}
 	@Override
 	public String toString() {

@@ -99,12 +99,16 @@ public class CabinetController {
     	}
     	modelAndView.addObject("backItemsCasual",backItemsCasual);
     	
+    	modelAndView.addObject("element_color",profileInfo.getElement_color());
+    	modelAndView.addObject("background_color",profileInfo.getBackground_color());
+    	modelAndView.addObject("design_type",profileInfo.getDesign_type());
+    	
     	//Список фонов material
     	List<BackgroundItem> backItemsMaterial = new ArrayList<BackgroundItem>();
     	Iterator<String> iter = localDataService.getMapSvgBackground().keySet().iterator();
     	while(iter.hasNext()) {
     		String name = iter.next();
-    		BackgroundItem item = new BackgroundItem(name, profileInfo!=null? name.equals(profileInfo.getBackground()) : false);
+    		BackgroundItem item = new BackgroundItem(name, profileInfo!=null? name.equals(profileInfo.getBackground_svg()) : false);
     		item.setBody(localDataService.getMapSvgBackground().get(name));
     		backItemsMaterial.add(item);
     	}
@@ -129,6 +133,7 @@ public class CabinetController {
     	}
     	
     	modelAndView.setViewName("/cabinet/container/primary");
+    	System.out.println(session);
 		return modelAndView;
     }
     

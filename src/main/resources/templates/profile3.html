@@ -63,12 +63,13 @@
 			var _contextPath = [[@{/}]];
 			var svg_body = [[${svg_body}]];
 			var backgroundBody = [[${backgroundBody}]];
+			var elementColor = [[${element_color}]];
 		/*]]>*/
 </script>
 <script type="text/javascript">
 $(function(){
 	$(".button-icon").addClass("active");
-	var svg = svg_body.replace('fill="#000"', 'fill="' + '#000' + '" fill-opacity="' + 1 + '"').replace(/\"/g, '\'').replace(/\</g, '%3C').replace(/\>/g, '%3E').replace(/\&/g, '%26').replace(/\#/g, '%23');
+	var svg = svg_body.replace('fill="#000"', 'fill="' + elementColor + '" fill-opacity="' + 1 + '"').replace(/\"/g, '\'').replace(/\</g, '%3C').replace(/\>/g, '%3E').replace(/\&/g, '%26').replace(/\#/g, '%23');
 	var url = 'url("data:image/svg+xml,' + svg + '")'
 	$(".header").css("backgroundImage",url);
 	$(".header").css("background-color",backgroundBody);

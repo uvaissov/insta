@@ -125,29 +125,31 @@ public class IndexController {
     		modelAndView.addObject("firstLetter",userName.substring(0, 1).toUpperCase());
     		modelAndView.addObject("secondLetter",userName.substring(1, 2).toUpperCase());
     	}
-    	
     	modelAndView.addObject("backGroundUrl", profileInfo.getBackground_url());
-    	
     	
     	//основная информация
     	modelAndView.addObject("username", profileInfo.getProfilename());
     	modelAndView.addObject("customText",profileInfo.getDescription());
     	modelAndView.addObject("background", profileInfo.getBackground());
+    	modelAndView.addObject("element_color", profileInfo.getElement_color());
     	modelAndView.addObject("buttons",buttons);
     	
     	//System.out.println(servletContext.getResourceAsStream("\\static\\assets\\bg_svg\\eyes.svg"));
     	addSvgTemplate(modelAndView,profileInfo);
     	
-    	modelAndView.setViewName("/profile3");
+    	if("material".equalsIgnoreCase(profileInfo.getDesign_type())) {
+    		modelAndView.setViewName("/profile3");
+    	} else if("casual".equalsIgnoreCase(profileInfo.getDesign_type())) {
+    		modelAndView.setViewName("/profile");
+    	}
+    	
 		return modelAndView;
     }
     
     private void addSvgTemplate(ModelAndView modelAndView, ProfileInfo profileInfo) {
-    	String body = localDataService.getSvgBackgroundByName("circles-and-squares.svg");
-    	body = body.replaceAll("@color", "#ab98c7ad").replaceAll("@opacity", "1");
-    	//String encoded = DatatypeConverter.printBase64Binary(body.getBytes());
+    	String body = localDataService.getSvgBackgroundByName(profileInfo.getBackground_svg());
     	modelAndView.addObject("svg_body",body);
-    	modelAndView.addObject("backgroundBody","#7855ab");
+    	modelAndView.addObject("backgroundBody",profileInfo.getBackground_color());
     }
     
    

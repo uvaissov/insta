@@ -45,7 +45,7 @@ html {
 
 .userLogo img ,.userLogo svg {
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 45px;
     width: 90px;
     height: 90px;
     z-index: 2;

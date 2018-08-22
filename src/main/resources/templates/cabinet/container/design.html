@@ -26,13 +26,25 @@
 			</div>
 			</div>
 			<div class="center">
-			<div class="slicker-class" style="display: none;">
+			<div class="slicker-class slicker-material" style="display: none;transition: 1.3s;">
 				<div ng-repeat="background in design.backgroundList" ng-click="design.selectBackground(background)">
 					<div id="{{background.name}}_img" class="image-div" ng-class="design.rowClassBack(this,background)"></div>
 				</div>
 			</div>
 		</div>
 		</div>
-		<div ng-show="design.type=='casual'">Casual</div>
+		<div id="colorPicker" ng-show="design.type=='casual'">
+		<div class="row mt-3 form-control">
+		<label>Фон страницы</label>
+		<div class="center">
+			<div class="slicker-class slicker-casual" style="display: none;transition: 1.3s;">
+				<div ng-repeat="background in design.backgroundListC" ng-click="design.selectBackground(background)">
+					<img class="image-div" ng-class="design.rowClassBack(this,background)"></img>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		<button class="btn btn-primary mt-4 mb-4" >Сохранить</button>
 	</div>
 </div>

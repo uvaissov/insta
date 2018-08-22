@@ -30,6 +30,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/background.css}" />
 <!-- tabs -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/tabs/tabs.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/animation.css}" />
 
 </head>
 <!-- http://freefrontend.com/css-tabs/ -->
@@ -92,8 +93,13 @@
 	  </ul>
   	   <div class="slider"><div class="indicator"></div></div>
 </div>
-	<div class=" col-md-8 container-fluid pt-2" ng-include="main.pageUrl"></div>
-
+	<div class="my-slide-animation col-md-8 container-fluid pt-2" ng-include="main.pageUrl1"></div>
+	<div ng-switch="main.pageUrl">
+		<div class="my-slide-animation col-md-8 container-fluid pt-2" th:include="cabinet/container/primary :: primary" ng-switch-when="primary" ></div>
+		<div class="my-slide-animation col-md-8 container-fluid pt-2" th:include="cabinet/container/design :: design" ng-switch-when="design" ></div>
+		<div class="my-slide-animation col-md-8 container-fluid pt-2" th:include="cabinet/container/links :: links" ng-switch-when="links" ></div>
+		<div class="my-slide-animation col-md-8 container-fluid pt-2" th:include="cabinet/container/analytics :: analytics" ng-switch-when="analytics" ></div>
+	</div>
 	<div id="preloader">
   		<div id="loader"></div>
 	</div>

@@ -7,6 +7,34 @@ body {
 	
 }
 
+ /*The transition is added when the switch item is about to enter or about to leave DOM*/
+    .switchItem.ng-enter,
+    .switchItem.ng-leave {
+        -webkit-transition: 300ms linear all;
+        -moz-transition: 300ms linear all;
+        -ms-transition: 300ms linear all;
+        -o-transition: 300ms linear all;
+        transition: 300ms linear all;
+    }
+
+    /* When the element is about to enter DOM*/
+    .switchItem.ng-enter {
+        bottom: 100%;
+    }
+
+    /* When the element completes the enter transition */
+    .switchItem.ng-enter-active {
+        bottom: 0;
+    }
+    /* When the element is about to leave DOM*/
+    .switchItem.ng-leave {
+        bottom: 0;
+    }
+    /*When the element end the leave transition*/
+    .switchItem.ng-leave-active {
+        bottom: -100%;
+    }
+
 .img40 img {
 	width: 40px;
 	height: 40px;

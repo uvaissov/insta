@@ -44,6 +44,7 @@ body {
 	width: 55px;
 	height: 55px;
 	margin: auto 0;
+	border-radius: 0.3em;
 }
 
 #modal-background {
@@ -301,8 +302,14 @@ opacity: 0;
   list-style-type: none;
 }
 
-.column {
+.drag-icon {
   cursor: move;
+    position: absolute;
+    font-size: 1.2em;
+    left: -0.18em;
+    top: 1.15em;
+    color: #75757582;
+    padding: 0.5em;
 }
 
 .column.over {

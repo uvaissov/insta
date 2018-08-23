@@ -40,6 +40,12 @@ body {
 	height: 40px;
 }
 
+.img55 img {
+	width: 55px;
+	height: 55px;
+	margin: auto 0;
+}
+
 #modal-background {
     display: none;
     position: fixed;
@@ -115,7 +121,7 @@ opacity: 0;
 }
 
 #userSvgLogo rect {
-	stroke: gray;
+	stroke: white;
     stroke-opacity: 0.5;
     stroke-width: 14px;
 }
@@ -278,4 +284,28 @@ opacity: 0;
         -ms-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+}
+
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+#columns {
+  list-style-type: none;
+}
+
+.column {
+  cursor: move;
+}
+
+.column.over {
+  //border: 2px dashed #000;
+  border-top: 2px solid blue;
 }

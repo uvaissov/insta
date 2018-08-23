@@ -1,19 +1,40 @@
 <div ng-controller="LinksCtrl as link" class="container">
 	<form name="FormLinks" novalidate ng-submit="link.save(link.data)">
-		<ul class="list-group">
-  <li class="list-group-item justify-content-between">
-    Cras justo odio
-    <span class="badge badge-default badge-pill">14</span>
-  </li>
-  <li class="list-group-item justify-content-between">
-    Dapibus ac facilisis in
-    <span class="badge badge-default badge-pill">2</span>
-  </li>
-  <li class="list-group-item justify-content-between">
-    Morbi leo risus
-    <span class="badge badge-default badge-pill">1</span>
-  </li>
-</ul>
+		<ul class="list-group" id="columns">
+		  <li draggable="true" class="list-group-item justify-content-between column">
+		  	<div class="d-flex">
+		  		<i class="input-group-prepend img55" id="basic-addon1">
+			    	<img th:src="@{/assets/svg2/whatsapp.svg}">
+				</i>
+				<span class="ml-2">
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">Whatsapp
+					</p>
+					Whatsapp
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.6rem;">+77774904900
+					</p>
+				</span>
+				<div class="flex-grow-1 align-middle mt-2">
+					<div class="float-right">
+						<a title="Редактировать" onclick="javascript:alert('Edit');" class="badge badge-primary" style="font-size: 1.1em; padding: 0.6em; border-radius: 1em;">
+						<i class="fa fa-pen"></i>
+						</a>					
+						<a title="Удалить" onclick="javascript:alert('Delete');" class="badge badge-danger ml-1" style="font-size: 1.1em; padding: 0.6em; border-radius: 1em;">
+						<i class="fa fa-trash-alt"></i>
+						</a>
+					</div>
+				</div>
+			    
+		  	</div>
+		  </li>
+		  <li draggable="true" class="list-group-item justify-content-between column">
+		    Dapibus ac facilisis in
+		    <span class="badge badge-default badge-pill">2</span>
+		  </li>
+		  <li draggable="true" class="list-group-item justify-content-between column">
+		    Morbi leo risus
+		    <span class="badge badge-default badge-pill">1</span>
+		  </li>
+		</ul>
 	
 		<h3>Messengers</h3>
 		<hr style="min-width:85%; background-color:#ced4da !important;"/>

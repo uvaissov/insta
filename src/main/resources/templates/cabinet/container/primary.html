@@ -35,7 +35,7 @@
     <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+          <h4 class="modal-title w-100" id="myModalLabel">Выберите логотип</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -46,8 +46,16 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-md  waves-effect waves-light" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-md  waves-effect waves-light" ng-click="primary.changePhoto()">Save changes</button>
+        <div class="flex-grow-1">
+        	<button type="button" class="btn btn-primary btn-md  waves-effect waves-light"  ng-click="primary.rotate(-45)" title="Rotate Left">
+                    <i class="fa fa-undo"></i>
+          	</button>
+          	<button type="button" class="btn btn-primary btn-md  waves-effect waves-light" ng-click="primary.rotate(45)" title="Rotate Right">
+            	<i class="fa fa-redo"></i>
+          	</button>
+          </div>
+          <button type="button" class="btn btn-secondary btn-md  waves-effect waves-light" data-dismiss="modal">Закрыть</button>
+          <button type="button" class="btn btn-primary btn-md  waves-effect waves-light" ng-click="primary.changePhoto()">Выбрать</button>
         </div>
       </div>
     </div>

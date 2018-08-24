@@ -46,6 +46,11 @@ function PrimaryCtrl ($http,$window,$cookies) {
           });
         }
 	};
+	primary.rotate = function(grad){
+		if (cropper) {
+			cropper.rotate(grad);
+		}
+	}
 	
 	primary.get = function(){
 		$http.get(pointUrl, null)

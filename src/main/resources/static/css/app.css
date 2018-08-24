@@ -316,3 +316,14 @@ opacity: 0;
   //border: 2px dashed #000;
   border-top: 2px solid blue;
 }
+
+
+.img-container img {
+	max-width: 100%;
+	max-height: 300px;
+}
+
+.cropper-view-box,
+    .cropper-face {
+      border-radius: 50%;
+    }

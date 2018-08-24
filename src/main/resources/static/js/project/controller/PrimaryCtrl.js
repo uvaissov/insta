@@ -1,9 +1,14 @@
 app.controller('PrimaryCtrl', PrimaryCtrl);
 
 function PrimaryCtrl ($http,$window,$cookies) {
-	var $uploadCrop;
+	var cropper;
 	var primary = this;
 	var pointUrl = _contextPath+'cabinet/data/primary';
+	
+	var input = document.getElementById('userImage');
+	var image = document.getElementById('image');
+	var $modal = $('#centralModal');
+	
 	primary.message = null;
 	primary.saveInfo = function(info){
 		if(	angular.isDefined(info) &&
@@ -22,22 +27,24 @@ function PrimaryCtrl ($http,$window,$cookies) {
 	};
 	
 	primary.changePhoto = function(){
-		$uploadCrop.croppie('result', {
-			type: 'canvas',
-			size: 'viewport',
-			format: 'png',
-			circle: false
-		}).then(function (resp) {
-		    $http.post(_contextPath+'content/upload/logo',resp).then(
+        var canvas;
+        $modal.modal('hide');
+        if (cropper) {
+          canvas = cropper.getCroppedCanvas({
+            width: 160,
+            height: 160,
+          });
+          canvas.toBlob(function (blob) {
+            $http.post(_contextPath+'content/upload/logo',canvas.toDataURL()).then(
 				       function(response){
 				    	   $('#userLogo').html(response.data);
-				    	   primary.tooglePhoto('finish');
 				       }, 
 				       function(response){
 				    	   primary.message = response.message;
 				       }
 				    );
-		});
+          });
+        }
 	};
 	
 	primary.get = function(){
@@ -52,7 +59,6 @@ function PrimaryCtrl ($http,$window,$cookies) {
 					    },0);
 				}, 
 				function(response){
-					console.log(response);
 					primary.message = response.message;
 				}); 
 	}
@@ -61,80 +67,61 @@ function PrimaryCtrl ($http,$window,$cookies) {
   
   // load info
   primary.get();
-  
-  primary.tooglePhoto = function(action){
-	  if('cancel'===action || 'finish'=== action ){
-		  $('#userImage').val('');
-	  }
-	  $("#modal-content,#modal-background").toggleClass("active");
-  }
-  
+ 
   
   $(document).ready(function() {
+	  input.addEventListener('change', function (e) {
+	        var files = e.target.files;
+	        var done = function (url) {
+	          input.value = '';
+	          image.src = url;
+	          //$alert.hide();
+	          $modal.modal('show');
+	        };
+	        var reader;
+	        var file;
+	        var url;
+
+	        if (files && files.length > 0) {
+	          file = files[0];
+
+	          if (URL) {
+	            done(URL.createObjectURL(file));
+	          } else if (FileReader) {
+	            reader = new FileReader();
+	            reader.onload = function (e) {
+	              done(reader.result);
+	            };
+	            reader.readAsDataURL(file);
+	          }
+	        }
+	      });
 	  
-  	//croppie
-  	$(document.body).on("change", "#userImage", function() {
-		readFile(this); 
-	});
-  //croppie
-  	$(document.body).on("change", "#userBackgroundImage", function() {
-		var input = this;
-		
-		if (input.files && input.files[0]) {
-			
-			if(input.files[0].size < (1048576*4)) {
-			
-				var reader = new FileReader();
-				reader.onload = function (e) {
-					$http.post(_contextPath+'content/upload/background',e.target.result).then(
-						       function(response){
-						    	   $('#userBackground').html(response.data);
-						       }, 
-						       function(response){
-						    	   primary.message = response.message;
-						       }
-						    );
-				}
-				reader.readAsDataURL(input.files[0]);
-			} else {
-				alert(" bites\nToo big!");
-			}
-      }
-		
-		 
-	});
-	$uploadCrop = $('#upload-demo').croppie({
-		viewport: {
-			width: 200,
-			height: 200,
-			type: 'circle'
-		},
-	    boundary: {
-	        width: 300,
-	        height: 300
-	    },
-	    enableExif: true
-	});
+	  $modal.on('shown.bs.modal', function () {
+	        cropper = new Cropper(image, {
+	          aspectRatio: 1,
+	          viewMode: 1,
+	          restore: false,
+	          guides: false,
+	          center: false,
+	          highlight: false,
+	          //autoCropArea: 0.65,
+	          zoom:0.65,
+	          cropBoxMovable: false,
+	          cropBoxResizable: false,
+	          toggleDragModeOnDblclick: false,
+	          
+	          dragMode: 'move'
+	        });
+	      }).on('hidden.bs.modal', function () {
+	        cropper.destroy();
+	        cropper = null;
+	      });
 	
   });
   
-  function readFile(input) {
-		if (input.files && input.files[0]) {
-			$("#preloader").show();
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$("#preloader").hide();
-				primary.tooglePhoto('use');
-				$uploadCrop.croppie('bind', {
-					url: e.target.result
-				}).then(function(){
-					$uploadCrop.croppie('setZoom', 0.7);
-				});
-          }
-          reader.readAsDataURL(input.files[0]);
-      }
-	}
   
+
   var textarea = document.getElementById('inputDescription');
   textarea.addEventListener('keydown', autosize);
   function autosize(){

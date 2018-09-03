@@ -40,6 +40,40 @@ body {
 	height: 40px;
 }
 
+
+
+.button-icon {
+	outline: 0;
+    display: inline-block;
+    margin-bottom: 12px;
+    width: 60px;
+    position: relative;
+    z-index: 100;
+    margin: 5px;
+}
+
+.button-icon > img{
+	width: 60px;
+	height: 60px;
+	border-radius: 10px;
+	transition: 2s;
+}
+
+.button-icon.active > img{
+	box-shadow: 0px 0.1em 1em -4px #ad8f8f;
+}
+
+.button-icon span{
+    margin-top: 6px;
+    font-size: 10px;
+    display: inline-block;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #7e7e7e;
+}
+
+
+
 #modal-background {
     display: none;
     position: fixed;

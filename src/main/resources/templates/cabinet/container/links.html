@@ -1,110 +1,161 @@
 <div ng-controller="LinksCtrl as link" class="container">
 	<form name="FormLinks" novalidate ng-submit="link.save(link.data)">
-		<ul class="list-group">
-  <li class="list-group-item justify-content-between">
-    Cras justo odio
-    <span class="badge badge-default badge-pill">14</span>
-  </li>
-  <li class="list-group-item justify-content-between">
-    Dapibus ac facilisis in
-    <span class="badge badge-default badge-pill">2</span>
-  </li>
-  <li class="list-group-item justify-content-between">
-    Morbi leo risus
-    <span class="badge badge-default badge-pill">1</span>
-  </li>
-</ul>
-	
-		<h3>Messengers</h3>
-		<hr style="min-width:85%; background-color:#ced4da !important;"/>
-		<div class="row">
-			<div class=" mb-3 col-lg-6 md-form input-group">
-			    <i class="input-group-prepend img40" id="basic-addon1">
+		<ul class="list-group mb-4" id="columns">
+		  <li draggable="true" class="list-group-item justify-content-between column">
+		  	<div class="d-flex">
+		  	<i class="fas fa-ellipsis-v drag-icon" ></i>
+		  		<i class="input-group-prepend img55">
 			    	<img th:src="@{/assets/svg2/whatsapp.svg}">
-			    </i>
-			    <p class="input-group-prepend" stlye="margin-left:2px;"> text</p>
-			  <input ng-model="link.data.whatsapp"  type="text"  class="form-control" placeholder="phone number" aria-label="Username" aria-describedby="basic-addon1">
-			</div>
-			<div class="input-group mb-3 col-lg-6"  >
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="basic-addon1">
-			    <img th:src="@{/assets/svg/telegram.svg}" style="width: 35px;height: 35px;">
-			    </span>
-			    <span class="input-group-text" style="min-width: 73.47px;" id="basic-addon2">t.me/
-			    </span>
-			  </div>
-			  	<input ng-model="link.data.telegram"  type="text" class="form-control form-control-sm" placeholder="username" aria-label="Username" aria-describedby="basic-addon2">
-			</div>
-			<div class="input-group mb-3 col-lg-6" >
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="basic-addon5">
-			    <img th:src="@{/assets/svg/skype.svg}" style="width: 35px;height: 35px;">
-			    </span>
-			  </div>
-			  <input ng-model="link.data.skype" type="text"  class="form-control form-control-sm" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
-			</div>
-			<div class="input-group mb-3 col-lg-6" >
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="basic-addon3">
-			    	<img th:src="@{/assets/svg/messenger.svg}" style="width: 35px;height: 35px;">
-			    </span>
-			    <span class="input-group-text"  style="min-width: 73.47px;" id="basic-addon4">m.me/</span>
-			  </div>
-			  <input ng-model="link.data.messenger" type="text"  class="form-control form-control-sm" placeholder="username" aria-label="Username" aria-describedby="basic-addon4">
-			</div>
-			
-			<div class="input-group mb-3 col-lg-6 offset-lg-6" >
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="basic-addon5">
-			    <img th:src="@{/assets/svg/vk.svg}" style="width: 35px;height: 35px;">
-			    </span>
-			    <span class="input-group-text" id="basic-addon4">vk.me/</span>
-			  </div>
-			  <input ng-model="link.data.vk" type="text"  class="form-control form-control-sm" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
-			</div>
-		</div>
-		<h3>Call</h3>
-		<hr style="min-width:85%; background-color:#ced4da !important;"/>
-		<div class="row">
-			<div class="input-group mb-3 col-lg-6">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="basic-addon1">
-			    <img th:src="@{/assets/svg/whatsapp.svg}" style="width: 35px;height: 35px;">
-			    </span>
-			  </div>
-			  <input  ng-model="link.data.phone" type="text"  class="form-control form-control-sm" placeholder="phone number" aria-label="Username" aria-describedby="basic-addon1">
-			</div>
-		</div>
-		<h3>Follow Us</h3>
-		<hr style="min-width:85%; background-color:#ced4da !important;"/>
-		<div class="row">
-			<div class="input-group mb-3 col-lg-6" >
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="basic-addon5">
-			    <img th:src="@{/assets/svg/instagram.svg}" style="width: 35px;height: 35px;">
-			    </span>
-			  </div>
-			  <input ng-model="link.data.instagram" type="text"  class="form-control form-control-sm" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
-			</div>
-			
-			<div class="input-group mb-3 col-lg-6" >
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="basic-addon5">
-			    <img th:src="@{/assets/svg/twitter.svg}" style="width: 35px;height: 35px;">
-			    </span>
-			  </div>
-			  <input ng-model="link.data.twitter" type="text"  class="form-control form-control-sm" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
-			</div>
-			
-			<div class="input-group mb-3 col-lg-6" >
-			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="basic-addon5">
-			    <img th:src="@{/assets/svg/facebook.svg}" style="width: 35px;height: 35px;">
-			    </span>
-			  </div>
-			  <input ng-model="link.data.facebook" type="text"  class="form-control form-control-sm" placeholder="username" aria-label="Username" aria-describedby="basic-addon5">
-			</div>
-		</div>
-		<button class="btn btn-primary" type="submit" ng-disabled="FormLinks.$invalid">Сохранить</button>
+				</i>
+				<span class="ml-2 ">
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">Whatsapp
+					</p>
+					Whatsapp
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.6rem;">+77774904900
+					</p>
+				</span>
+				<div class="flex-grow-1 align-middle mt-2">
+					<div class="float-right">
+						<a title="Редактировать" onclick="javascript:alert('Edit');" class="badge badge-primary" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
+						<i class="fa fa-pen"></i>
+						</a>					
+						<a title="Удалить" onclick="javascript:alert('Delete');" class="badge badge-danger ml-1" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
+						<i class="fa fa-trash-alt"></i>
+						</a>
+					</div>
+				</div>
+			    
+		  	</div>
+		  </li>
+		  <li draggable="true" class="list-group-item justify-content-between column">
+		  	<div class="d-flex">
+		  	<i class="fas fa-ellipsis-v drag-icon"></i>
+		  		<i class="input-group-prepend img55">
+			    	<img th:src="@{/assets/svg2/skype.svg}">
+				</i>
+				<span class="ml-2 ">
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">Skype
+					</p>
+					Skype
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.6rem;">us_pro
+					</p>
+				</span>
+				<div class="flex-grow-1 align-middle mt-2" style="min-width: 75px;">
+					<div class="float-right">
+						<a title="Редактировать" onclick="javascript:alert('Edit');" class="badge badge-primary" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
+						<i class="fa fa-pen"></i>
+						</a>					
+						<a title="Удалить" onclick="javascript:alert('Delete');" class="badge badge-danger ml-1" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
+						<i class="fa fa-trash-alt"></i>
+						</a>
+					</div>
+				</div>
+		  	</div>
+		  </li>
+		  <li draggable="true" class="list-group-item justify-content-between column">
+		  	<div class="d-flex">
+		  		<i class="fas fa-ellipsis-v drag-icon" ></i>
+		  		<i class="input-group-prepend img55">
+			    	<img th:src="@{/assets/svg2/telegram.svg}">
+				</i>
+				<span class="ml-2 ">
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">Telegram
+					</p>
+					Мой личный канал
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.6rem;">t.me/Shaman490
+					</p>
+				</span>
+				<div class="flex-grow-1 align-middle mt-2" style="min-width: 75px;">
+					<div class="float-right">
+						<a title="Редактировать" onclick="javascript:alert('Edit');" class="badge badge-primary" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
+						<i class="fa fa-pen"></i>
+						</a>					
+						<a title="Удалить" onclick="javascript:alert('Delete');" class="badge badge-danger ml-1" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
+						<i class="fa fa-trash-alt"></i>
+						</a>
+					</div>
+				</div>
+		  	</div>
+		  </li>
+		</ul>
 	</form>
+	
+	<a class="badge badge-success waves-effect waves-light" style="
+		position: fixed;
+	    font-size: 1.5em;
+	    padding: 1em;
+	    right: 15px;
+	    bottom: 50px;
+	    border-radius: 70px;
+	    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);    
+	    z-index: 1;" data-toggle="modal" data-target="#addLinkModal">
+	    <i class="fa fa-plus"></i>
+	    </a>
+	    
+	    
+<!-- Central Modal Small -->
+<div class="modal fade" id="editLinkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Change class .modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+          	
+	
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-md  waves-effect waves-light" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-md  waves-effect waves-light">Save changes</button>
+        </div>
+      </div>
+    </div>
 </div>
+<!-- Central Modal Small -->
+
+<!-- Central Modal Small -->
+<div class="modal fade" id="addLinkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Change class .modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+	          	<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+	          	<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+	          	<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+	          	<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+	          	<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+	          	<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+	          	<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+	          	<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+          		<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+          		<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+          		<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+          		<img class="col-3" th:src="@{/assets/svg2/telegram.svg}">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-md  waves-effect waves-light" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-md  waves-effect waves-light">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- Central Modal Small -->
+	
+</div>
+<script type="text/javascript">
+
+</script>

@@ -45,8 +45,12 @@ public class UserServiceImpl implements UserService{
         
         ProfileInfo info = new ProfileInfo();
         info.setProfilename(user.getAccount_name());
-        info.setDescription("Будь на свзяи!");
+        info.setDescription("Будь на связи!");
         info.setBackground(Backgrounds.BG1);
+        info.setDesign_type("material");
+        info.setBackground_color("#284ab4");
+        info.setBackground_svg("morphing-diamonds.svg");
+        info.setElement_color("#53a5d4");
         infoService.save(info);
         user.setProfile_info_id(info.getId());
 		userRepository.save(user);

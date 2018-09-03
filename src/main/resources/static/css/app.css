@@ -40,7 +40,12 @@ body {
 	height: 40px;
 }
 
-
+.img55 img {
+	width: 55px;
+	height: 55px;
+	margin: auto 0;
+	border-radius: 0.3em;
+}
 
 .button-icon {
 	outline: 0;
@@ -149,7 +154,7 @@ opacity: 0;
 }
 
 #userSvgLogo rect {
-	stroke: gray;
+	stroke: white;
     stroke-opacity: 0.5;
     stroke-width: 14px;
 }
@@ -313,3 +318,44 @@ opacity: 0;
         transform: rotate(360deg);
     }
 }
+
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+#columns {
+  list-style-type: none;
+}
+
+.drag-icon {
+  cursor: move;
+    position: absolute;
+    font-size: 1.2em;
+    left: -0.18em;
+    top: 1.15em;
+    color: #75757582;
+    padding: 0.5em;
+}
+
+.column.over {
+  //border: 2px dashed #000;
+  border-top: 2px solid blue;
+}
+
+
+.img-container img {
+	max-width: 100%;
+	max-height: 300px;
+}
+
+.cropper-view-box,
+    .cropper-face {
+      border-radius: 50%;
+    }

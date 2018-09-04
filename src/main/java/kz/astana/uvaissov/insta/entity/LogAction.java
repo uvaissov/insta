@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "log_actions")
@@ -18,14 +19,18 @@ public class LogAction {
 	@Column(name="id")
 	private Long id;
 	@Column(name="profile_info_id")
+	@NotNull
 	private long profileInfoId;
 	@Column(name="action_type")
+	@NotNull
 	private int action_type;
 	@Column(name="url_id")
 	private Long urlId;
 	@Column(name="action_datetime")
+	@NotNull
 	private Timestamp actionDatetime;
 	@Column(name="is_mobile")
+	@NotNull
 	private boolean mobile;
 	@Column(name="mobile_os")
 	private String mobileOs;

@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "profile_info")
@@ -26,12 +29,20 @@ public class ProfileInfo {
 	@Column(name="background_url")
 	private String background_url;
 	@Column(name="design_type")
+	@NotNull
+	@ColumnDefault("material")
 	private String design_type;
 	@Column(name="background_svg")
+	@NotNull
+	@ColumnDefault("aztec.svg")
 	private String background_svg;
 	@Column(name="element_color")
+	@NotNull
+	@ColumnDefault("#424f99")
 	private String element_color;
 	@Column(name="background_color")
+	@NotNull
+	@ColumnDefault("#4c77ce")
 	private String background_color;
 
 	public Long getId() {

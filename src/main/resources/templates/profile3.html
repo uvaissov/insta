@@ -42,13 +42,13 @@
 	    		
 	    		<div style="text-align: center;    min-height: 250px;" class="buttons">
 				 	<a  target="_blank" th:href="@{'/a/'+${button.url}}" class="button-icon" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 1" >
-					    <img th:src="@{'/assets/svg2/'+${button.name}+'.svg'}">
+					    <img th:src="@{'/assets/svg2/'+${button.iconName}}">
 	    				<span th:text="${button.name}"></span>
 					</a>
 	    		</div>
 	    		<div style="text-align: center;margin-top: 5px;">
 	    			<a  target="_blank" th:href="@{'/a/'+${button.url}}" class="button-icon-sm" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 2" >
-					    <img th:src="@{'/assets/svg2/'+${button.name}+'.svg'}">
+					    <img th:src="@{'/assets/svg2/'+${button.iconName}}">
 					</a>
 	    		</div>
 	    		

@@ -23,7 +23,9 @@ import kz.astana.uvaissov.insta.cabinet.constant.Backgrounds;
 import kz.astana.uvaissov.insta.cabinet.model.ActiveSession;
 import kz.astana.uvaissov.insta.cabinet.model.AnalyticModel;
 import kz.astana.uvaissov.insta.cabinet.model.BackgroundItem;
+import kz.astana.uvaissov.insta.cabinet.model.ButtonContainer;
 import kz.astana.uvaissov.insta.cabinet.model.NavItem;
+import kz.astana.uvaissov.insta.entity.DicUrl;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.service.AnalyticsService;
@@ -112,7 +114,22 @@ public class CabinetController {
     		item.setBody(localDataService.getMapSvgBackground().get(name));
     		backItemsMaterial.add(item);
     	}
+    	
+    	//подгрузка ссылок
+    	List<DicUrl> listUrls =	localDataService.getUrls();
+    	List<ButtonContainer> buttons = new ArrayList<ButtonContainer>();
+    	for(DicUrl url : listUrls) {
+    		ButtonContainer bu = new ButtonContainer(url);
+    		if(Arrays.asList("phone").contains(bu.getName())) {
+    			bu.setType(0);//main
+    		} else if(Arrays.asList("twitter","instagram","facebook").contains(bu.getName())) {
+    			//bu.setType(2);//followUs
+    		}
+    		buttons.add(bu);
+    	}
+    	
     	modelAndView.addObject("backItemsMaterial",backItemsMaterial);
+    	modelAndView.addObject("buttons",buttons);
     	
     	
 		modelAndView.setViewName("/cabinet/index");
@@ -138,8 +155,18 @@ public class CabinetController {
     }
     
     @RequestMapping("/container/links")
-    public String links(@ModelAttribute("userSession") ActiveSession session){
-    	return "/cabinet/container/links";
+    public ModelAndView links(@ModelAttribute("userSession") ActiveSession session){
+    	ModelAndView modelAndView = new ModelAndView();
+    	//подгрузка ссылок
+    	List<DicUrl> listUrls =	localDataService.getUrls();
+    	List<ButtonContainer> buttons = new ArrayList<ButtonContainer>();
+    	for(DicUrl url : listUrls) {
+    		ButtonContainer bu = new ButtonContainer(url);
+    		buttons.add(bu);
+    	}
+    	modelAndView.addObject("buttons",buttons);
+    	modelAndView.setViewName("/cabinet/container/links");
+    	return modelAndView;
     }
     @RequestMapping("/container/design")
     public String design(@ModelAttribute("userSession") ActiveSession session){

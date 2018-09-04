@@ -50,11 +50,18 @@ body {
 .button-icon {
 	outline: 0;
     display: inline-block;
-    margin-bottom: 12px;
-    width: 60px;
+    margin-bottom: 5px;
+    width: 70px;
     position: relative;
     z-index: 100;
-    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid white;
+}
+
+.button-icon:hover {
+	background-color: #ededed;
+	border: 1px dotted #bab8b8;
 }
 
 .button-icon > img{

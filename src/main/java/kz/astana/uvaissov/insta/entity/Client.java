@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "clients")
@@ -21,9 +22,11 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="client_id")
 	private Long id;
+	@NotNull
 	@Column(name="name")
 	private String name;
 	@Column(name="regDate")
+	@NotNull
 	private Timestamp regDate;
 
 	public Set<User> getUsers() {

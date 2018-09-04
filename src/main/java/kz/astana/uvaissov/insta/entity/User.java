@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -39,6 +40,7 @@ public class User {
 	private String password;
 	
 	@Column(name = "active")
+	@NotNull
 	private int active;
 	
 	@Column(name = "profile_info_id")

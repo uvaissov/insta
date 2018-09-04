@@ -1,11 +1,9 @@
 package kz.astana.uvaissov.insta.controller;
 
 
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
@@ -14,18 +12,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
-import javax.xml.bind.DatatypeConverter;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,18 +25,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import kz.astana.uvaissov.insta.cabinet.constant.Backgrounds;
 import kz.astana.uvaissov.insta.cabinet.model.ButtonContainer;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
-import kz.astana.uvaissov.insta.entity.ProfileUrls;
 import kz.astana.uvaissov.insta.entity.LogAction;
-import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.repository.GsonHttp;
 import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.service.LinksService;
 import kz.astana.uvaissov.insta.service.LocalDataService;
 import kz.astana.uvaissov.insta.service.LogService;
-import kz.astana.uvaissov.insta.service.UserService;
 import kz.astana.uvaissov.insta.util.EncryptionUtil;
 
 
@@ -97,7 +85,7 @@ public class IndexController {
     	
     	//подгрузка ссылок
     	List<Object[]> listUrls =	linksService.getButtons(profileInfo.getId());
-    	List<ButtonContainer> buttons = new ArrayList();
+    	List<ButtonContainer> buttons = new ArrayList<ButtonContainer>();
     	for(Object[] url : listUrls) {
     		ButtonContainer bu = new ButtonContainer(url,device,gson.getGson(),profileInfo.getId());
     		if(Arrays.asList("phone").contains(bu.getName())) {
@@ -112,7 +100,7 @@ public class IndexController {
     	
     	//Логирование просмотра страницы
     	if("none".equalsIgnoreCase(comming)) {
-    		CompletableFuture<Void> future = CompletableFuture
+    		CompletableFuture
     	        .runAsync(() -> logAction(Long.valueOf(profileInfo.getId()), device), Executors.newCachedThreadPool());
     		Cookie foo = new Cookie("comming", "comming");
     		foo.setMaxAge(1000); //set expire time to 1000 sec

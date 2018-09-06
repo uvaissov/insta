@@ -191,8 +191,15 @@ opacity: 0;
 	border: 5px solid #428BCA;
 }
 
+.center-div {
+    margin: 0 auto;
+    text-align: center;
+    text-align: -webkit-center;
+    padding: 10px;
+}
+
 .center {
-    margin: auto;
+    margin: 0 auto;
     width: 90%;
     text-align: center;
     text-align: -webkit-center;

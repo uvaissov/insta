@@ -1,76 +1,25 @@
 <div ng-controller="LinksCtrl as link" class="container">
 	<form name="FormLinks" novalidate ng-submit="link.save(link.data)">
 		<ul class="list-group mb-4" id="columns">
-		  <li draggable="true" class="list-group-item justify-content-between column">
+		  <li draggable="false" class="list-group-item justify-content-between column" ng-repeat="url in link.urls">
 		  	<div class="d-flex">
 		  	<i class="fas fa-ellipsis-v drag-icon" ></i>
 		  		<i class="input-group-prepend img55">
-			    	<img th:src="@{/assets/svg2/whatsapp.svg}">
+			    	<img ng-src="/assets/svg2/{{url.urlIcon}}">
 				</i>
 				<span class="ml-2 ">
-					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">Whatsapp
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">{{url.urlName}}
 					</p>
-					Whatsapp
-					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.6rem;">+77774904900
+					{{url.title}}
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.6rem;">{{url.textPrefix}}{{url.value}}
 					</p>
 				</span>
 				<div class="flex-grow-1 align-middle mt-2">
 					<div class="float-right">
-						<a title="Редактировать" onclick="javascript:alert('Edit');" class="badge badge-primary" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
+						<a title="Редактировать" ng-click="link.editLink(url)" class="badge badge-primary" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
 						<i class="fa fa-pen"></i>
 						</a>					
-						<a title="Удалить" onclick="javascript:alert('Delete');" class="badge badge-danger ml-1" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
-						<i class="fa fa-trash-alt"></i>
-						</a>
-					</div>
-				</div>
-			    
-		  	</div>
-		  </li>
-		  <li draggable="true" class="list-group-item justify-content-between column">
-		  	<div class="d-flex">
-		  	<i class="fas fa-ellipsis-v drag-icon"></i>
-		  		<i class="input-group-prepend img55">
-			    	<img th:src="@{/assets/svg2/skype.svg}">
-				</i>
-				<span class="ml-2 ">
-					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">Skype
-					</p>
-					Skype
-					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.6rem;">us_pro
-					</p>
-				</span>
-				<div class="flex-grow-1 align-middle mt-2" style="min-width: 75px;">
-					<div class="float-right">
-						<a title="Редактировать" onclick="javascript:alert('Edit');" class="badge badge-primary" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
-						<i class="fa fa-pen"></i>
-						</a>					
-						<a title="Удалить" onclick="javascript:alert('Delete');" class="badge badge-danger ml-1" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
-						<i class="fa fa-trash-alt"></i>
-						</a>
-					</div>
-				</div>
-		  	</div>
-		  </li>
-		  <li draggable="true" class="list-group-item justify-content-between column">
-		  	<div class="d-flex">
-		  		<i class="fas fa-ellipsis-v drag-icon" ></i>
-		  		<i class="input-group-prepend img55">
-			    	<img th:src="@{/assets/svg2/telegram.svg}">
-				</i>
-				<span class="ml-2 ">
-					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">Telegram
-					</p>
-					Мой личный канал
-					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.6rem;">t.me/Shaman490
-					</p>
-				</span>
-				<div class="flex-grow-1 align-middle mt-2" style="min-width: 75px;">
-					<div class="float-right">
-						<a title="Редактировать" onclick="javascript:alert('Edit');" class="badge badge-primary" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
-						<i class="fa fa-pen"></i>
-						</a>					
-						<a title="Удалить" onclick="javascript:alert('Delete');" class="badge badge-danger ml-1" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
+						<a title="Удалить" ng-click="link.deleteLink(url)" class="badge badge-danger ml-1" style="font-size: 1em; padding: 0.5em; border-radius: 1em;">
 						<i class="fa fa-trash-alt"></i>
 						</a>
 					</div>
@@ -131,11 +80,11 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" style="max-height: 320px; overflow-y: overlay; ">
+        <div class="modal-body" style="max-height: 320px; overflow-y: scroll; ">
           <div class="container"  id="selectIconContainer">
-          		<a class="button-icon" th:each="button,rowStat : ${buttons}" >
-					<img th:src="@{'/assets/svg2/'+${button.iconName}}">
-	    			<span th:text="${button.name}"></span>
+				<a class="button-icon" ng-repeat="button in link.addButtons" ng-click="link.selectLink(this,button)" >
+					<img ng-src="/assets/svg2/{{button.iconName}}">
+	    			<span>{{button.name}}</span>
 				</a>
           </div>
         </div>
@@ -149,7 +98,12 @@
 <!-- Central Modal Small -->
 	
 </div>
-<script type="text/javascript">
-	$('#selectIconContainer').scrollTop(50);
-	$('#selectIconContainer').scrollTop(0);
+<script th:inline="javascript">
+
+/*<![CDATA[*/
+	var _contextPath = [[@{/}]];
+	var addButtons = [[${buttons}]];
+	
+/*]]>*/
+
 </script>

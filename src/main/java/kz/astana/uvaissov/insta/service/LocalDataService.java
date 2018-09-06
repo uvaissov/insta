@@ -12,4 +12,6 @@ public interface LocalDataService {
 	HashMap<String, String> getMapSvgBackground();
 
 	List<DicUrl> getUrls();
+
+	DicUrl getUrl(Long url_id);
 }

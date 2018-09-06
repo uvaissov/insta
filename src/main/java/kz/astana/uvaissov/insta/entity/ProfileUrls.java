@@ -18,7 +18,11 @@ public class ProfileUrls {
 	private Long id;
 	
 	@Column(name="url_value")
+	@NotNull
 	private String url_value;
+	
+	@Column(name="url_title")
+	private String url_title;
 	
 	@Column(name="profile_info_id")
 	@NotNull
@@ -47,6 +51,12 @@ public class ProfileUrls {
 		this.url_value = url_value;
 	}
 	
+	public String getUrl_title() {
+		return url_title;
+	}
+	public void setUrl_title(String url_title) {
+		this.url_title = url_title;
+	}
 	public Long getProfile_info_id() {
 		return profile_info_id;
 	}

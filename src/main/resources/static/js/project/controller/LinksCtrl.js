@@ -3,6 +3,7 @@ app.controller('LinksCtrl', LinksCtrl);
 function LinksCtrl($http) {
 	var me = this;
 	var pointUrl = _contextPath + 'cabinet/data/links';
+	me.addButtons = addButtons;
 	me.message = null;
 	me.save = function(model) {
 		if (angular.isDefined(model))
@@ -13,14 +14,17 @@ function LinksCtrl($http) {
 			});
 
 	};
+	me.selectLink = function(el,button){
+		console.log(el,button);
+	};
 
 	me.get = function() {
 		$http.get(pointUrl, null).then(function(response) {
-			me.data = response.data;
+			me.urls = response.data;
 		}, function(response) {
 			me.message = response.message;
 		});
-	}
+	};
 
 	// load info
 	me.get();

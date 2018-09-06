@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kz.astana.uvaissov.insta.entity.DicUrl;
+import kz.astana.uvaissov.insta.entity.ProfileUrls;
 
 @Service("localDataService")
 public class LocalDataServiceImpl implements LocalDataService{
@@ -67,5 +69,14 @@ public class LocalDataServiceImpl implements LocalDataService{
     		e.printStackTrace();
     	}
       }
+
+	@Override
+	public DicUrl getUrl(Long url_id) {
+		Optional<DicUrl> value = this.urls.stream().filter(a -> url_id.equals(a.getId()) ).findFirst();
+		if(value!=null && value.isPresent()) {
+			return value.get();
+		}
+		return null;
+	}
 
 }

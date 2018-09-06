@@ -1,7 +1,7 @@
 <div ng-controller="PrimaryCtrl as primary" class="container" th:fragment="primary">
 	<div>
-			<div class="center">
-				<div id="userLogo" style="height: 84px ;width: 84px;">
+			<div class="center" style="width: 240px;">
+				<div id="userLogo" style="height: 84px ;width: 84px; margin:0 auto;">
 					<img th:if="${logoUrl!=null}" th:src="@{'/content/file/'+${logoUrl}}"  >
 					<svg th:if="${logoUrl==null}" baseProfile="full" id="userSvgLogo" version="1.1" xmlns="http://www.w3.org/2000/svg">  
 					    <rect fill="white" height="100%" width="100%"></rect>  
@@ -10,7 +10,7 @@
 						<text name="textName2" text-anchor="middle" x="53" y="65" style="font-size: 55px;fill: dodgerblue;font-family: fantasy;" th:text="${secondLetter}">K</text>  
 					</svg>
 				</div>
-				<div style="height: 35px;width: 120px;">
+				<div style="height: 35px;width: 120px;  margin:0 auto;">
 					<span style="display: inline-block;"><button class="btn  btn-sm btn-primary mt-2 ml-2" >Изменить</button> </span>
 					<input type="file" value="Choose Image" accept="image/*" id="userImage">
 				</div>

@@ -59,9 +59,13 @@ body {
     border: 1px solid white;
 }
 
-.button-icon:hover {
+.button-icon.selected {
 	background-color: #ededed;
 	border: 1px dotted #bab8b8;
+}
+
+.button-icon:hover span {
+	text-decoration: underline;
 }
 
 .button-icon > img{

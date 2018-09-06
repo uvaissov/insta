@@ -5,7 +5,8 @@ function LinksCtrl($http) {
 	var pointUrl = _contextPath + 'cabinet/data/links';
 	me.addButtons = addButtons;
 	me.message = null;
-	me.save = function(model) {
+	//сохранение данных
+	me.save = function(model) { 
 		if (angular.isDefined(model))
 			$http.post(pointUrl, model).then(function(response) {
 				alert('Info updated');
@@ -14,21 +15,30 @@ function LinksCtrl($http) {
 			});
 
 	};
-	me.selectLink = function(el,button){
+	
+	//выбор сервиса
+	me.selectLink = function(el,button){ 
 		console.log(el,button);
 	};
-
-	me.get = function() {
+	
+	//получение данных с сервера
+	me.get = function() { 
 		$http.get(pointUrl, null).then(function(response) {
 			me.urls = response.data;
+			setTimeout(() => {
+				//запустим перетаскивание после перерисовки элементов
+				me.initDragAndDrop();
+			}, 50);
 		}, function(response) {
 			me.message = response.message;
 		});
 	};
 
 	// load info
-	me.get();
-	$(document).ready(function() {
+	// в конце логики получим данные
+	me.get(); 
+	
+	me.initDragAndDrop = function(){
 		//Drag and Drop
 		var cols = document.querySelectorAll('#columns .column');
 		[].forEach.call(cols, function(col) {
@@ -93,6 +103,9 @@ function LinksCtrl($http) {
 				}
 			}
 		}
+		function turnOn() {
+			$(".column").attr('draggable', 'true');
+		};
 		function turnOff() {
 			$(".column").removeAttr('draggable');
 			$(".drag-icon").on('mouseenter', function() {
@@ -104,14 +117,13 @@ function LinksCtrl($http) {
 			$(".drag-icon").on('mouseleave', function() {
 				turnOff();
 			});
-		}
-		function turnOn() {
-			$(".column").attr('draggable', 'true');
-		}
-		turnOff();
+		};
 		
-		//
+		turnOff();
+	};
 
+	$(document).ready(function() {
+		
 	});
 
 };

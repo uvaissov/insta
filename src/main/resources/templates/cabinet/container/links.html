@@ -58,25 +58,32 @@
           <div class="container">
           	<div class="d-flex">
           		<i class="input-group-prepend img55">
-			    	<img ng-src="/assets/svg2/whatsapp.svg">
+			    	<img ng-src="/assets/svg2/{{link.data.urlIcon}}">
 				</i>
 				<span class="ml-2 ">
-					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">Whatsapp
+					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">{{link.data.urlName}}
 					</p>
 					{{!link.data.title ? '&nbsp;' : link.data.title}}
 					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.6rem;">{{link.data.textPrefix}}{{!link.data.value ? '&nbsp;' : link.data.value}}
 					</p>
 				</span>
           	</div>
-          		<div class="md-form form-group">
-					<input class="form-control" type="text" ng-model="link.data.title" id="inputTitle"  required>
-					<label for="inputTitle" >Заголовок ссылки</label>
-				</div>
-				<div class="md-form form-group">
-					<input class="form-control" type="text" ng-model="link.data.value" id="inputValue"  required>
-					<label for="inputValue" >Номер телефона</label>
-				</div>
-	
+          		<div class="form-group mt-2">
+			        <label for="inputTitle">Заголовок ссылки</label>
+			        <input type="text" class="form-control" id="inputTitle" placeholder="Введите заголовок ссылки" ng-model="link.data.title">
+			    </div>
+			    
+			    <div class="form-group">
+			        <label for="inputValue">Номер телефона</label>
+			        <div class="input-group mb-2" ng-if="link.data.textPrefix">
+		                <div class="input-group-prepend">
+		                    <div class="input-group-text">{{link.data.textPrefix}}</div>
+		                </div>
+		                <input type="text" class="form-control py-0" id="inputValue" placeholder="Введите номер телефона">
+	           		 </div>
+	           		 <input ng-if="!link.data.textPrefix" type="text" class="form-control" id="inputValue" placeholder="Введите номер телефона" ng-model="link.data.value">
+	           		 
+			    </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -99,9 +106,9 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" style="max-height: 320px; overflow-y: scroll; ">
-          <div class="container"  id="selectIconContainer">
-				<a class="button-icon" ng-repeat="button in link.addButtons" ng-click="link.selectLink(this,button)">
+        <div class="modal-body" style="max-height: 320px; overflow-y: scroll; scroll-behavior:smooth; " id="addIconBody">
+          <div class="container"  >
+				<a class="button-icon" ng-class="button.selected ? 'selected' : 'none'" ng-repeat="button in link.addButtons" ng-click="link.selectLink(this,button)">
 					<img ng-src="/assets/svg2/{{button.iconName}}">
 	    			<span>{{button.name}}</span>
 				</a>
@@ -124,5 +131,20 @@
 	var addButtons = [[${buttons}]];
 	
 /*]]>*/
-
+ 
+ if(device.isMobile===true) {
+	 $("#addLinkModal").on('show.bs.modal',function(){
+		setTimeout(() => {
+			$("#addIconBody").animate({
+		        scrollTop: 100
+		    }, 'slow', 'swing',function(){
+		    	setTimeout(() => {
+		    		$("#addIconBody").animate({scrollTop: 0}, 'slow', 'swing');	
+				}, 200);
+		    	
+		    	    
+		    }); 
+		}, 300);
+	 });
+ }
 </script>

@@ -54,7 +54,7 @@
 					ng-class="{'active':section.active}">
 					<a class="nav-link" ng-click="main.changeContent(section)" href="#"> {{section.itemName}} <span ng-if="section.active" class="sr-only">(current)</span> </a>
 				</li>  -->
-				<li class="nav-item " >
+				<li class="nav-item " style="display: none;">
 					<a class="nav-link" th:href="@{'/'+${username}}" th:utext="@{'@'+ ${username}}"> </a>
 				</li>
 				<li class="nav-item " >
@@ -76,6 +76,16 @@
 			</ul>
 		</div>
 	</header>
+	<div  class="center" style="padding-bottom:0px;"><a style="
+	font-size: 0.9em;
+	font-weight:bold;
+    text-decoration: underline;
+    margin: 0 auto;
+    /*border: 1px solid #ccc9c96e;
+    box-shadow: 0px 2px #d0caca;
+     border-radius: 6px;*/
+    color: #549dff;
+    padding: 7px;" th:href="@{'/'+${username}}" th:utext="@{'msme.one/'+ ${username}}" ></a></div>
 	<!-- Tabs -->
 	<div class="tabs">
 	  

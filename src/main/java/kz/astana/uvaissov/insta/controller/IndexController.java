@@ -18,6 +18,7 @@ import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import kz.astana.uvaissov.insta.cabinet.model.ActiveSession;
 import kz.astana.uvaissov.insta.cabinet.model.ButtonContainer;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
 import kz.astana.uvaissov.insta.entity.LogAction;
@@ -37,7 +39,7 @@ import kz.astana.uvaissov.insta.util.EncryptionUtil;
 
 
 @Controller
-@SessionAttributes({"user"})
+@SessionAttributes({"user","userSession"})
 @RequestMapping("/")
 public class IndexController {
 

@@ -14,6 +14,7 @@ import kz.astana.uvaissov.insta.util.EncryptionUtil;
 public class ButtonContainer {
 	private String url,name,iconName,dataType,textPrefix;
 	private int type = 1;//link
+	private long id;
 	public ButtonContainer(Object[] row,Device device, Gson gson, Long profileId) {
 		Long id = ((BigInteger) row[0]).longValue();
 		String prefix = (String) row[1];
@@ -28,12 +29,13 @@ public class ButtonContainer {
 		map.put("id", id.toString());
 		map.put("profileId", profileId.toString());
 		map.put("url", url);
-		
+		this.setId(id);
 		this.setUrl(EncryptionUtil.encode(gson.toJson(map)));
 		this.name = name;
 		this.iconName =iconName;
 	}
 	public ButtonContainer(DicUrl url2) {
+		this.id = url2.getId();
 		this.name = url2.getName();
 		this.iconName =url2.getIcon_url();
 		this.dataType= url2.getData_type();
@@ -74,6 +76,12 @@ public class ButtonContainer {
 	}
 	public void setTextPrefix(String textPrefix) {
 		this.textPrefix = textPrefix;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 }

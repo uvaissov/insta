@@ -7,24 +7,57 @@ me.addButtons = addButtons;
 me.message = null;
 //сохранение данных
 me.save = function(model) { 
-	if (angular.isDefined(model))
+	if (angular.isDefined(model)) {
+		if(!angular.isDefined(model.title)){
+			alert('Please insert title!'|| model.title.trim()==='');
+			return;
+		}
+		if(!angular.isDefined(model.value) || model.value.trim()===''){
+			alert('Please insert title!');
+			return;
+		}
 		$http.post(pointUrl, model).then(function(response) {
-			alert('Info updated');
+			me.get(); 
+			$('#editLinkModal').modal('hide');
 		}, function(response) {
 			me.message = response.message;
 		});
-
+	}
 };
 
+me.editLink=function(model){
+	me.data=model;
+	$('#editLinkModal').modal('show');
+}
+me.deleteLink = function(model){
+	$http.delete(pointUrl+'/'+model.id).then(function(response) {
+		me.get(); 
+	}, function(response) {
+		me.message = response.message;
+	});
+}
+function modelToData(button){
+	return {
+			id : button.id,
+			urlName : button.name,
+			urlIcon : button.iconName,
+			textPrefix : button.textPrefix,
+			dataType : button.dataType,
+			urlId : button.urlId,
+			title : button.iconName,
+			value : button.name
+		}
+}
 //выбор сервиса
 me.selectLink = function(el,button){ 
 	console.log(el,button);
 	me.data = {
-				id:-1,
-				urlName:button.name,
-				urlIcon:button.iconName,
-				textPrefix:button.textPrefix,
-				dataType:button.dataType
+				id : -1,
+				urlName : button.name,
+				urlIcon : button.iconName,
+				textPrefix : button.textPrefix,
+				dataType : button.dataType,
+				urlId : button.id
 				};
 	
 	angular.forEach(me.addButtons, function(value, key) {

@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,7 +54,8 @@ public class RestControllerLinks {
 			ButtonModel model = new ButtonModel();
 			DicUrl dict =  localDataService.getUrl(url.getUrl_id());
 			
-			model.id = dict.getId();
+			model.id = url.getId();
+			model.urlId = dict.getId();
 			model.dataType= dict.getData_type();
 			model.textPrefix = dict.getText_prefix();
 			
@@ -72,20 +74,28 @@ public class RestControllerLinks {
 	@PostMapping
 	@Transactional
 	public ResponseEntity save(@ModelAttribute("user") User user, @RequestBody ButtonModel model) {
-		
-//		List<ProfileUrls> list = linksService.findByProfileInfoId(user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.WHATSAPP, model.whatsapp,user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.TELEGRAM, model.telegram,user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.VIBER, model.viber,user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.MESSENGER, model.messenger,user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.SKYPE, model.skype,user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.VK, model.vk,user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.FACEBOOK, model.facebook,user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.INSTAGRAM, model.instagram,user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.TWITTER, model.twitter,user.getProfile_info_id());
-//		innerEquals(list, UrlConstant.PHONE, model.phone,user.getProfile_info_id());
+		ProfileUrls url;
+		if(model.id!=null && model.id>0L) {
+			url = linksService.findById(model.id);
+		} else {
+			url = new ProfileUrls();
+			url.setProfile_info_id(user.getProfile_info_id());
+		}
+		url.setUrl_id(model.urlId);
+		url.setUrl_title(model.title);
+		url.setUrl_value(model.value);
+		linksService.save(url);
 		
 		return new ResponseEntity(model, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity remove(@ModelAttribute("user") User user, @PathVariable Long id) {
+		System.out.println("delete id:"+id);
+		System.out.println(linksService.findById(id));
+		linksService.remove(linksService.findById(id));
+		return new ResponseEntity(id, HttpStatus.OK);
 	}
 	
 	

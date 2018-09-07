@@ -3,8 +3,8 @@ app.controller('LinksCtrl', LinksCtrl);
 function LinksCtrl($http) {
 	var me = this;
 	var pointUrl = _contextPath + 'cabinet/data/links';
-me.addButtons = addButtons;
-me.message = null;
+	me.addButtons = addButtons;
+	me.message = null;
 //сохранение данных
 me.save = function(model) { 
 	if (angular.isDefined(model)) {
@@ -24,36 +24,32 @@ me.save = function(model) {
 		});
 	}
 };
-
+//редактирование
 me.editLink=function(model){
 	me.data=model;
 	$('#editLinkModal').modal('show');
 }
+//удаление
 me.deleteLink = function(model){
-	$http.delete(pointUrl+'/'+model.id).then(function(response) {
-		me.get(); 
-	}, function(response) {
-		me.message = response.message;
-	});
-}
-function modelToData(button){
-	return {
-			id : button.id,
-			urlName : button.name,
-			urlIcon : button.iconName,
-			textPrefix : button.textPrefix,
-			dataType : button.dataType,
-			urlId : button.urlId,
-			title : button.iconName,
-			value : button.name
-		}
+	me.confirm = {title:'Удаление',text:'Вы действительно хотите удалить ссылку '+model.urlName+'?'};
+	//генерируем функцию для для дейсвия удаление
+	me.confirm.action=function(){
+		$http.delete(pointUrl+'/'+model.id).then(function(response) {
+			$('#confirmModalSm').modal('hide');
+			me.get(); 
+		}, function(response) {
+			me.message = response.message;
+		});
+	}
+	$('#confirmModalSm').modal('show');
 }
 //выбор сервиса
 me.selectLink = function(el,button){ 
-	console.log(el,button);
+	//готовим данные для записи в сервер	
 	me.data = {
 				id : -1,
 				urlName : button.name,
+				title : button.name,
 				urlIcon : button.iconName,
 				textPrefix : button.textPrefix,
 				dataType : button.dataType,
@@ -61,11 +57,11 @@ me.selectLink = function(el,button){
 				};
 	
 	angular.forEach(me.addButtons, function(value, key) {
+		//убераем отметки если они были ранее поставлены
 		  value.selected=undefined;
 		});
+	//ставим отметку что он выбрал сервис
 	button.selected=true;
-	//	public Long id; public String urlName,urlIcon,textPrefix,dataType; 
-	
 };
 
 //получение данных с сервера
@@ -80,6 +76,14 @@ me.get = function() {
 		me.message = response.message;
 	});
 };
+
+me.changePosition = function(from,to){
+	$http.post(pointUrl+'/position', {from:from,to:to}).then(function(response) {
+		me.get(); 
+	}, function(response) {
+		me.message = response.message;
+	});
+}
 
 // load info
 // в конце логики получим данные
@@ -147,6 +151,7 @@ me.initDragAndDrop = function(){
 			if (dragSrcEl != this) {
 				dragSrcEl.innerHTML = element.innerHTML;
 				this.innerHTML = dataTransfer.getData('text/html');
+				me.changePosition($(dragSrcEl).attr('url-position'),$(this).attr('url-position'))
 			}
 		}
 	}

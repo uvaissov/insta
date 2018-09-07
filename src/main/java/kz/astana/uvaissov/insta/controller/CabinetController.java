@@ -162,7 +162,7 @@ public class CabinetController {
     	List<ButtonContainer> buttons = new ArrayList<ButtonContainer>();
     	for(DicUrl url : listUrls) {
     		ButtonContainer bu = new ButtonContainer(url);
-    		buttons.add(bu);
+    		buttons.add(bu); 
     	}
     	modelAndView.addObject("buttons",buttons);
     	modelAndView.setViewName("/cabinet/container/links");

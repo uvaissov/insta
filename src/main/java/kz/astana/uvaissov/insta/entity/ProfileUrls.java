@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 @Table(name = "profile_urls")
 public class ProfileUrls {
@@ -31,6 +33,11 @@ public class ProfileUrls {
 	@Column(name="url_id")
 	@NotNull
 	private Long url_id;
+	
+	@Column(name="position")
+	@NotNull
+	private int position;
+	
 	
 	public Long getUrl_id() {
 		return url_id;
@@ -62,6 +69,12 @@ public class ProfileUrls {
 	}
 	public void setProfile_info_id(Long profile_info_id) {
 		this.profile_info_id = profile_info_id;
+	}
+	public int getPosition() {
+		return position;
+	}
+	public void setPosition(int position) {
+		this.position = position;
 	}
 	
 }

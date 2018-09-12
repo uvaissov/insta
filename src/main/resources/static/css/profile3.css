@@ -12,14 +12,13 @@ html {
 }
 
 .header{
-	height: 0px;
+	height: 100px;
 	width: 100%;
 	transition: 1.3s;
 	-moz-transition: 1.3s;
 	-ms-transition: 1.3s;
 	-o-transition: 1.3s;
 	-webkit-transition: 1.3s;
-	opacity: 0;
 }
 
 .page{
@@ -38,7 +37,7 @@ html {
 }
 
 .container_layout{
-	top: 5px;
+	top: -45px;
     position: relative;
     transition: 1.3s;
 }
@@ -90,7 +89,7 @@ html {
 .button-icon > img{
 	width: 60px;
 	height: 60px;
-	border-radius: 10px;
+	border-radius: 15px;
 	transition: 2s;
 	-moz-transition: 2s;
 	-ms-transition: 2s;

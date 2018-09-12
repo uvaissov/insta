@@ -12,6 +12,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
+import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
@@ -139,6 +140,14 @@ public class IndexController {
     private void addSvgTemplate(ModelAndView modelAndView, ProfileInfo profileInfo) {
     	String body = localDataService.getSvgBackgroundByName(profileInfo.getBackground_svg());
     	modelAndView.addObject("svg_body",body);
+    	String svg = body.replaceAll("fill=\"#000\"", "fill=\""+profileInfo.getElement_color()+"\" fill-opacity=\"1\"");
+    	svg = svg.replaceAll("\"", "'");
+    	svg = svg.replaceAll("<", "%3C");
+    	svg = svg.replaceAll(">", "%3E");
+    	svg = svg.replaceAll("&", "%26");
+    	svg = svg.replaceAll("#", "%23");
+    	
+    	modelAndView.addObject("svg","background-image:url(\"data:image/svg+xml,"+svg+"\"); background-color:"+profileInfo.getBackground_color()+";");
     	modelAndView.addObject("backgroundBody",profileInfo.getBackground_color());
     }
     

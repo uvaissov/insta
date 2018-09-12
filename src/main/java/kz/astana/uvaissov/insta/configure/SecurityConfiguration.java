@@ -59,11 +59,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.defaultSuccessUrl("/cabinet")
 			.usernameParameter("email")
 			.passwordParameter("password")
-			.and().logout()
+			.and().logout().deleteCookies("JSESSIONID")
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			.logoutSuccessUrl("/").and().exceptionHandling()
 			.accessDeniedPage("/login").and().headers()
-            .cacheControl().disable();
+            .cacheControl().disable().and().rememberMe().key("uniqueAndSecret").and();
 
 	}
 	

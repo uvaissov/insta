@@ -37,14 +37,8 @@
 	    		<div class="profInfo" th:utext="${customText}"></div>
 	    		<div style="text-align: center;    min-height: 150px;" class="buttons">
 				 	<a  target="_blank" th:href="@{'/a/'+${button.url}}" class="button-icon" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 1" >
-					    <img th:src="@{'/assets/svg/'+${button.name}+'.svg'}">
+					    <img th:src="@{'/assets/svg2/'+${button.iconName}}">
 	    				<span th:text="${button.name}"></span>
-					</a>
-	    		</div>
-	    		<div style="text-align: center;font-size: x-small;opacity: 0.3;">follow us</div>
-	    		<div style="text-align: center;margin-top: 5px;">
-	    			<a  target="_blank" th:href="@{'/a/'+${button.url}}" class="button-icon-sm" th:each="button,rowStat : ${buttons}" th:if="${button.type} == 2" >
-					    <img th:src="@{'/assets/svg/'+${button.name}+'.svg'}">
 					</a>
 	    		</div>
 	    	</div>

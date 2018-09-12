@@ -12,18 +12,14 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </head>
 <body class="bodyfill" th:style="'background-color:'+${backgroundBody}">
- 	<div class="header" >
+ 	<div class="header" th:style="${svg}" >
  	</div>
 	<div class=page>
-		<div class="panel" style="display: none;">
-			<a class="button-icon"  th:href="@{/}" >
-	    		<img th:src="@{/assets/svg2/home.svg}" style="height: 40px;">
-	    	</a>
-	    	<a class="button-icon" style="float: right;"  th:href="@{/cabinet}" >
-	    		<img th:src="@{/assets/svg2/setting.svg}" style="height: 37px;">
+		<div style="float: right;outline: 0;display: inline-block;position: fixed;top:0px;right:0px; width: 150px;">
+	    	<a   th:href="@{/cabinet}" >
+	    		<p>Настройка</p>
 	    	</a>
 		 </div>
-		
 		<div class="container">
 	    	<div class="container_layout" >
 	    	<div class="userLogo">
@@ -71,8 +67,8 @@ $(function(){
 	$(".button-icon").addClass("active");
 	var svg = svg_body.replace('fill="#000"', 'fill="' + elementColor + '" fill-opacity="' + 1 + '"').replace(/\"/g, '\'').replace(/\</g, '%3C').replace(/\>/g, '%3E').replace(/\&/g, '%26').replace(/\#/g, '%23');
 	var url = 'url("data:image/svg+xml,' + svg + '")'
-	$(".header").css("backgroundImage",url);
-	$(".header").css("background-color",backgroundBody);
+	//$(".header").css("backgroundImage",url);
+	//$(".header").css("background-color",backgroundBody);
 	$(".header").css("height",'100px');
 	$(".header").css("opacity",1);
 	

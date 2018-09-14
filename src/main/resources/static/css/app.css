@@ -7,6 +7,10 @@ body {
 	
 }
 
+.b2b_bg {
+	background: linear-gradient(45deg, #0b51c5, #1dc8cd);
+}
+
  /*The transition is added when the switch item is about to enter or about to leave DOM*/
     .switchItem.ng-enter,
     .switchItem.ng-leave {

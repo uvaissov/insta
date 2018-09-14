@@ -24,7 +24,7 @@ html {
 .page{
 	height: calc(100%);
 	background: white;
-	box-shadow: inset 0px 0.5px 2px 0px #000000;
+	box-shadow: inset 1px 4px 9px -6px #000000;
 	
 }
 

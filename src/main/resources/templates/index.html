@@ -53,7 +53,8 @@
           <li class="menu-active"><a href="#intro">Домой</a></li>
           <li><a href="#features">Описание</a></li>
           <li><a href="#pricing">Стоимость</a></li>
-          <li class="menu-has-children"><a href="">Список</a>
+          <li><a href="#faq">Вопрос-Ответ</a></li>
+          <li class="menu-has-children" style="display: none;"><a href="">Список</a>
             <ul>
               <li><a href="#">Список 1</a></li>
               <li class="menu-has-children"><a href="#">Список 2</a>
@@ -133,22 +134,22 @@
             <div class="row">
 
               <div class="col-lg-6 col-md-6 box" data-aos="fade-left">
-                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+                <div class="icon"><i class="ion-ios-speedometer"></i></div>
                 <h4 class="title"><a href="">Быстрая настройка</a></h4>
                 <p class="description">Создайте свою страницу всего один раз и добавьте столько ссылок, сколько пожелаете, измените их так часто, как вы хотите</p>
               </div>
               <div class="col-lg-6 col-md-6 box" data-aos="fade-left" data-aos-delay="100">
-                <div class="icon"><i class="ion-ios-flask-outline"></i></div>
+                <div class="icon"><i class="ion-tshirt"></i></div>
                 <h4 class="title"><a href="">Дизайн</a></h4>
                 <p class="description">Создайте свой не повторимый дизайн, который будет отвечать вашим коорпаративным требованиям</p>
               </div>
               <div class="col-lg-6 col-md-6 box" data-aos="fade-left" data-aos-delay="200">
-                <div class="icon"><i class="ion-social-buffer-outline"></i></div>
+                <div class="icon"><i class="ion-ios-people"></i></div>
                 <h4 class="title"><a href="">Социальная конверсия</a></h4>
                 <p class="description">Укажите все ваши социальные ссылки, и дайте возможность вашим клиентам взимодействовать с вами по различным каналам</p>
               </div>
               <div class="col-lg-6 col-md-6 box" data-aos="fade-left" data-aos-delay="300">
-                <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
+                <div class="icon"><i class="ion-android-globe"></i></div>
                 <h4 class="title"><a href="">Веб адаптивность</a></h4>
                 <p class="description">Не нужно ничего устанавливать, ваша страница всегда доступна с любого браузера и устройства </p>
               </div>
@@ -165,7 +166,8 @@
     <!--==========================
       Product Advanced Featuress Section
     ============================-->
-    <!--  --><section id="advanced-features">
+    <!--  -->
+    <section id="advanced-features">
       <div class="features-row">
         <div class="container">
           <div class="row">
@@ -181,26 +183,6 @@
           </div>
         </div>
       </div>
-
-      <div class="features-row">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <img class="advanced-feature-img-left" th:src="@{/index/img/advanced-feature-2.jpg}" alt="">
-              <div data-aos="fade-left">
-                <h2>Совершенству нет придела</h2>
-                <i class="ion-ios-paper-outline" data-aos="fade-left"></i>
-                <p data-aos="fade-left">Наша команда ведет постоянную работу по совершенсвованию сервиса. Разрабатываються новые инструменты которые помогут вам стать еще ближе к вашим клиентам, и помочь увеличить ваши продажи и узнаваемость вашего бренда</p>
-                <i class="ion-ios-color-filter-outline" data-aos="fade-left" data-aos-delay="200"></i>
-                <p data-aos="fade-left" data-aos-delay="200">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-                <i class="ion-ios-barcode-outline" data-aos="fade-left" data-aos-delay="400"></i>
-                <p data-aos="fade-left" data-aos-delay="400">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </section><!-- #advanced-features -->
 
     <!--==========================
@@ -220,28 +202,33 @@
           <div class="col-lg-4 col-md-6">
             <div class="box" data-aos="fade-right">
               <h3>Free</h3>
-              <h4><sup>$</sup>0<span> month</span></h4>
+              <h4><sup>$</sup>0<span> месяц</span></h4>
               <ul>
-                <li><i class="ion-android-checkmark-circle"></i> Quam adipiscing vitae proin</li>
-                <li><i class="ion-android-checkmark-circle"></i> Nec feugiat nisl pretium</li>
-                <li><i class="ion-android-checkmark-circle"></i> Nulla at volutpat diam uteera</li>
-                <li><i class="ion-android-checkmark-circle"></i> Pharetra massa massa ultricies</li>
-                <li><i class="ion-android-checkmark-circle"></i> Massa ultricies mi quis hendrerit</li>
+                <li><i class="ion-android-checkmark-circle"></i> Неограниченное колличество ссылок</li>
+                <li><i class="ion-android-checkmark-circle"></i> Генерация QR-кода</li>
+                <li><i class="ion-android-checkmark-circle"></i> Общая аналитика</li>
+                <li><i class="ion-android-checkmark-circle"></i> Дизайн из темы MSME.ONE</li>
               </ul>
-              <a href="#" class="get-started-btn">Get Started</a>
+              <a href="#" class="get-started-btn">Начать</a>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6">
             <div class="box featured" data-aos="fade-up">
-              <h3>Business</h3>
-              <h4><sup>$</sup>29<span> month</span></h4>
+              <h3>Бизнес</h3>
+              <h4><sup>$</sup>9<span> месяц</span></h4>
               <ul>
-                <li><i class="ion-android-checkmark-circle"></i> Quam adipiscing vitae proin</li>
-                <li><i class="ion-android-checkmark-circle"></i> Nec feugiat nisl pretium</li>
-                <li><i class="ion-android-checkmark-circle"></i> Nulla at volutpat diam uteera</li>
-                <li><i class="ion-android-checkmark-circle"></i> Pharetra massa massa ultricies</li>
-                <li><i class="ion-android-checkmark-circle"></i> Massa ultricies mi quis hendrerit</li>
+                <li><i class="ion-android-checkmark-circle"></i> Неограниченное колличество ссылок</li>
+                <li><i class="ion-android-checkmark-circle"></i> Генерация QR-кода</li>
+                <li><i class="ion-android-checkmark-circle"></i> Общая аналитика</li>
+                <li><i class="ion-android-checkmark-circle"></i> Дизайн из темы MSME.ONE</li>
+                <li><i class="ion-android-checkmark-circle"></i> Собственные ссылки</li>
+                <li><i class="ion-android-checkmark-circle"></i> Приоритетная поддержка пользователей</li>
+                <li><i class="ion-android-checkmark-circle"></i> Собсвенный фон</li>
+                <li><i class="ion-android-checkmark-circle"></i> Убрать рекламу</li>
+                <li><i class="ion-android-checkmark-circle"></i> Подробная аналитика по переходам по дням</li>
+                <li><i class="ion-android-checkmark-circle"></i> Интеграция Сервисов веб-аналитика (Google Analytics,Ynadex metrics и Facebook pixels)</li>
+                
               </ul>
               <a href="#" class="get-started-btn">Get Started</a>
             </div>

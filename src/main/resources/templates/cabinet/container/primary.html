@@ -16,19 +16,14 @@
 				</div>
 			</div>
 	</div>
-	<form name="FormProfileInfo" novalidate ng-submit="primary.saveInfo(primary.info)">
-		<div class="md-form form-group">
-			<input class="form-control" type="text" ng-model="primary.info.username" id="inputName"  required>
-			<label for="inputName" class="active">Наименование профиля</label>
-		</div>
-		<div class="form-group md-form">
-			<label for="inputDescription" class="active">Описание страницы</label>
-			<textarea class="md-textarea form-control" id="inputDescription" ng-model="primary.info.description" rows="1"></textarea>
-		</div>
-		<button class="btn btn-primary mt-4 mb-4" type="submit"
-			ng-disabled="FormProfileInfo.$invalid">Сохранить</button>
-	</form>
-	
+	<div class="md-form form-group">
+		<input class="form-control" type="text" ng-model="primary.info.username" id="inputName"  required ng-change="primary.saveInfo(primary.info)" ng-model-options="{updateOn: 'blur'}">
+		<label for="inputName" class="active">Наименование профиля</label>
+	</div>
+	<div class="form-group md-form">
+		<label for="inputDescription" class="active">Описание страницы</label>
+		<textarea class="md-textarea form-control" id="inputDescription" ng-model="primary.info.description" rows="1" ng-change="primary.saveInfo(primary.info)" ng-model-options="{updateOn: 'blur'}"></textarea>
+	</div>
 	<!-- Central Modal Small -->
 <div class="modal fade" id="centralModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <!-- Change class .modal-sm to change the size of the modal -->

@@ -16,11 +16,12 @@ function PrimaryCtrl ($http,$window,$cookies) {
 			$http.post(pointUrl, info)
 			.then(
 				       function(response){
-				    	   alert('Info updated');
+				    	   $.notify("Изменения сохранены", "success");
 				       }, 
 				       function(response){
 				    	   console.log(response);
 				    	   primary.message = response.message;
+				    	   $.notify(primary.message, "error");
 				       }
 				    );
 	  	}

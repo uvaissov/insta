@@ -40,9 +40,10 @@ function DesignCtrl($http, $window, $cookies) {
 		});
 
 		$http.post(pointUrl, data).then(function(response) {
-			alert('Info updated');
+			 $.notify("Изменения сохранены", "success");
 		}, function(response) {
 			me.message = response.message;
+			 $.notify(me.message, "error");
 		});
 	};
 
@@ -62,6 +63,7 @@ function DesignCtrl($http, $window, $cookies) {
 			}
 		});
 		item.active = true;
+		me.saveInfo();
 	};
 
 	me.setColorBackground = function() {
@@ -87,13 +89,21 @@ function DesignCtrl($http, $window, $cookies) {
 					cancelText : "Отмена",
 					replacerClassName : 'color-input-swatch',
 					preferredFormat : "hex",
-					clickoutFiresChange : true,
+					clickoutFiresChange : false,
 					move : function move(color) {
 						me.mainColor = color.toHexString();
 						me.setColorBackground();
 					},
 					change : function change(color) {
 						me.mainColor = color.toHexString();
+						me.init.mainColor = color.toHexString();
+						me.setColorBackground();
+						me.saveInfo();
+					},
+					hide : function change(color) {
+						if(me.mainColor != me.init.mainColor){
+							me.mainColor = me.init.mainColor
+						}
 						me.setColorBackground();
 					}
 
@@ -104,13 +114,21 @@ function DesignCtrl($http, $window, $cookies) {
 					cancelText : "Отмена",
 					replacerClassName : 'color-input-swatch',
 					preferredFormat : "hex",
-					clickoutFiresChange : true,
+					clickoutFiresChange : false,
 					move : function move(color) {
 						me.backgroundColor = color.toHexString();
 						me.setColorBackground();
 					},
 					change : function change(color) {
 						me.backgroundColor = color.toHexString();
+						me.init.backgroundColor = color.toHexString();
+						me.setColorBackground();
+						me.saveInfo();
+					},
+					hide : function change(color) {
+						if(me.backgroundColor != me.init.backgroundColor){
+							me.backgroundColor = me.init.backgroundColor
+						}
 						me.setColorBackground();
 					}
 

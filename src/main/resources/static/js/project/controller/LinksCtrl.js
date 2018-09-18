@@ -36,6 +36,7 @@ me.deleteLink = function(model){
 	me.confirm.action=function(){
 		$http.delete(pointUrl+'/'+model.id).then(function(response) {
 			$('#confirmModalSm').modal('hide');
+			$.notify("Изменения сохранены", "success");
 			me.get(); 
 		}, function(response) {
 			me.message = response.message;
@@ -79,6 +80,7 @@ me.get = function() {
 
 me.changePosition = function(from,to){
 	$http.post(pointUrl+'/position', {from:from,to:to}).then(function(response) {
+		$.notify("Изменения сохранены", "success");
 		me.get(); 
 	}, function(response) {
 		me.message = response.message;

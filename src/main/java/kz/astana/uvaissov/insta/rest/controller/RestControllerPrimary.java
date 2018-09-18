@@ -51,7 +51,7 @@ public class RestControllerPrimary {
 			profileInfo = new ProfileInfo();
 		}
 		if(primary.username!=null) {
-			profileInfo.setProfilename(primary.username.toLowerCase());
+			profileInfo.setProfilename(primary.username);
 		}
 		if(primary.description!=null) {
 			profileInfo.setDescription(primary.description);

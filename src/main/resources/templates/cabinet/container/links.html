@@ -5,7 +5,7 @@
 		  	<div class="d-flex">
 		  	<i class="fas fa-ellipsis-v drag-icon" ></i>
 		  		<i class="input-group-prepend img55">
-			    	<img ng-src="/assets/svg2/{{url.urlIcon}}">
+			    	<img ng-src="{{url.fullUrlIcon}}">
 				</i>
 				<span class="ml-2 ">
 					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">{{url.urlName}}</p>
@@ -56,7 +56,7 @@
           <div class="container">
           	<div class="d-flex">
           		<i class="input-group-prepend img55">
-			    	<img ng-src="/assets/svg2/{{link.data.urlIcon}}">
+			    	<img ng-src="{{link.data.fullUrlIcon}}">
 				</i>
 				<span class="ml-2 ">
 					<p class="input-group-prepend mb-0" style="color: #75757582;font-size: 0.8rem;font-weight: bold;">{{link.data.urlName}}
@@ -110,7 +110,7 @@
         <div class="modal-body" style="max-height: 320px; overflow-y: scroll; scroll-behavior:smooth; " id="addIconBody">
           <div class="container"  >
 				<a class="button-icon" ng-class="button.selected ? 'selected' : 'none'" ng-repeat="button in link.addButtons" ng-click="link.selectLink(this,button)">
-					<img ng-src="/assets/svg2/{{button.iconName}}">
+					<img ng-src="{{button.fullIconUrl}}">
 	    			<span>{{button.name}}</span>
 				</a>
           </div>

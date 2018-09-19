@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.core.Authentication;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import kz.astana.uvaissov.insta.cabinet.constant.Backgrounds;
@@ -47,16 +50,23 @@ public class CabinetController {
 	private AnalyticsService analytics;
 	@Autowired
 	private LocalDataService localDataService;
+	@Autowired
+	ServletContext context;
 	
 	@ModelAttribute("user")//Обьявим основной аттрибут пользователя
 	public User getUser() {
+		System.err.println("getUser");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
+		if(user==null) {
+			user= new User();
+		}
 		return user;
 	}
 	
 	@ModelAttribute("userSession")//Обьявим обьект сессии пользователя
 	public ActiveSession getSession(@ModelAttribute("user") User user) {
+		System.err.println("getSession");
 		ActiveSession session = new ActiveSession();
 		System.out.println("user.getProfile_info_id():"+user.getProfile_info_id());
 		session.profileId =user.getProfile_info_id();
@@ -115,23 +125,7 @@ public class CabinetController {
     		backItemsMaterial.add(item);
     	}
     	
-    	//подгрузка ссылок
-    	List<DicUrl> listUrls =	localDataService.getUrls();
-    	List<ButtonContainer> buttons = new ArrayList<ButtonContainer>();
-    	for(DicUrl url : listUrls) {
-    		ButtonContainer bu = new ButtonContainer(url);
-    		if(Arrays.asList("phone").contains(bu.getName())) {
-    			bu.setType(0);//main
-    		} else if(Arrays.asList("twitter","instagram","facebook").contains(bu.getName())) {
-    			//bu.setType(2);//followUs
-    		}
-    		buttons.add(bu);
-    	}
-    	
     	modelAndView.addObject("backItemsMaterial",backItemsMaterial);
-    	modelAndView.addObject("buttons",buttons);
-    	
-    	
 		modelAndView.setViewName("/cabinet/index");
 		return modelAndView;
     }
@@ -161,7 +155,7 @@ public class CabinetController {
     	List<DicUrl> listUrls =	localDataService.getUrls();
     	List<ButtonContainer> buttons = new ArrayList<ButtonContainer>();
     	for(DicUrl url : listUrls) {
-    		ButtonContainer bu = new ButtonContainer(url);
+    		ButtonContainer bu = new ButtonContainer(url,context);
     		buttons.add(bu); 
     	}
     	modelAndView.addObject("buttons",buttons);

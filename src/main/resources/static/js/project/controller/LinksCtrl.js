@@ -52,6 +52,7 @@ me.selectLink = function(el,button){
 				urlName : button.name,
 				title : button.name,
 				urlIcon : button.iconName,
+				fullUrlIcon:button.fullIconUrl,
 				textPrefix : button.textPrefix,
 				dataType : button.dataType,
 				urlId : button.id

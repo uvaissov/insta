@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang.StringUtils;
@@ -47,6 +48,9 @@ public class RestControllerLinks {
 	@Autowired
 	private DicService dicService;
 	
+	@Autowired
+	ServletContext context;
+	
 	@GetMapping
 	public List<ButtonModel> getInfo(@ModelAttribute("user") User user){
 		
@@ -68,6 +72,8 @@ public class RestControllerLinks {
 			model.value = url.getUrl_value();
 			model.urlName = dict.getName();
 			model.urlIcon=dict.getIcon_url();
+			model.fullUrlIcon = context.getContextPath()+"/assets/svg2/"+model.urlIcon;
+			
 			result.add(model);
 		}
 		return result;

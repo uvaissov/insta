@@ -105,7 +105,7 @@ public class FileUploadController {
 		headers.setContentType(MediaType.TEXT_HTML);//отправляем как HTMl тэг
 		
 		
-		return new ResponseEntity<String>("<img src='http://"+request.getServerName()+":"+request.getServerPort()+"/content/file/" + fileName + "'>", headers,
+		return new ResponseEntity<String>("<img src='http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/content/file/" + fileName + "'>", headers,
 				HttpStatus.OK);
 	}
 	private static byte[] toByteArrayAutoClosable(BufferedImage image, String type) throws IOException {

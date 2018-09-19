@@ -1,8 +1,11 @@
 package kz.astana.uvaissov.insta.cabinet.model;
 
 import java.math.BigInteger;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.mobile.device.Device;
 
@@ -12,7 +15,7 @@ import kz.astana.uvaissov.insta.entity.DicUrl;
 import kz.astana.uvaissov.insta.util.EncryptionUtil;
 
 public class ButtonContainer {
-	private String url,name,iconName,dataType,textPrefix;
+	private String url,name,iconName,dataType,textPrefix,fullIconUrl;
 	private int type = 1;//link
 	private long id;
 	public ButtonContainer(Object[] row,Device device, Gson gson, Long profileId) {
@@ -34,12 +37,13 @@ public class ButtonContainer {
 		this.name = name;
 		this.iconName =iconName;
 	}
-	public ButtonContainer(DicUrl url2) {
+	public ButtonContainer(DicUrl url2, ServletContext context) {
 		this.id = url2.getId();
 		this.name = url2.getName();
 		this.iconName =url2.getIcon_url();
 		this.dataType= url2.getData_type();
 		this.textPrefix = url2.getText_prefix();
+		this.fullIconUrl = context.getContextPath()+"/assets/svg2/"+this.iconName;
 	}
 	public String getName() {
 		return name;
@@ -82,6 +86,12 @@ public class ButtonContainer {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public String getFullIconUrl() {
+		return fullIconUrl;
+	}
+	public void setFullIconUrl(String fullIconUrl) {
+		this.fullIconUrl = fullIconUrl;
 	}
 	
 }

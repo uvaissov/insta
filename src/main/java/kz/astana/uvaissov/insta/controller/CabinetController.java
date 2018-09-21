@@ -99,7 +99,7 @@ public class CabinetController {
     	//Вкладки
     	List<NavItem> navItems = new ArrayList<NavItem>();
     	navItems.add(new NavItem("Профайл", "primary", true,"left"));
-    	navItems.add(new NavItem("Дизайн", "design", true,"left"));
+    	navItems.add(new NavItem("Дизайн", "design",false ,"left"));
     	navItems.add(new NavItem("Ссылки", "links", false,"left"));
     	navItems.add(new NavItem("Аналитика", "analytics", false,"left"));
     	modelAndView.addObject("navItems",navItems);

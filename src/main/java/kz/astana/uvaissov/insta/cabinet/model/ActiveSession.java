@@ -10,4 +10,5 @@ public class ActiveSession {
 	public String logoUrl;
 	public String backgroundUrl;
 	public String userName;
+	public String mode;
 }

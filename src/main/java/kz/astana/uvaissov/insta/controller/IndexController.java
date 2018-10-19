@@ -10,12 +10,16 @@ import java.util.concurrent.Executors;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties.Session;
 import org.springframework.mobile.device.Device;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -30,17 +34,18 @@ import org.springframework.web.servlet.ModelAndView;
 import kz.astana.uvaissov.insta.cabinet.model.ActiveSession;
 import kz.astana.uvaissov.insta.cabinet.model.ButtonContainer;
 import kz.astana.uvaissov.insta.entity.ProfileInfo;
+import kz.astana.uvaissov.insta.entity.User;
 import kz.astana.uvaissov.insta.entity.LogAction;
 import kz.astana.uvaissov.insta.repository.GsonHttp;
 import kz.astana.uvaissov.insta.service.InfoService;
 import kz.astana.uvaissov.insta.service.LinksService;
 import kz.astana.uvaissov.insta.service.LocalDataService;
 import kz.astana.uvaissov.insta.service.LogService;
+import kz.astana.uvaissov.insta.service.UserService;
 import kz.astana.uvaissov.insta.util.EncryptionUtil;
 
 
 @Controller
-@SessionAttributes({"user","userSession"})
 @RequestMapping("/")
 public class IndexController {
 
@@ -55,6 +60,10 @@ public class IndexController {
 	
 	
 	@Autowired
+	private UserService userService;
+	
+	
+	@Autowired
 	private LocalDataService localDataService;
 	
 	@Autowired
@@ -62,6 +71,10 @@ public class IndexController {
 	
 	@Autowired
 	ServletContext servletContext;
+	
+	@Autowired
+	CabinetController cabinet;
+	
 	
     @RequestMapping( method = RequestMethod.GET)
     public ModelAndView workspace(Model model) {
@@ -73,17 +86,42 @@ public class IndexController {
     
     @RequestMapping(method = RequestMethod.GET,path = "/{userName:.+}")
     public ModelAndView profile(
+    		Model model,
     		Device device, 
     		@PathVariable String userName,
     		@CookieValue(value = "comming", defaultValue="none") String comming,
     		HttpServletResponse response,
-    		@RequestHeader(value = "referer", required = false) final String referer) {
+    		HttpServletRequest request,
+    		@RequestHeader(value = "referer", required = false) final String referer
+    		) {
     	ModelAndView modelAndView = new ModelAndView();
     	ProfileInfo profileInfo = infoService.findByAccountname(userName.toLowerCase());
     	
     	if(profileInfo == null) {//проброс на главную, случае отсутсвия данных
     		modelAndView.setViewName("redirect:/");
     		return modelAndView;
+    	}
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	if(auth!=null) {
+    		System.out.println("AUTH");
+    		User user = null;
+    		
+    		if(request.getSession().getAttribute("user")==null) {
+	    		user = userService.findUserByEmail(auth.getName());
+	    		request.getSession().setAttribute("user", user);
+    		}
+    		
+	    	ActiveSession session = (ActiveSession) request.getSession().getAttribute("userSession");
+	    	if(session==null) {
+	    		session = new ActiveSession();
+	    		session.profileId =user.getProfile_info_id();
+	    		session.userName = user.getAccount_name();
+	    		session.mode="view";
+	    		request.getSession().setAttribute("userSession", session);
+	    	}
+	    	if(session!=null && "cabinet".equalsIgnoreCase(session.mode)) {
+	    		return cabinet.workspace(model,  device,request);
+	    	}
     	}
     	
     	//подгрузка ссылок

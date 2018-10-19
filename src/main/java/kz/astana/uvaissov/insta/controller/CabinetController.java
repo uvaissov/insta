@@ -8,8 +8,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,7 +42,6 @@ import kz.astana.uvaissov.insta.service.UserService;
 
 
 @Controller
-@SessionAttributes({"user","userSession"})
 @RequestMapping("/cabinet")
 public class CabinetController {
 
@@ -53,31 +56,21 @@ public class CabinetController {
 	@Autowired
 	ServletContext context;
 	
-	@ModelAttribute("user")//Обьявим основной аттрибут пользователя
-	public User getUser() {
-		System.err.println("getUser");
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
-		if(user==null) {
-			user= new User();
-		}
-		return user;
-	}
 	
-	@ModelAttribute("userSession")//Обьявим обьект сессии пользователя
-	public ActiveSession getSession(@ModelAttribute("user") User user) {
-		System.err.println("getSession");
-		ActiveSession session = new ActiveSession();
-		System.out.println("user.getProfile_info_id():"+user.getProfile_info_id());
-		session.profileId =user.getProfile_info_id();
-		session.userName = user.getAccount_name();
-		return session;
-	}
+	@RequestMapping( method = RequestMethod.POST)
+    public ResponseEntity mode(HttpServletRequest request,@RequestParam("mode") String mode){
+ 		ActiveSession session = (ActiveSession) request.getSession().getAttribute("userSession");
+ 		if(session!=null) {
+ 			session.mode=mode; 		
+ 		}
+    	return new ResponseEntity(HttpStatus.OK);
+    }
 
-
-    @RequestMapping( method = RequestMethod.GET)
-    public ModelAndView workspace(Model model,@ModelAttribute("user") User user,@ModelAttribute("userSession") ActiveSession session,Device device) {
+    //@RequestMapping( method = RequestMethod.GET)
+    public ModelAndView workspace(Model model,Device device,HttpServletRequest request) {
     	ModelAndView modelAndView = new ModelAndView();
+    	User user = (User) request.getSession().getAttribute("user");
+    	ActiveSession session = (ActiveSession) request.getSession().getAttribute("userSession");
     	if(user==null || user.getId()==null) {
     		modelAndView.setViewName("login");
     		return modelAndView;

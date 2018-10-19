@@ -35,6 +35,14 @@ public class UserServiceImpl implements UserService{
 			user.getRoles().size();//EAGER or call method? we call method!
 		return user;
 	}
+	
+	public String findAccountByEmail(String email) {
+		User user = userRepository.findByEmail(email);
+		if(user!=null) {
+			return user.getAccount_name();
+		} else 
+			return null;
+	}
 
 	@Override
 	public void saveUser(User user) {

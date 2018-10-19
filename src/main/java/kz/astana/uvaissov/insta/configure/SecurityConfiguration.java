@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,7 +14,10 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import kz.astana.uvaissov.insta.service.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -30,6 +34,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
+	
+	@Autowired
+	private UserService userService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth)
@@ -56,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.anyRequest()
 			.authenticated().and().csrf().disable().formLogin()
 			.loginPage("/login").failureUrl("/login?error=true")
-			.defaultSuccessUrl("/cabinet")
+			.successHandler(myAuthenticationSuccessHandler())
 			.usernameParameter("email")
 			.passwordParameter("password")
 			.and().logout()
@@ -65,6 +72,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.accessDeniedPage("/login");
 
 	}
+	
+	@Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler(userService);
+    }
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
